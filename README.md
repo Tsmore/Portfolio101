@@ -33,3 +33,5 @@
 - アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
 - 使用しない場合は、使用素材の項目をREADMEから削除してください。
 折りたたむ -->
+## ER図
+![portforio](https://github.com/Tsmore/Portfolio101/assets/143774064/cd9cfe1d-ee82-4f84-9715-857b828d9d24)
