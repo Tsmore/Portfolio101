@@ -35,4 +35,4 @@
 折りたたむ -->
 ## ER図
 
-![ER Diagram](Portfolio101/portfolio.drawio.svg)
+![ER Diagram](https://github.com/Tsmore/Portfolio101/blob/main/portforio.drawio.svg)
