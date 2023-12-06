@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 2023_12_06_092938) do
   end
 
   create_table "breeds", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "cats", force: :cascade do |t|
     t.integer "breed_id"
-    t.string "name"
+    t.string "name", null: false
     t.text "introduction"
     t.date "date_of_birth"
     t.integer "sex"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_12_06_092938) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.text "body"
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 2023_12_06_092938) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "name", null: false
+    t.text "description", null: false
     t.text "product_link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2023_12_06_092938) do
   create_table "messages", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
-    t.text "message"
+    t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -120,15 +120,15 @@ ActiveRecord::Schema.define(version: 2023_12_06_092938) do
     t.integer "comment_id"
     t.integer "favorite_id"
     t.integer "message_id"
-    t.string "action"
-    t.boolean "is_read"
+    t.string "action", null: false
+    t.boolean "is_read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
+    t.string "title", null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
