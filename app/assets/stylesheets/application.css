@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .login-btn{
+  border-radius: 30px !important;
+  padding: 10px 40px!important;
+ }
