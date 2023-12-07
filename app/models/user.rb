@@ -20,6 +20,14 @@ class User < ApplicationRecord
   has_many :follower_users, through: :followings, source: :following
   has_many :following_users, through: :followers, source: :follower
 
+  # ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.username = "GuestUser"
+    end
+  end
+
   # フォロー処理
   def follow
     followers.create(following_id: user_id)

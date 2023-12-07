@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: "admin/sessions"
   }
+  devise_scope :user do
+    post "users/guest_sign_in", to: "user/sessions#new_guest"
+  end
 
   # deviseとかぶるためmenbersにurlを変更
   scope module: :user do

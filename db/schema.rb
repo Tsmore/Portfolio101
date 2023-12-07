@@ -192,9 +192,9 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "cat_id", null: false
-    t.integer "item_id", null: false
-    t.integer "post_id", null: false
+    t.integer "cat_id"
+    t.integer "item_id"
+    t.integer "post_id"
     t.string "username", null: false
     t.string "introduction"
     t.boolean "is_active", default: true, null: false
