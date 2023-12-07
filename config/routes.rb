@@ -15,6 +15,15 @@ Rails.application.routes.draw do
       collection do
         patch :cancellation
       end
+      member do
+        get :follows, :followers
+      end
+      resources :relationships, only: [:create, :destroy]
+      resources :notifications, only: [:index, :update] do
+        collection do
+          patch :mark_as_read
+        end
+      end
       resources :reports, only: [:new, :create]
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :posts, only: [:index, :show, :create, :update, :destroy] do
@@ -27,9 +36,6 @@ Rails.application.routes.draw do
       end
       resources :items, only: [:index, :create, :update, :destroy]
     end
-  end
-  namespace :user do
-    get 'rooms/show'
   end
 
   namespace :admin do
