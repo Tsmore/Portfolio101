@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # deviseとかぶるためmenbersにurlを変更
   scope module: :user do
     root to: 'homes#top'
-    resources :members, only: [:index, :show, :update], controller: 'users' do
+    resources :members, only: [:index, :show, :edit, :update], controller: 'users' do
       collection do
         patch :cancellation
       end
