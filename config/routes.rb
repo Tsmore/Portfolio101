@@ -15,11 +15,15 @@ Rails.application.routes.draw do
       collection do
         patch :cancellation
       end
+      resources :reports, only: [:new, :create]
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :posts, only: [:index, :show, :create, :update, :destroy] do
-        resources :comments, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy] do
+          resources :reports, only: [:new, :create]
+        end
         resources :favorites, only: [:index, :create, :destroy]
         resources :bookmarks, only: [:index, :create, :destroy]
+        resources :reports, only: [:new, :create]
       end
       resources :items, only: [:index, :create, :update, :destroy]
     end

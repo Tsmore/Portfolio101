@@ -1,12 +1,12 @@
 class CreateNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :notifications do |t|
-      t.integer :visitor_id
-      t.integer :visited_id
-      t.integer :relationship_id
-      t.integer :comment_id
-      t.integer :favorite_id
-      t.integer :message_id
+      t.references :visitor, null: false, foreign_key: { to_table: :users }
+      t.references :visited, null: false, foreign_key: { to_table: :users }
+      t.references :relationship, null: false, foreign_key: true
+      t.references :comment, null: false, foreign_key: true
+      t.references :favorite, null: false, foreign_key: true
+      t.references :message, null: false, foreign_key: true
       t.string :action, null: false
       t.boolean :is_read, null: false, default: false
 
