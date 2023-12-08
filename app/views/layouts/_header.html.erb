@@ -1,36 +1,33 @@
-<div class="container-fluid">
-  <div class="row">
-    <header class="header">
-      <%= link_to "Logo", root_path, class: "header-logo" %>
-      <div id="nav-section">
-        <nav>
-          <div class="nav-inner">
-            <ul>
-              <% if user_signed_in? %>
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "Posts", all_posts_path %></li>
-                <li><%= link_to "Gallary", all_cats_path %></li>
-                <li><%= link_to "My Page", user_path(current_user) %></li>
-                <li><%= link_to "Favorites", user_favorites_path(current_user) %></li>
-                <li><%= link_to "Bookmarks", user_bookmarks_path(current_user) %></li>
-                <li><%= link_to "Cat Cafe Map", root_path %></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-              <% else %>
-                <li><%= link_to "Home", root_path %></li>
-                <li><%= link_to "About", root_path %></li>
-                <li><%= link_to "Gallary", all_cats_path %></li>
-                <li><%= link_to "Posts", all_posts_path %></li>
-                <li><%= link_to "Map", root_path %></li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
-        <div class="toggle-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+<header class="header">
+  <%= link_to "Logo", root_path, class: "header-logo" %>
+  <div id="nav-section">
+    <nav>
+      <div class="nav-inner">
+        <ul>
+          <% if user_signed_in? %>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Posts", all_posts_path %></li>
+            <li><%= link_to "Gallary", all_cats_path %></li>
+            <li><%= link_to "My Page", user_path(current_user) %></li>
+            <li><%= link_to "Favorites", user_favorites_path(current_user) %></li>
+            <li><%= link_to "Bookmarks", user_bookmarks_path(current_user) %></li>
+            <li><%= link_to "Cat Cafe Map", root_path %></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "About", "#abut-section" %></li>
+            <li><%= link_to "Gallary", all_cats_path %></li>
+            <li><%= link_to "Posts", all_posts_path %></li>
+            <li><%= link_to "Map", root_path %></li>
+          <% end %>
+        </ul>
       </div>
-    </header>
+    </nav>
+    <div class="toggle-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div id="mask"></div>
   </div>
-</div>
+</header>
