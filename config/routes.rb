@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {
+  devise_for :users, path: 'auth', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}, controllers: {
     registrations: "user/registrations",
     sessions: "user/sessions"
   }
-  devise_for :admin, controllers: {
+  devise_for :admin, path: 'admin_auth', path_names: {sign_in: 'login', sign_out: 'logout'}, controllers: {
     sessions: "admin/sessions"
   }
   devise_scope :user do
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # deviseとかぶるためmenbersにurlを変更
   scope module: :user do
     root to: 'homes#top'
-    resources :members, only: [:index, :show, :edit, :update], controller: 'users' do
+    resources :users, only: [:index, :show, :edit, :update] do
       collection do
         patch :cancellation
       end
