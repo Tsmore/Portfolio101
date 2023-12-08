@@ -33,16 +33,19 @@ Rails.application.routes.draw do
         resources :comments, only: [:create, :destroy] do
           resources :reports, only: [:new, :create]
         end
-        resources :favorites, only: [:index, :create, :destroy]
-        resources :bookmarks, only: [:index, :create, :destroy]
         resources :reports, only: [:new, :create]
       end
+      resources :favorites, only: [:index, :create, :destroy]
+      resources :bookmarks, only: [:index, :create, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
       resources :rooms, only: [:create, :show] do
         resources :messages, only: [:create, :destroy]
       end
     end
   end
+  resources :all_posts, only: [:index], module: :user
+  resources :all_cats, only: [:index], module: :user
+
 
   namespace :admin do
     root to: 'homes#top'
