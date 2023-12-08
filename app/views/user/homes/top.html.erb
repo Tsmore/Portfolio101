@@ -2,8 +2,8 @@
 <p>Find me in app/views/user/homes/top.html.erb</p>
 
 
-<%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: "btn btn-secondary login-btn" %>
+<%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
 
 <% if user_signed_in? %>
-  <%= link_to "ログアウト(ログイン中)", destroy_user_session_path, method: :delete, class: "btn btn-danger login-btn" %>
+  <%= link_to "ログアウト(ログイン中)", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
 <% end %>
