@@ -1,9 +1,29 @@
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
-
-
-<%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
-
-<% if user_signed_in? %>
-  <%= link_to "ログアウト(ログイン中)", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-<% end %>
+<div class="container-fluid">
+  <div class="row main-visual-row">
+    <%= image_tag 'main-visual2.jpg', alt: "main-visual", class: "main-visual" %>
+    <div class="main-visual-contents">
+      <h1>Dear Cat Lovers</h1>
+      <p>あなたとあなたの愛する猫のためのコミュニティ</p>
+      <p>にゃんころパラダイスは猫愛好家が猫の写真を共有し</p>
+      <p>地元の保護猫カフェを探索し保護猫の支援に貢献できる場を提供します</p>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <button class="start-btn">
+            ログアウト
+          </button>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <button class="start-btn">ログイン</button>
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+          <button class="start-btn">新規登録</button>
+        <% end %>
+        <%= link_to users_guest_sign_in_path, method: :post do %>
+          <button class="start-btn">ゲストログイン</button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row"></div>
+</div>
