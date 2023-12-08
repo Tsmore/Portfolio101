@@ -76,9 +76,11 @@
   border: 0;
   box-shadow: 0 2px 0 0 #579999;
   font-size: 25px;
+  text-decoration: none;
 }
 .start-btn:hover {
   color: #000;
+  text-decoration: none;
 }
 .start-btn:active {
   box-shadow: none;
@@ -125,11 +127,11 @@ nav {
  border: 5px solid #66ffff;
 }
 
-@media screen and (max-width: 768px) {
-  nav {
-    width: 100%;
-  }
-}
+/*@media screen and (max-width: 768px) {*/
+/*  nav {*/
+/*    width: 100%;*/
+/*  }*/
+/*}*/
 
 .open nav {
  left: 0;

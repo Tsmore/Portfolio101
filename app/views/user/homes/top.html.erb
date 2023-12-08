@@ -13,15 +13,9 @@
           </button>
         <% end %>
       <% else %>
-        <%= link_to new_user_session_path do %>
-          <button class="start-btn">ログイン</button>
-        <% end %>
-        <%= link_to new_user_registration_path do %>
-          <button class="start-btn">新規登録</button>
-        <% end %>
-        <%= link_to users_guest_sign_in_path, method: :post do %>
-          <button class="start-btn">ゲストログイン</button>
-        <% end %>
+        <%= link_to "ログイン", new_user_session_path, class: "start-btn" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "start-btn" %>
+        <%= link_to "ゲスト用", users_guest_sign_in_path, method: :post, class: "start-btn" %>
       <% end %>
     </div>
   </div>
