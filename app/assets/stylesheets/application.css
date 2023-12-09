@@ -19,8 +19,6 @@
  box-sizing: border-box;
 }
 
-
-
 .header {
   height: 80px;
   width: 100%;
@@ -37,6 +35,37 @@
   text-decoration: none !important;
   color: #fff !important;
 }
+
+.flash {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  padding: 20px;
+  z-index: 1000;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.flash-close-icon {
+  position: fixed;
+  right: 30px;
+  font-size: 1.2em;
+}
+
+.flash.notice {
+  background-color: rgba(102, 255, 255, 0.2); /* 透明度20%の青色系 */
+  color: #fff;
+}
+
+.flash.alert {
+  background-color: rgba(255, 0, 128, 0.2); /* 透明度20%の赤色系 */
+  color: #fff;
+}
+
+
 
 /*トップページ*/
 .main-visual {
@@ -343,14 +372,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 /*ハンバーガーメニュー*/
 
 nav {
@@ -367,11 +388,20 @@ nav {
  border: 5px solid #66ffff;
 }
 
-/*@media screen and (max-width: 768px) {*/
-/*  nav {*/
-/*    width: 100%;*/
-/*  }*/
-/*}*/
+@media screen and (max-width: 768px) {
+  nav {
+    width: 40%;
+  }
+  nav .nav-inner ul li a {
+   display: flex;
+   text-decoration: none;
+   color: #666;
+   font-size: 18px !important;
+   padding: 1rem !important;
+   transition-duration: 0.2s;
+   justify-content: center;
+  }
+}
 
 .open nav {
  left: 0;

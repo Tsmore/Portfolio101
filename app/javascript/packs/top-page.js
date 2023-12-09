@@ -18,12 +18,9 @@ document.addEventListener('turbolinks:load', () => {
     loginForm.addEventListener('ajax:error', (event) => {
       const [data, status, xhr] = event.detail;
       console.log(data);
-      // ログインエラーのエラーメッセージを表示する要素を指定
-      // 例: エラーメッセージを表示する要素のIDが 'login-error-messages' の場合
       const errorElement = document.querySelector('#login-error-messages');
       if (errorElement) {
-        // エラーメッセージを設定する
-        errorElement.innerHTML = ''; // 既存のエラーメッセージをクリア
+        errorElement.innerHTML = '';
         if (data.errors) {
           data.errors.forEach((error) => {
             const errorItem = document.createElement('div');
@@ -60,6 +57,7 @@ document.addEventListener('turbolinks:load', () => {
   const btnPopup = document.querySelector('.login-popup-btn');
   const iconClose = document.querySelector('.icon-close');
 
+
   registerLink.addEventListener('click', () => {
     wrapper.classList.add('active');
   });
@@ -77,3 +75,13 @@ document.addEventListener('turbolinks:load', () => {
   });
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const flashMessages = document.querySelectorAll('.flash');
+
+    flashMessages.forEach(flashMessage => {
+      flashMessage.addEventListener('click', () => {
+        flashMessage.style.display = 'none';
+      });
+    });
+  });

@@ -1,4 +1,8 @@
 ja:
+  devise:
+    sessions:
+      signed_out: "ログアウトしました"
+      already_signed_out: "すでにログアウトしています"
   activerecord:
     attributes:
       user:

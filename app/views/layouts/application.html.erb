@@ -17,6 +17,13 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <% flash.each do |key, message| %>
+      <div class="flash <%= key %>">
+        <span class="flash-close-icon"><i class="fa-solid fa-xmark"></i></span>
+        <%= message %>
+      </div>
+    <% end %>
+
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
