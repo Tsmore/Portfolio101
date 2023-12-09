@@ -1,22 +1,71 @@
 <div class="container-fluid">
   <div class="row main-visual-row">
-    <%= image_tag 'main-visual2.jpg', alt: "main-visual", class: "main-visual" %>
+    <!--%= image_tag 'main-visual2.jpg', alt: "main-visual", class: "main-visual" %>-->
     <div class="main-visual-contents">
       <h1>Dear Cat Lovers</h1>
       <p>あなたとあなたの愛する猫のためのコミュニティ</p>
       <p>にゃんころパラダイスは猫愛好家が猫の写真を共有し</p>
       <p>地元の保護猫カフェを探索し保護猫の支援に貢献できる場を提供します</p>
       <% if user_signed_in? %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <button class="start-btn">
-            ログアウト
-          </button>
-        <% end %>
       <% else %>
-        <%= link_to "ログイン", new_user_session_path, class: "start-btn" %>
-        <%= link_to "新規登録", new_user_registration_path, class: "start-btn" %>
-        <%= link_to "ゲスト用", users_guest_sign_in_path, method: :post, class: "start-btn" %>
+        <button class="start-btn login-popup-btn">始める！</button>
       <% end %>
+    </div>
+    <div class="wrapper">
+      <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+      <div class="form-box login">
+        <h2>Login</h2>
+        <%= form_with model: @user, url: user_session_path, method: :post do |f| %>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-user"></i></span>
+            <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+            <%= f.label :username %>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "current-password" %>
+            <%= f.label :password %>
+          </div>
+          <% if @devise_mapping.rememberable? %>
+            <div class="remember-forgot">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+              <% if @devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "Forgot your password?", new_password_path(@resource_name) %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= f.submit "Login", class: "login-btn" %>
+          <%= link_to "For Guest", users_guest_sign_in_path, method: :post, class: "guest-btn" %>
+          <div class="login-register">
+            <p>Don't have an account?<a class="register-link">Register</a></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="form-box register">
+        <h2>Registration</h2>
+        <%= form_with model: @user, url: user_registration_path do |f| %>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-user"></i></span>
+            <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+            <%= f.label :username %>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.label :email %>
+          </div>
+          <div class="input-box">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <%= f.password_field :password, autocomplete: "current-password" %>
+            <%= f.label :password %>
+          </div>
+          <%= f.submit "Register", class: "register-btn" %>
+          <div class="login-register">
+            <p>Already have an account?<a class="login-link">Login</a></p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
