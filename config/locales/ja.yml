@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        username: "ユーザーネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+    errors:
+      messages:
+        blank: "を入力してください"
+        invalid: "は不正な値です。"
+      models:
+        user:
+          attributes:
+            username:
+              taken: "はすでに存在します"
+              too_short: "は6文字以上で入力してください"
+            password:
+              too_short: "は10文字以上で入力してください"

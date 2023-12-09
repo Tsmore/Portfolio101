@@ -12,6 +12,48 @@ document.addEventListener('turbolinks:load', () => {
     nav.classList.toggle("open");
   };
 
+  // ログイン時のエラーメッセージ
+  const loginForm = document.querySelector('#login-form');
+  if (loginForm) {
+    loginForm.addEventListener('ajax:error', (event) => {
+      const [data, status, xhr] = event.detail;
+      console.log(data);
+      // ログインエラーのエラーメッセージを表示する要素を指定
+      // 例: エラーメッセージを表示する要素のIDが 'login-error-messages' の場合
+      const errorElement = document.querySelector('#login-error-messages');
+      if (errorElement) {
+        // エラーメッセージを設定する
+        errorElement.innerHTML = ''; // 既存のエラーメッセージをクリア
+        if (data.errors) {
+          data.errors.forEach((error) => {
+            const errorItem = document.createElement('div');
+            errorItem.textContent = error;
+            errorElement.appendChild(errorItem);
+          });
+        }
+      }
+    });
+  }
+
+  // 新規登録時のエラーメッセージ
+  const registrationForm = document.querySelector('#registration-form');
+  if (registrationForm) {
+    registrationForm.addEventListener('ajax:error', (event) => {
+      const [data, status, xhr] = event.detail;
+      const errorElement = document.querySelector('#registration-error-messages');
+      if (errorElement) {
+        errorElement.innerHTML = '';
+        if (data.errors) {
+          data.errors.forEach((error) => {
+            const errorItem = document.createElement('div');
+            errorItem.textContent = error;
+            errorElement.appendChild(errorItem);
+          });
+        }
+      }
+    });
+  }
+
   const wrapper = document.querySelector('.wrapper');
   const loginLink = document.querySelector('.login-link');
   const registerLink = document.querySelector('.register-link');

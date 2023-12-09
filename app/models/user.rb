@@ -20,6 +20,19 @@ class User < ApplicationRecord
   has_many :follower_users, through: :followings, source: :following
   has_many :following_users, through: :followers, source: :follower
 
+  # バリデーション
+  validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
+  validates :email, presence: true
+  validates :password, presence: true, length: { minimum: 10 }
+  validate :password_must_contain_letter
+
+  def password_must_contain_letter
+    return if password.blank?
+    unless password.match?(/[a-zA-Z]/)
+      errors.add(:password, 'は少なくとも一つのアルファベットを含む必要があります')
+    end
+  end
+
   # ゲストログイン機能
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

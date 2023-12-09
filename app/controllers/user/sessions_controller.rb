@@ -10,6 +10,19 @@ class User::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: "ゲストユーザとしてログインしました。"
   end
 
+  def create
+    self.resource = warden.authenticate(auth_options)
+    if self.resource
+      set_flash_message!(:notice, :signed_in)
+      sign_in(resource_name, resource)
+      respond_with resource, location: after_sign_in_path_for(resource)
+    else
+      respond_to do |format|
+        format.json { render json: { errors: ["ログインに失敗しました。"] }, status: :unprocessable_entity }
+        format.html { render 'user/homes/top' }
+      end
+    end
+  end
   # GET /resource/sign_in
   # def new
   #   super

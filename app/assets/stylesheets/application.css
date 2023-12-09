@@ -331,6 +331,16 @@
   cursor: pointer;
 }
 
+.error-messages {
+  background-color: rgba(235,62,84, 0.3);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-height: 70px;
+  overflow-y: auto;
+}
 
 
 

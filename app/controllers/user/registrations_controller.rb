@@ -5,6 +5,22 @@ class User::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def create
+    build_resource(sign_up_params)
+
+    resource.save
+    yield resource if block_given?
+
+    if resource.persisted?
+      # 新規登録成功時の処理
+    else
+      respond_to do |format|
+        format.json { render json: { errors: resource.errors.full_messages }, status: :unprocessable_entity }
+        format.html { render 'user/homes/top' }
+      end
+    end
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
