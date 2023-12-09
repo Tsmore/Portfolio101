@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # バリデーション
   validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
   validates :email, presence: true
-  validates :password, presence: true, length: { minimum: 10 }
+  validates :password, presence: true, length: { minimum: 8 }
   validate :password_must_contain_letter
 
   def password_must_contain_letter

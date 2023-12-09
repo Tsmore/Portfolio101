@@ -15,5 +15,7 @@ ja:
             username:
               taken: "はすでに存在します"
               too_short: "は6文字以上で入力してください"
+            email:
+              taken: "はすでに使用されています"
             password:
-              too_short: "は10文字以上で入力してください"
+              too_short: "は8文字以上で入力してください"
