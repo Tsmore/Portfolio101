@@ -18,10 +18,21 @@
  @import "components/header";
  @import "layouts/flash";
  @import "pages/top-page";
+ @import "pages/my-page";
 
 
 * {
  margin: 0;
  padding: 0;
  box-sizing: border-box;
+}
+
+body {
+  /*background-color: #fafdff; snow white*/
+  /*background-color: #fffff9; milky white*/
+  background-color: #efefef !important; /*silver white*/
+}
+
+.body {
+  padding-top: 100px;
 }

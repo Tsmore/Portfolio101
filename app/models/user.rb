@@ -4,6 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :user_image
+
+  def profile_image
+    unless user_image.attached?
+      file_path = Rails.root.join('app/assets/images/no-image.jpg')
+      user_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    user_image
+  end
+
   has_many :cats, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
@@ -23,7 +33,7 @@ class User < ApplicationRecord
   # バリデーション
   validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
   validates :email, presence: true
-  validates :password, presence: true, length: { minimum: 8 }
+  # validates :password, presence: true, length: { minimum: 8 } これ死ぬぞ
   validate :password_must_contain_letter
 
   def password_must_contain_letter
