@@ -1,0 +1,28 @@
+.flash {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  padding: 20px;
+  z-index: 1;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.flash-close-icon {
+  position: fixed;
+  right: 30px;
+  font-size: 1.2em;
+}
+
+.flash.notice {
+  background-color: rgba(102, 255, 255, 0.2); /* 透明度20%の青色系 */
+  color: #fff;
+}
+
+.flash.alert {
+  background-color: rgba(255, 0, 128, 0.2); /* 透明度20%の赤色系 */
+  color: #fff;
+}
