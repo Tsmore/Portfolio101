@@ -1,0 +1,121 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  --webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(97, 255, 255, 0.5);
+  transition: width 0.3s ease;
+  z-index: 5;
+}
+
+
+.sidebar.active {
+  width: 260px;
+}
+
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  padding: 25px 10px 15px;
+}
+
+.logo img {
+  width: 70px;
+  border-radius: 50%;
+}
+
+.logo h2 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-left: 15px;
+  display: none;
+  color: #333;
+}
+
+.sidebar.active .logo h2 {
+  display: block;
+}
+
+.sidebar .links {
+  height: calc(100 - 140px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  list-style: none;
+  margin-top: 20px;
+}
+
+/* スクロールバー非表示 */
+.sidebar .links::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar .links h4 {
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.sidebar.active .links h4 {
+  display: block;
+}
+
+.links li {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li:hover {
+  background: white;
+  border-radius: 5px;
+}
+
+.links hr {
+  border-color: #333;
+  margin: 10px 8px;
+}
+
+.sidebar.active .links hr {
+  border-color: transparent;
+}
+
+.links li span {
+  padding: 12px 10px;
+}
+
+.links li span i {
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.links li a {
+  color: #333;
+  padding: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  display: none;
+}
+
+.sidebar.active .links li a {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 50px;
+  }
+  .sidebar.active {
+    width: 200px;
+  }
+  .logo img {
+    width: 50px;
+  }
+}

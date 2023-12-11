@@ -16,6 +16,7 @@
  @import "components/hamburger-menu";
  @import "components/login-register-popup";
  @import "components/header";
+ @import "components/sidebar";
  @import "layouts/flash";
  @import "pages/top-page";
  @import "pages/my-page";
@@ -36,5 +37,5 @@ body {
 }
 
 .body {
-  padding-top: 120px;
+  padding-left: 120px !important;
 }

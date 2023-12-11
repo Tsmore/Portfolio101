@@ -1,16 +1,17 @@
 document.addEventListener('turbolinks:load', () => {
 
-  let nav = document.querySelector("#nav-section");
-  let btn = document.querySelector(".toggle-btn");
-  let mask = document.querySelector("#mask");
+  // ハンバーガーメニュー
+  // let nav = document.querySelector("#nav-section");
+  // let btn = document.querySelector(".toggle-btn");
+  // let mask = document.querySelector("#mask");
 
-  btn.onclick = () => {
-    nav.classList.toggle("open");
-  };
+  // btn.onclick = () => {
+  //   nav.classList.toggle("open");
+  // };
 
-  mask.onclick = () => {
-    nav.classList.toggle("open");
-  };
+  // mask.onclick = () => {
+  //   nav.classList.toggle("open");
+  // };
 
   // ログイン時のエラーメッセージ
   const loginForm = document.querySelector('#login-form');
