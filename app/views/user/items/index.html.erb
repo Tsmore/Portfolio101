@@ -9,9 +9,15 @@
             <%= item.name %>
             <%= item.description %>
             <%= link_to item.product_link, item.product_link, target: '_blank', rel: 'noopener noreferrer' %>
-            <% if item.id.present? %>
-              <%= link_to "delete", user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "are you sure?"} %>
+            <% if item.product_link.present? %>
+              <% preview = fetch_page_info(item.product_link) %>
+              <div class="url-preview">
+                <h4><%= preview[:title] %></h4>
+                <p><%= preview[:description] %></p>
+                <%= image_tag preview[:image] if preview[:image].present? %>
+              </div>
             <% end %>
+            <%= link_to "delete", user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "are you sure?"} if item.id.present? %>
           </div>
         <% end %>
       </div>

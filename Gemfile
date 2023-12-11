@@ -61,3 +61,4 @@ gem 'acts_as_list'
 gem 'omniauth'
 gem 'bullet'
 gem "metainspector"
+gem "mechanize"
