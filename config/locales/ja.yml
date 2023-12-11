@@ -4,6 +4,7 @@ ja:
       sexes:
         male: "男の子"
         female: "女の子"
+        unknown: "不明"
   devise:
     sessions:
       signed_out: "ログアウトしました"
@@ -14,6 +15,16 @@ ja:
         username: "ユーザーネーム"
         email: "メールアドレス"
         password: "パスワード"
+      cat:
+        sexes:
+          male: "男の子"
+          female: "女の子"
+          unknown: "不明"
+        sex: "性別"
+        name: "名前"
+        introduction: "紹介文"
+        breed: "猫種"
+
     errors:
       messages:
         blank: "を入力してください"

@@ -13,4 +13,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "./top-page"
-// import "./flash"
+import "./flash"

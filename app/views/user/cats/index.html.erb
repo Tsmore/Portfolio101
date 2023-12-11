@@ -1,2 +1,23 @@
-<h1>User::Cats#index</h1>
-<p>Find me in app/views/user/cats/index.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <div class="col items-index">
+      <%= render 'layouts/error_messages', obj: @cat %>
+      <button type="button" class="btn btn-primary add-new-item-btn" data-toggle="modal" data-target="#add-new-cats">Launch demo modal</button>
+      <%= render 'user/cats/new_cat', cat: @cat %>
+      <div class="row items-index-row">
+        <% @cats.each do |cat| %>
+          <div class="col-md-5 items-box mx-auto">
+            <%= image_tag cat.profile_image, class: "cats-index-image" %>
+            <%= cat.name %>
+            <%= cat.introduction %>
+            <%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %>
+            <%= cat.date_of_birth %>
+            <% if cat.id.present? %>
+              <%= link_to "delete", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "are you sure?"} %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

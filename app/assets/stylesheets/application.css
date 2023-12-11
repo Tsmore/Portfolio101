@@ -20,6 +20,7 @@
  @import "pages/top-page";
  @import "pages/my-page";
  @import "pages/items-index-page";
+ @import "pages/cats-index-page";
 
 
 * {

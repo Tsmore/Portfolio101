@@ -1,6 +1,7 @@
 class User::CatsController < ApplicationController
   def index
     @cat = Cat.new
+    @cats = current_user.cats
   end
 
   def create
@@ -9,6 +10,7 @@ class User::CatsController < ApplicationController
       flash[:notice] = "added"
       redirect_to user_cats_path(current_user)
     else
+      @cats = current_user.cats
       render :index
     end
   end
@@ -19,6 +21,7 @@ class User::CatsController < ApplicationController
       flash[:notice] = "update"
       redirect_to user_cats_path(current_user)
     else
+      @cats = current_user.cats
       render :index
     end
   end
@@ -34,4 +37,5 @@ class User::CatsController < ApplicationController
   def cat_params
     params.require(:cat).permit(:name, :breed_id, :cat_image, :introduction, :date_of_birth, :sex)
   end
+
 end
