@@ -1,0 +1,24 @@
+.items-index {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.add-new-item-btn {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+}
+
+.items-box {
+  background-color: #FFF;
+  border-radius: 10px;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+.items-index-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

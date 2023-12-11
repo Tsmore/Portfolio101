@@ -4,7 +4,7 @@ class User::CatsController < ApplicationController
   end
 
   def create
-    @cat = Cat.new(cat_params)
+    @cat = current_user.cats.build(cat_params)
     if @cat.save
       flash[:notice] = "added"
       redirect_to user_cats_path(current_user)
@@ -14,7 +14,7 @@ class User::CatsController < ApplicationController
   end
 
   def update
-    @cat = Cat.find(params[:id])
+    @cat = current_user.cats.find(params[:id])
     if @cat.update(cat_params)
       flash[:notice] = "update"
       redirect_to user_cats_path(current_user)

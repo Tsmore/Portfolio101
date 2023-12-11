@@ -6,8 +6,10 @@ class CreateCats < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.date :date_of_birth
       t.integer :sex
+      t.integer :user_id
 
       t.timestamps
     end
+    add_index :cats, :user_id
   end
 end

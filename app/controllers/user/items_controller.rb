@@ -1,24 +1,27 @@
 class User::ItemsController < ApplicationController
   def index
     @item = Item.new
-    # @items = Items.all
+    @items = current_user.items
   end
 
   def create
-    @item = Items.new(item_params)
+    @item = current_user.items.build(item_params)
     if @item.save
-      redirect_to user_items_path(@user)
+      flash[:notice] = "created"
+      redirect_to user_items_path(current_user)
     else
+      @items = current_user.items
       render :index
     end
   end
 
   def update
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
     if @item.update(item_params)
       flash[:notice] = "updated"
-      redirect_to user_items_path(@user)
+      redirect_to user_items_path(current_user)
     else
+      @items = current_user.items
       render :index
     end
   end
@@ -26,12 +29,12 @@ class User::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_items_path(@user)
+    redirect_to user_items_path(current_user)
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :product_url)
+    params.require(:item).permit(:name, :description, :product_link)
   end
 end

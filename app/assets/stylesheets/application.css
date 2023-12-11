@@ -19,6 +19,7 @@
  @import "layouts/flash";
  @import "pages/top-page";
  @import "pages/my-page";
+ @import "pages/items-index-page";
 
 
 * {

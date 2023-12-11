@@ -73,9 +73,11 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
     t.text "introduction"
     t.date "date_of_birth"
     t.integer "sex"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["breed_id"], name: "index_cats_on_breed_id"
+    t.index ["user_id"], name: "index_cats_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -110,8 +112,10 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
     t.string "name", null: false
     t.text "description", null: false
     t.text "product_link"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
