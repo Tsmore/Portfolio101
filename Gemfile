@@ -60,3 +60,4 @@ gem 'dotenv-rails'
 gem 'acts_as_list'
 gem 'omniauth'
 gem 'bullet'
+gem "metainspector"
