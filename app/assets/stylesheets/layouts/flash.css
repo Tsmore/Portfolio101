@@ -8,7 +8,7 @@
   text-align: center;
   font-size: 1.2em;
   cursor: pointer;
-  z-index: 5;
+  z-index: 1;
 }
 
 .flash-close-icon {
@@ -30,4 +30,9 @@
   margin-bottom: 0;
   border: none;
   border-radius: none;
+}
+
+.flash.now {
+  background-color: rgba(255, 0, 128, 0.2); /* 透明度20%の赤色系 */
+  color: #fff;
 }
