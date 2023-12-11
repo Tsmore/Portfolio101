@@ -9,7 +9,6 @@ class User::ItemsController < ApplicationController
     if @item.save
       redirect_to user_items_path(@user)
     else
-      # @items = Item.all
       render :index
     end
   end
@@ -20,7 +19,6 @@ class User::ItemsController < ApplicationController
       flash[:notice] = "updated"
       redirect_to user_items_path(@user)
     else
-      # @items = Item.all
       render :index
     end
   end
