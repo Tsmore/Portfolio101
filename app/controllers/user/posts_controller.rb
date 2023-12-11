@@ -1,7 +1,45 @@
 class User::PostsController < ApplicationController
+
   def index
+    @post = Post.new
+    @posts = current_user.posts
   end
 
   def show
+    @post = Post.find(params[:id])
   end
+
+  def create
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      flash[:notice] = "投稿しました"
+      redirect_to user_post_path(@post)
+    else
+      @posts = current_user.posts
+      render :index
+    end
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "編集が完了しました"
+      redirect_to @post
+    else
+      render :show
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_posts_path(current_user)
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body, :post_image)
+  end
+
 end
