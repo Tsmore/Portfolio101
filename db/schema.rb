@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_07_141749) do
+ActiveRecord::Schema.define(version: 2023_12_11_145652) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -180,6 +182,15 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "tag_relationships", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_tag_relationships_on_post_id"
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -236,6 +247,8 @@ ActiveRecord::Schema.define(version: 2023_12_07_141749) do
   add_foreign_key "relationships", "users", column: "following_id"
   add_foreign_key "reports", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "tag_relationships", "posts"
+  add_foreign_key "tag_relationships", "tags"
   add_foreign_key "tags", "posts"
   add_foreign_key "users", "cats"
   add_foreign_key "users", "items"

@@ -68,6 +68,13 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 offset-md-1"></div>
+    <div class="col-md-6 offset-md-1">
+      <% @posts.each do |post| %>
+        <%= image_tag post.post_image if post.post_image.present? %>
+        <%= post.title %>
+        <%= post.body %>
+      <% end %>
+      <%= link_to "my posts", user_posts_path(@user) %>
+    </div>
   </div>
 </div>
