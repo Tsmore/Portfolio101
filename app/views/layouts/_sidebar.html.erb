@@ -8,58 +8,58 @@
       <hr>
       <h4>Main Menu</h4>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-house"></i></span>
+        <span><i class="fa-solid fa-house"></i></span>
         <%= link_to "Home", root_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-pager"></i></span>
+        <span><i class="fa-solid fa-pager"></i></span>
         <%= link_to "All Posts", all_posts_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-cat"></i></span>
+        <span><i class="fa-solid fa-cat"></i></span>
         <%= link_to "All Cats", all_cats_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-map-location-dot"></i></span>
+        <span><i class="fa-solid fa-map-location-dot"></i></span>
         <%= link_to "Cat Map", root_path %>
       </li>
       <hr>
       <h4>My Page</h4>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-user"></i></span>
+        <span><i class="fa-solid fa-user"></i></span>
         <%= link_to "My Page", user_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-mobile-screen"></i></span>
+        <span><i class="fa-solid fa-mobile-screen"></i></span>
         <%= link_to "My Posts", user_posts_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-paw"></i></span>
+        <span><i class="fa-solid fa-paw"></i></span>
         <%= link_to "My Cats", user_cats_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-toolbox"></i></span>
+        <span><i class="fa-solid fa-toolbox"></i></span>
         <%= link_to "My Items", user_items_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
+        <span><i class="fa-solid fa-heart"></i></span>
         <%= link_to "Follower", user_favorites_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
+        <span><i class="fa-solid fa-heart"></i></span>
         <%= link_to "Following", user_favorites_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
+        <span><i class="fa-solid fa-heart"></i></span>
         <%= link_to "Favorites", user_favorites_path(current_user) %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-bookmark"></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></span>
         <%= link_to "Bookmarks", user_bookmarks_path(current_user) %>
       </li>
       <% if user_signed_in? %>
         <li>
-          <span class="material-symbol-outlined"><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span><i class="fa-solid fa-right-from-bracket"></i></span>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         </li>
       <% end %>
@@ -69,19 +69,19 @@
       <hr>
       <h4>Main Menu</h4>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-house"></i></span>
+        <span><i class="fa-solid fa-house"></i></span>
         <%= link_to "Home", root_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-pager"></i></span>
+        <span><i class="fa-solid fa-pager"></i></span>
         <%= link_to "All Posts", all_posts_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-cat"></i></span>
+        <span><i class="fa-solid fa-cat"></i></span>
         <%= link_to "All Cats", all_cats_path %>
       </li>
       <li>
-        <span class="material-symbol-outlined"><i class="fa-solid fa-map-location-dot"></i></span>
+        <span><i class="fa-solid fa-map-location-dot"></i></span>
         <%= link_to "Cat Map", root_path %>
       </li>
     </ul>
