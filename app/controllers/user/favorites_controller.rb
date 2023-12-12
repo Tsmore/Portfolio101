@@ -1,11 +1,12 @@
 class User::FavoritesController < ApplicationController
-  before_action :set_post
+  before_action :set_post, only: [:create, :destroy]
 
   def index
+    @favorites = current_user.favorites
   end
 
   def create
-    @favorite = current_user.favorites.new(post_id: @post.id)
+    @favorite = current_user.favorites.build(post_id: @post.id)
     @favorite.save
     render 'fav'
   end

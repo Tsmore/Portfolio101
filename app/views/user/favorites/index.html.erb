@@ -1,2 +1,29 @@
-<h1>User::Favorites#index</h1>
-<p>Find me in app/views/user/favorites/index.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>username</th>
+            <th>title</th>
+            <th>body</th>
+            <th>date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @favorites.each do |favorite| %>
+            <% post = favorite.post %>
+            <tr>
+              <td><%= image_tag post.user.profile_image %></td>
+              <td><%= link_to post.user.username %></td>
+              <td><%= link_to post.title, post_path(post) %></td>
+              <td><%= post.body %></td>
+              <td><%= post.created_at.strftime('%y/%m/%d') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
