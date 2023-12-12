@@ -57,6 +57,12 @@
         <span><i class="fa-solid fa-bookmark"></i></span>
         <%= link_to "Bookmarks", bookmarks_path %>
       </li>
+      <hr>
+      <h4>System</h4>
+      <li>
+        <span><i class="fa-solid fa-person-circle-exclamation"></i></span>
+        <%= link_to "Report", bookmarks_path %>
+      </li>
       <% if user_signed_in? %>
         <li>
           <span><i class="fa-solid fa-right-from-bracket"></i></span>

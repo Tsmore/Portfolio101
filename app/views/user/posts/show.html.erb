@@ -11,6 +11,7 @@
           <% end %>
         </div>
       <% end %>
+      <%= image_tag @post.post_image if @post.post_image.present? %>
       <%= render 'user/comments/new_comment', comment: @comment, post: @post %>
     </div>
   </div>
