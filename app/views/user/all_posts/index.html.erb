@@ -8,7 +8,7 @@
               <td><%= image_tag post.user.profile_image %></td>
               <td><%= link_to post.user.username, user_path(post.user) %></td>
               <td><%= image_tag post.post_image if post.post_image.present? %></td>
-              <td><%= link_to post.title, post_path(post.user) %></td>
+              <td><%= link_to post.title, post_path(post) %></td>
               <td><%= post.body %></td>
               <td>
                 <% post.tags.each do |tag| %>

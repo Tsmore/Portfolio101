@@ -1,6 +1,10 @@
 <div class="container body">
   <div class="row">
     <div class="col">
+      <% if current_user.id != @post.user.id %>
+        <%= image_tag @post.user.profile_image %>
+        <%= @post.user.username %>
+      <% end %>
       <%= @post.title %>
       <%= @post.body %>
       <% if @post.tags.any? %>
