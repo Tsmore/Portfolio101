@@ -1,2 +1,34 @@
-<h1>User::AllCats#index</h1>
-<p>Find me in app/views/user/all_cats/index.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th>introduction</th>
+            <th>breeds</th>
+            <th>sex</th>
+            <th>date_of_birth</th>
+            <th>cat's owner img</th>
+            <th>username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cats.each do |cat| %>
+            <tr>
+              <td><%= image_tag cat.profile_image, style: "width: 100px; height: 100px;" %></td>
+              <td><%= cat.name %></td>
+              <td><%= cat.introduction %></td>
+              <td><%= cat.breed.name %></td>
+              <td><%= cat.sex %></td>
+              <td><%= cat.date_of_birth %></td>
+              <td><%= image_tag cat.user.profile_image %></td>
+              <td><%= link_to cat.user.username, user_path(cat.user) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
