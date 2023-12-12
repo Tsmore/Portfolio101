@@ -12,33 +12,22 @@ class Post < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
 
-  def save_tags(tags)
-    tags.each do |new_tag|
-      self.tags.find_or_create_by(name: new_tag)
-    end
+
+  # タグ機能
+
+  # Tagオブジェクトの名前を取得し(反復処理でname属性を取得)半角スペースで連結し文字として返す
+  def tag_list
+    tags.map(&:name).join(' ')
   end
 
-  def update_tags(tags)
-    if self.tags.empty?
-      latest_tags.each do |latest_tag|
-        self.tags.find_or_create_by(name: latest_tag)
-      end
-    elsif latest_tags.empty?
-      self.tags.each do |tag|
-        self.tags.delete(tag)
-      end
-    else
-      current_tags = self.tags.pluck(:name)
-      old_tags = current_tags - latest_tags
-      new_tags = latest_tags - current_tags
-      old_tags.each do |old_tag|
-        tag = self.tags.find_by(name: old_tag)
-        self.tags.delete(tag) if tag.present?
-      end
-      new_tags.each do |new_tag|
-        self.tags.find_or_create_by(name: new_tag)
-      end
-    end
+  # 上記のメソッドの文字列を受け取り個別のタグとして分解しPostモデルに関連付け
+  def tag_list=(tags_string)
+    # tag_stringを半角全角スペースで分割、uniqメソッドで重複を排除、mapメソッド使用
+    tag_names = tags_string.split(/[\s\u3000]+/).uniq
+    # find_or_create_by(name: name)で各タグ名に対応するTagオブジェクトを取得or新規作成
+    new_or_found_tags = tag_names.map { |name| Tag.find_or_create_by(name: name) }
+    # ここで処理したタグをPostオブジェクトに関連付け
+    self.tags = new_or_found_tags
   end
 
 end

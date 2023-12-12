@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_11_145652) do
+ActiveRecord::Schema.define(version: 2023_12_12_074453) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -185,8 +185,8 @@ ActiveRecord::Schema.define(version: 2023_12_11_145652) do
   end
 
   create_table "tag_relationships", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "post_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_tag_relationships_on_post_id"
@@ -194,12 +194,10 @@ ActiveRecord::Schema.define(version: 2023_12_11_145652) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer "post_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
-    t.index ["post_id"], name: "index_tags_on_post_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -249,7 +247,6 @@ ActiveRecord::Schema.define(version: 2023_12_11_145652) do
   add_foreign_key "rooms", "users"
   add_foreign_key "tag_relationships", "posts"
   add_foreign_key "tag_relationships", "tags"
-  add_foreign_key "tags", "posts"
   add_foreign_key "users", "cats"
   add_foreign_key "users", "items"
   add_foreign_key "users", "posts"

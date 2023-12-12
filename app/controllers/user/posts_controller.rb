@@ -3,7 +3,6 @@ class User::PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = current_user.posts
-    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def show
@@ -13,10 +12,10 @@ class User::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      @post.save_tags(post_params[:tags]).split(',')
       flash[:notice] = "投稿しました"
       redirect_to user_post_path(current_user, @post)
     else
+      puts @post.errors.full_messages
       @posts = current_user.posts
       render :index
     end
@@ -24,9 +23,7 @@ class User::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tags = params[:post][:tag_id].split(',')
     if @post.update(post_params)
-      @post.update_tags(tags)
       flash[:notice] = "編集が完了しました"
       redirect_to @post
     else
@@ -43,7 +40,7 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_image)
+    params.require(:post).permit(:title, :body, :post_image, :tag_list)
   end
 
 end
