@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "user/sessions#new_guest"
   end
 
-  # deviseとかぶるためmenbersにurlを変更
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
@@ -21,30 +20,30 @@ Rails.application.routes.draw do
       member do
         get :follows, :followers
       end
-      resources :relationships, only: [:create, :destroy]
+      resources :reports, only: [:new, :create]
+      resource :relationships, only: [:create, :destroy]
       resources :notifications, only: [:index, :update] do
         collection do
           patch :mark_as_read
         end
       end
-      resources :reports, only: [:new, :create]
       resources :cats, only: [:index, :create, :update, :destroy]
-      resources :posts, only: [:index, :show, :create, :update, :destroy] do
-        resources :comments, only: [:create, :destroy] do
-          resources :reports, only: [:new, :create]
-        end
-        resources :reports, only: [:new, :create]
-      end
-      resources :favorites, only: [:index, :create, :destroy]
-      resources :bookmarks, only: [:index, :create, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
-      resources :rooms, only: [:create, :show] do
-        resources :messages, only: [:create, :destroy]
-      end
     end
   end
   resources :all_posts, only: [:index], module: :user
   resources :all_cats, only: [:index], module: :user
+  resources :posts, only: [:index, :show, :create, :update, :destroy] do
+    resource :favorites, only: [:index, :create, :destroy]
+    resources :bookmarks, only: [:index, :create, :destroy]
+    resources :comments, only: [:create, :destroy] do
+    resources :reports, only: [:new, :create]
+      resources :reports, only: [:new, :create]
+    end
+  end
+  resources :rooms, only: [:create, :show] do
+    resources :messages, only: [:create, :destroy]
+  end
 
 
   namespace :admin do

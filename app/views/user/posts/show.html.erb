@@ -1,0 +1,17 @@
+<div class="container body">
+  <div class="row">
+    <div class="col">
+      <%= @post.title %>
+      <%= @post.body %>
+      <% if @post.tags.any? %>
+        <div class="post-tags">
+          tag:
+          <% @post.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= render 'user/comments/new_comment', comment: @comment %>
+    </div>
+  </div>
+</div>
