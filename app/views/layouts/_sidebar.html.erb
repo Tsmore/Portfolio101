@@ -31,7 +31,7 @@
       </li>
       <li>
         <span><i class="fa-solid fa-mobile-screen"></i></span>
-        <%= link_to "My Posts", user_posts_path(current_user) %>
+        <%= link_to "My Posts", posts_path(current_user) %>
       </li>
       <li>
         <span><i class="fa-solid fa-paw"></i></span>
@@ -43,19 +43,19 @@
       </li>
       <li>
         <span><i class="fa-solid fa-heart"></i></span>
-        <%= link_to "Follower", user_favorites_path(current_user) %>
+        <%= link_to "Follower", post_favorites_path(current_user) %>
       </li>
       <li>
         <span><i class="fa-solid fa-heart"></i></span>
-        <%= link_to "Following", user_favorites_path(current_user) %>
+        <%= link_to "Following", post_favorites_path(current_user) %>
       </li>
       <li>
         <span><i class="fa-solid fa-heart"></i></span>
-        <%= link_to "Favorites", user_favorites_path(current_user) %>
+        <%= link_to "Favorites", post_favorites_path(current_user) %>
       </li>
       <li>
         <span><i class="fa-solid fa-bookmark"></i></span>
-        <%= link_to "Bookmarks", user_bookmarks_path(current_user) %>
+        <%= link_to "Bookmarks", post_bookmarks_path(current_user) %>
       </li>
       <% if user_signed_in? %>
         <li>

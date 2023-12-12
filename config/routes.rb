@@ -30,19 +30,20 @@ Rails.application.routes.draw do
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
     end
-  end
-  resources :all_posts, only: [:index], module: :user
-  resources :all_cats, only: [:index], module: :user
-  resources :posts, only: [:index, :show, :create, :update, :destroy] do
-    resource :favorites, only: [:index, :create, :destroy]
-    resources :bookmarks, only: [:index, :create, :destroy]
-    resources :comments, only: [:create, :destroy] do
-    resources :reports, only: [:new, :create]
-      resources :reports, only: [:new, :create]
+    resources :all_posts, only: [:index]
+    resources :all_cats, only: [:index]
+    resources :favorites, only: [:index]
+    resources :bookmarks, only: [:index]
+    resources :posts, only: [:index, :show, :create, :update, :destroy] do
+      resource :favorites, only: [:index, :create, :destroy]
+      resources :bookmarks, only: [:index, :create, :destroy]
+      resources :comments, only: [:create, :destroy] do
+        resources :reports, only: [:new, :create]
+      end
     end
-  end
-  resources :rooms, only: [:create, :show] do
-    resources :messages, only: [:create, :destroy]
+    resources :rooms, only: [:create, :show] do
+      resources :messages, only: [:create, :destroy]
+    end
   end
 
 
