@@ -185,8 +185,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "tag_relationships", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "tag_id"
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_tag_relationships_on_post_id"

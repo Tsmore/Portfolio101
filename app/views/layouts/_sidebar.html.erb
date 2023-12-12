@@ -43,6 +43,14 @@
       </li>
       <li>
         <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
+        <%= link_to "Follower", user_favorites_path(current_user) %>
+      </li>
+      <li>
+        <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
+        <%= link_to "Following", user_favorites_path(current_user) %>
+      </li>
+      <li>
+        <span class="material-symbol-outlined"><i class="fa-solid fa-heart"></i></span>
         <%= link_to "Favorites", user_favorites_path(current_user) %>
       </li>
       <li>
