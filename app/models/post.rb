@@ -30,4 +30,10 @@ class Post < ApplicationRecord
     self.tags = new_or_found_tags
   end
 
+  # いいね機能
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end
