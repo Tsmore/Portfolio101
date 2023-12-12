@@ -18,7 +18,7 @@
               <!--favorite-btn-->
               <td class=<%= "favorite-" + post.id.to_s %> ><%= render 'user/favorites/fav_btn', post: post %></td>
               <!--bookmark-btn-->
-              <td></td>
+              <td id="bookmark_btn_<%= post.id %>"><%= render 'user/bookmarks/bookmark_btn', post: post %></td>
             </tr>
           <% end %>
         </tbody>

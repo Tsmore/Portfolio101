@@ -36,4 +36,10 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  # ブックマーク機能
+
+  def find_bookmark(user)
+    bookmarks.find_by(user_id: user.id)
+  end
+
 end
