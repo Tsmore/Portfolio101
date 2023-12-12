@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :reports, as: :reportable
 
+  validates :body, presence: true, length: { maximum: 140 }
+
 end

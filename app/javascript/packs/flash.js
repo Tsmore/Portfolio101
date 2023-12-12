@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', function() {
 
   flashMessages.forEach(function(flashMessage) {
     setTimeout(function() {
-      flashMessage.style.display = 'none';
-    }, 5000); // 5秒後に非表示
+      flashMessage.classList.add('flash-hide');
+    }, 3000);
   });
 });
