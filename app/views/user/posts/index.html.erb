@@ -12,14 +12,12 @@
             <%= image_tag post.post_image if post.post_image.present? %>
             <%= link_to post.title, post_path(post) %>
             <%= post.body %>
-            <% if post.tags.any? %>
-              <div class="post-tags">
-                tag:
-                <% post.tags.each do |tag| %>
-                  <%= tag.name %>
-                <% end %>
-              </div>
-            <% end %>
+            <div class="post-tags">
+              tag:
+              <% post.tags.each do |tag| %>
+                <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
+              <% end %>
+            </div>
             <%= link_to "delete", post_path(post), method: :delete, data: {confirm: "are you sure?"} if post.id.present? %>
           </div>
         <% end %>

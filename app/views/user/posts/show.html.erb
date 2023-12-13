@@ -11,7 +11,7 @@
         <div class="post-tags">
           tag:
           <% @post.tags.each do |tag| %>
-            <%= tag.name %>
+            <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
           <% end %>
         </div>
       <% end %>
