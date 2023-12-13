@@ -1,6 +1,12 @@
 <div class="container body">
   <div class="row">
     <div class="col">
+      <%= form_with url: all_posts_path, method: :get do |f| %>
+        <%= f.label :tag, "タグで検索:" %>
+        <%= f.text_field :tag %>
+        <%= f.submit %>
+      <% end %>
+      <%= link_to "AllPost", all_posts_path, class: "btn btn-primary" %>
       <table class="table">
         <tbody>
           <% @posts.each do |post| %>
@@ -12,7 +18,7 @@
               <td><%= post.body %></td>
               <td>
                 <% post.tags.each do |tag| %>
-                  #<%= tag.name %>
+                  <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
                 <% end %>
               </td>
               <td><i class="fa-solid fa-comment"></i> <%= post.comments.count %></td>
