@@ -21,7 +21,7 @@
               <td><%= cat.name %></td>
               <td><%= cat.introduction %></td>
               <td><%= cat.breed.name %></td>
-              <td><%= cat.sex %></td>
+              <td><%= t("enums.cat.sexes.#{cat.sex}") %></td>
               <td><%= cat.date_of_birth %></td>
               <td><%= image_tag cat.user.profile_image %></td>
               <td><%= link_to cat.user.username, user_path(cat.user) %></td>
