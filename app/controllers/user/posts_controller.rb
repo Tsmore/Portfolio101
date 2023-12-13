@@ -14,7 +14,7 @@ class User::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "投稿しました"
-      redirect_to post_path(@post)
+      redirect_to request.referer
     else
       puts @post.errors.full_messages
       @posts = current_user.posts
@@ -35,7 +35,7 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path(current_user)
+    redirect_to request.referer
   end
 
   private
