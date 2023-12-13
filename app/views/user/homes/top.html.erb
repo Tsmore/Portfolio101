@@ -10,6 +10,11 @@
       <% else %>
         <button class="start-btn login-popup-btn">始める！</button>
       <% end %>
+      <%= form_with url: searches_path, method: :get do |f| %>
+        <%= f.label :keyword, "キーワード検索" %>
+        <%= f.text_field :keyword %>
+        <%= f.submit %>
+      <% end %>
     </div>
     <div class="wrapper">
     <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>

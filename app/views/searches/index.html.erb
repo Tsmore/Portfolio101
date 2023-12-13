@@ -1,0 +1,43 @@
+<div class="container body">
+  <div class="row">
+    <div class="col">
+      <%= form_with url: searches_path, method: :get do |f| %>
+        <%= f.label :keyword, "キーワード検索" %>
+        <%= f.text_field :keyword %>
+        <%= f.submit %>
+      <% end %>
+      <% if @users.present? %>
+        <h3>Users</h3>
+        <table class="table">
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= image_tag user.profile_image %></td>
+                <td><%= user.username %></td>
+                <td><%= user.introduction %></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+      <% if @posts.present? %>
+        <h3>Posts</h3>
+        <table class="table">
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= image_tag post.post_image if post.post_image.present? %></td>
+                <td><%= post.title %></td>
+                <td><%= post.body %></td>
+                <td><%= post.created_at.strftime('%y/%m/%d') %></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "user/sessions#new_guest"
   end
 
+  resources :searches, only: [:index]
+
   scope module: :user do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update] do
