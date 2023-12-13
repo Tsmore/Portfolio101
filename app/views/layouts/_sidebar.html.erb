@@ -42,11 +42,11 @@
         <%= link_to "My Items", user_items_path(current_user) %>
       </li>
       <li>
-        <span><i class="fa-solid fa-users"></i></span>
+        <span><i class="fa-solid fa-user-group"></i></span>
         <%= link_to "Follower", post_favorites_path(current_user) %>
       </li>
       <li>
-        <span><i class="fa-solid fa-users"></i></span>
+        <span><i class="fa-solid fa-user-group"></i></span>
         <%= link_to "Following", post_favorites_path(current_user) %>
       </li>
       <li>
@@ -60,8 +60,8 @@
       <hr>
       <h4>System</h4>
       <li>
-        <span><i class="fa-solid fa-person-circle-exclamation"></i></span>
-        <%= link_to "Report", bookmarks_path %>
+        <span><i class="fa-solid fa-envelope-open-text"></i></span>
+        <%= link_to "Contact us", bookmarks_path %>
       </li>
       <% if user_signed_in? %>
         <li>

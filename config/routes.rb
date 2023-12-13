@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       end
       resources :reports, only: [:new, :create]
       resource :relationships, only: [:create, :destroy]
+        get "following" => "relationships#following", as: "following"
+  	    get "followers" => "relationships#followers", as: "followers"
       resources :notifications, only: [:index, :update] do
         collection do
           patch :mark_as_read

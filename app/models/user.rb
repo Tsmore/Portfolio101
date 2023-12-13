@@ -24,11 +24,11 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :reports, as: :reportable
   # フォローする、したの関係性
-  has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followings, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   # 一覧画面表示用
-  has_many :follower_users, through: :followings, source: :following
-  has_many :following_users, through: :followers, source: :follower
+  has_many :following, through: :relationships, source: :following
+  has_many :followers, through: :reverse_relationships, source: :follower
 
   # バリデーション
   validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
@@ -52,16 +52,16 @@ class User < ApplicationRecord
   end
 
   # フォロー処理
-  def follow
-    followers.create(following_id: user_id)
+  def follow(user)
+    relationships.create(following_id: user.id)
   end
   # アンフォロー処理
-  def unfollow
-    followers.find_by(following_id: user_id).destroy
+  def unfollow(user)
+    relationships.find_by(following_id: user.id).destroy
   end
   # フォロー確認
-  def following?
-    following_users.include?(user)
+  def following?(user)
+    following.include?(user)
   end
 
 end
