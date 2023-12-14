@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(
-  username: admin_username,
-  email: admin_email,
-  password: admin_password
+  username: ENV['ADMIN_USERNAME'],
+  email: ENV['ADMIN_EMAIL'],
+  password: ENV['ADMIN_PASSWORD']
 )
 
 5.times do |n|

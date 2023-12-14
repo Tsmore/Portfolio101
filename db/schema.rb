@@ -206,18 +206,12 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "cat_id"
-    t.integer "item_id"
-    t.integer "post_id"
     t.string "username", null: false
     t.string "introduction"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cat_id"], name: "index_users_on_cat_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["item_id"], name: "index_users_on_item_id"
-    t.index ["post_id"], name: "index_users_on_post_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -247,7 +241,4 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   add_foreign_key "rooms", "users"
   add_foreign_key "tag_relationships", "posts"
   add_foreign_key "tag_relationships", "tags"
-  add_foreign_key "users", "cats"
-  add_foreign_key "users", "items"
-  add_foreign_key "users", "posts"
 end
