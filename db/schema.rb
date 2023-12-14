@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_bookmarks_on_post_id"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.text "introduction"
     t.date "date_of_birth"
     t.integer "sex"
-    t.integer "user_id"
-    t.integer "breed_id"
+    t.bigint "user_id"
+    t.bigint "breed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["breed_id"], name: "index_cats_on_breed_id"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -113,14 +113,14 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.string "name", null: false
     t.text "description", null: false
     t.text "product_link"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "room_id", null: false
     t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -130,12 +130,12 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id", null: false
-    t.integer "visited_id", null: false
-    t.integer "relationship_id", null: false
-    t.integer "comment_id", null: false
-    t.integer "favorite_id", null: false
-    t.integer "message_id", null: false
+    t.bigint "visitor_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "relationship_id", null: false
+    t.bigint "comment_id", null: false
+    t.bigint "favorite_id", null: false
+    t.bigint "message_id", null: false
     t.string "action", null: false
     t.boolean "is_read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id", null: false
-    t.integer "following_id", null: false
+    t.bigint "follower_id", null: false
+    t.bigint "following_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
 
   create_table "reports", force: :cascade do |t|
     t.string "reportable_type", null: false
-    t.integer "reportable_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "reportable_id", null: false
+    t.bigint "user_id", null: false
     t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -178,7 +178,7 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"

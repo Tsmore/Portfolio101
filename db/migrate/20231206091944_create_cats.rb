@@ -5,8 +5,8 @@ class CreateCats < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.date :date_of_birth
       t.integer :sex
-      t.references :user, foreign_key: true
-      t.references :breed, foreign_key: true
+      t.references :user, type: :bigint, foreign_key: true
+      t.references :breed, type: :bigint, foreign_key: true
 
       t.timestamps
     end
