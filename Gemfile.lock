@@ -177,6 +177,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
+    mysql2 (0.5.5)
     nesty (1.0.2)
     net-http-digest_auth (1.4.1)
     net-http-persistent (4.0.2)
@@ -199,8 +200,7 @@ GEM
       rack-protection
     orm_adapter (0.5.0)
     public_suffix (5.0.4)
-    puma (5.6.7)
-      nio4r (~> 2.0)
+    puma (3.12.6)
     racc (1.7.3)
     rack (2.2.8)
     rack-mini-profiler (2.3.4)
@@ -329,8 +329,12 @@ DEPENDENCIES
   listen (~> 3.3)
   mechanize
   metainspector
+  mysql2
+  net-imap
+  net-pop
+  net-smtp
   omniauth
-  puma (~> 5.0)
+  puma (~> 3.11)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.6)
   sass-rails (>= 6)
