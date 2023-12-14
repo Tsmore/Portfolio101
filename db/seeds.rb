@@ -6,18 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(
+admin = Admin.find_or_initialize_by(
   username: ENV['ADMIN_USERNAME'],
   email: ENV['ADMIN_EMAIL'],
-  password: ENV['ADMIN_PASSWORD']
 )
 
+if admin.new_record?
+  admin.password = ENV['ADMIN_PASSWORD']
+  admin.save!
+end
+
 5.times do |n|
-  User.create!(
-    username: "sample#{ n + 1 }",
-    email: "sample#{ n + 1 }@sample",
-    password: "sample1234"
-  )
+  username = "sample#{ n + 1 }"
+  email = "sample#{ n + 1 }@sample"
+
+  user = User.find_or_initialize_by(username: username, email: email)
+
+  if user.new_record?
+    password = "sample1234"
+    user.save!
+  end
 end
 
 # 一般的な猫の品種
@@ -41,10 +49,5 @@ breeds = [
 ]
 
 breeds.each do |breed_name|
-  Breed.create!(name: breed_name)
-end
-
-
-breeds.each do |breed_name|
-  Breed.create!(name: breed_name)
+  Breed.find_or_create_by!(name: breed_name)
 end
