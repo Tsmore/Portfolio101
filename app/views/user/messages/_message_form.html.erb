@@ -1,0 +1,5 @@
+<%= form_with model: message, url: messages_path do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.text_area :message, id: "message_text_area", placeholder: 'Enter your message...' %>
+  <%= f.submit %>
+<% end %>

@@ -18,12 +18,13 @@ end
 
 5.times do |n|
   username = "sample#{ n + 1 }"
-  email = "sample#{ n + 1 }@sample"
+  email = "sample#{ n + 1 }@sample.com"
+  password = "sample1234"
 
   user = User.find_or_initialize_by(username: username, email: email)
 
   if user.new_record?
-    password = "sample1234"
+    user.password = password
     user.save!
   end
 end
