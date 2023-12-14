@@ -4,10 +4,9 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.text :description, null: false
       t.text :product_link
-      t.integer :user_id
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
-    add_index :items, :user_id
   end
 end

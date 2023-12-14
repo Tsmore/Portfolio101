@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "cats", force: :cascade do |t|
-    t.integer "breed_id", null: false
     t.string "name", null: false
     t.text "introduction"
     t.date "date_of_birth"
     t.integer "sex"
     t.integer "user_id"
+    t.integer "breed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["breed_id"], name: "index_cats_on_breed_id"
@@ -101,8 +101,8 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "post_id", null: false
     t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -221,12 +221,14 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   add_foreign_key "bookmarks", "posts"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "cats", "breeds"
+  add_foreign_key "cats", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "entries", "rooms"
   add_foreign_key "entries", "users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
+  add_foreign_key "items", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "comments"
