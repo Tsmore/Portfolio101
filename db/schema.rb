@@ -58,8 +58,6 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_bookmarks_on_post_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "breeds", force: :cascade do |t|
@@ -73,12 +71,10 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.text "introduction"
     t.date "date_of_birth"
     t.integer "sex"
-    t.bigint "user_id"
-    t.bigint "breed_id"
+    t.bigint "user_id", null: false
+    t.bigint "breed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["breed_id"], name: "index_cats_on_breed_id"
-    t.index ["user_id"], name: "index_cats_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -87,8 +83,6 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -96,8 +90,6 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_entries_on_room_id"
-    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -105,28 +97,23 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_favorites_on_post_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
     t.text "product_link"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "room_id", null: false
+    t.bigint "room_id", null: false
     t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_messages_on_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -140,12 +127,6 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.boolean "is_read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_notifications_on_comment_id"
-    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
-    t.index ["message_id"], name: "index_notifications_on_message_id"
-    t.index ["relationship_id"], name: "index_notifications_on_relationship_id"
-    t.index ["visited_id"], name: "index_notifications_on_visited_id"
-    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -162,26 +143,20 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
     t.bigint "following_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
-    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string "reportable_type", null: false
     t.bigint "reportable_id", null: false
     t.bigint "user_id", null: false
     t.text "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable"
-    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "tag_relationships", force: :cascade do |t|
@@ -218,29 +193,6 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookmarks", "posts"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "cats", "breeds"
-  add_foreign_key "cats", "users"
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "entries", "rooms"
-  add_foreign_key "entries", "users"
-  add_foreign_key "favorites", "posts"
-  add_foreign_key "favorites", "users"
-  add_foreign_key "items", "users"
-  add_foreign_key "messages", "rooms"
-  add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "comments"
-  add_foreign_key "notifications", "favorites"
-  add_foreign_key "notifications", "messages"
-  add_foreign_key "notifications", "relationships"
-  add_foreign_key "notifications", "users", column: "visited_id"
-  add_foreign_key "notifications", "users", column: "visitor_id"
-  add_foreign_key "relationships", "users", column: "follower_id"
-  add_foreign_key "relationships", "users", column: "following_id"
-  add_foreign_key "reports", "users"
-  add_foreign_key "rooms", "users"
   add_foreign_key "tag_relationships", "posts"
   add_foreign_key "tag_relationships", "tags"
 end
