@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(
-  username: "admin",
-  email: "admin@admin",
-  password: "123456"
+  username: admin_username,
+  email: admin_email,
+  password: admin_password
 )
 
 5.times do |n|
