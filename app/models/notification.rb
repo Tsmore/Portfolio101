@@ -1,8 +1,11 @@
 class Notification < ApplicationRecord
 
-  belongs_to :favorite
-  belongs_to :message
-  belongs_to :relationship
-  belongs_to :comment
+  default_scope -> { order(created_at: :decs) }
+
+  belongs_to :user
+  belongs_to :post, optional: true
+  belongs_to :comment, optional: true
+  belongs_to :favorite, optional: true
+  belongs_to :relationship, optional: true
 
 end

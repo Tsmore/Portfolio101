@@ -8,9 +8,10 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :reports, as: :reportable
-
+  has_many :notifications, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
+
 
   validates :title, presence: true
   validates :body, presence: true
@@ -22,7 +23,6 @@ class Post < ApplicationRecord
   def tag_list
     tags.map(&:name).join(' ')
   end
-
   # 上記のメソッドの文字列を受け取り個別のタグとして分解しPostモデルに関連付け
   def tag_list=(tags_string)
     # tag_stringを半角全角スペースで分割、uniqメソッドで重複を排除、mapメソッド使用
@@ -44,5 +44,6 @@ class Post < ApplicationRecord
   def find_bookmark(user)
     bookmarks.find_by(user_id: user.id)
   end
+
 
 end

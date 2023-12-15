@@ -69,6 +69,10 @@
       </li>
       <% if user_signed_in? %>
         <li>
+          <span><i class="fa-sharp fa-solid fa-bell"></i></span>
+          <%= link_to "Notifications", notifications_path %>
+        </li>
+        <li>
           <span><i class="fa-solid fa-right-from-bracket"></i></span>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         </li>

@@ -1,4 +1,4 @@
-<% if current_user != post.user %>
+<%# if current_user != post.user %>
   <%= form_with model: comment, url: post_comments_path(post), method: :post do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: 'Comment here...' %>
     <%= f.submit %>
@@ -10,4 +10,4 @@
     <%= comment.created_at.strftime('%y/%m/%d') %>
     <%= link_to 'Delete', post_comment_path(post, comment), method: :delete if comment.user == current_user %>
   <% end %>
-<% end %>
+<%# end %>

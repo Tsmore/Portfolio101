@@ -26,14 +26,10 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
         get "following" => "relationships#following", as: "following"
   	    get "followers" => "relationships#followers", as: "followers"
-      resources :notifications, only: [:index, :update] do
-        collection do
-          patch :mark_as_read
-        end
-      end
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
     end
+    resources :notifications, only: [:index]
     resources :all_posts, only: [:index]
     resources :all_cats, only: [:index]
     resources :favorites, only: [:index]

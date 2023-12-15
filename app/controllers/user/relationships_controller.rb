@@ -1,13 +1,12 @@
 class User::RelationshipsController < ApplicationController
+  before_action :set_user, only: [:create, :destroy]
 
   def create
-    @user = User.find(params[:user_id])
     current_user.follow(@user)
     redirect_to request.referer
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     current_user.unfollow(@user)
     redirect_to request.referer
   end
@@ -20,6 +19,12 @@ class User::RelationshipsController < ApplicationController
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
 end
