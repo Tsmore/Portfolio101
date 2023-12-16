@@ -9,5 +9,15 @@
     <%= comment.body %>
     <%= comment.created_at.strftime('%y/%m/%d') %>
     <%= link_to 'Delete', post_comment_path(post, comment), method: :delete if comment.user == current_user %>
+    <div class="comment-report-form">
+      コメントの通報
+      <%= form_with model: report, url: user_reports_path(current_user) do |f| %>
+        <%= f.hidden_field :reportable_id, value: comment.id %>
+        <%= f.hidden_field :reportable_type, value: 'Comment' %>
+        <%= f.text_area :reason, placeholder: "通報理由" %>
+        <%= f.submit '通報する' %>
+      <% end %>
+    </div>
   <% end %>
 <%# end %>
+

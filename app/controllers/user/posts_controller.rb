@@ -8,6 +8,7 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @report = Report.new
   end
 
   def create

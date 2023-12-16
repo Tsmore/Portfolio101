@@ -16,7 +16,15 @@
         </div>
       <% end %>
       <%= image_tag @post.post_image if @post.post_image.present? %>
-      <%= render 'user/comments/new_comment', comment: @comment, post: @post %>
+      <%= render 'user/comments/new_comment', comment: @comment, post: @post, report: @report %>
+      <!--report-->
+      投稿の通報
+      <%= form_with model: @report, url: user_reports_path(current_user) do |f| %>
+        <%= f.hidden_field :reportable_id, value: @post.id %>
+        <%= f.hidden_field :reportable_type, value: 'Post' %>
+        <%= f.text_area :reason, placeholder: "通報理由" %>
+        <%= f.submit '通報する' %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -46,6 +46,15 @@
           </div>
           <%= image_tag @user.profile_image, class: "user-profile-picture" %>
           <h4><%= @user.username %>さん</h4>
+          <!--report-->
+          <% if current_user != @user %>
+            <%= form_with model: @report, url: user_reports_path(current_user) do |f| %>
+              <%= f.hidden_field :reportable_id, value: @user.id %>
+              <%= f.hidden_field :reportable_type, value: 'User' %>
+              <%= f.text_area :reason, placeholder: "通報理由" %>
+              <%= f.submit '通報する' %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <!--自己紹介文-->
