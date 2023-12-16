@@ -34,6 +34,7 @@ Rails.application.routes.draw do
         patch :mark_as_read
       end
     end
+    resources :maps, only: [:index]
     resources :all_posts, only: [:index]
     resources :all_cats, only: [:index]
     resources :favorites, only: [:index]
