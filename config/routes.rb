@@ -29,7 +29,11 @@ Rails.application.routes.draw do
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
     end
-    resources :notifications, only: [:index]
+    resources :notifications, only: [:index] do
+      member do
+        patch :mark_as_read
+      end
+    end
     resources :all_posts, only: [:index]
     resources :all_cats, only: [:index]
     resources :favorites, only: [:index]

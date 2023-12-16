@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
   has_many :reports, as: :reportable
+  has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   # フォローする、したの関係性
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy

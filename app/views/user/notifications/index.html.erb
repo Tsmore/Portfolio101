@@ -1,0 +1,35 @@
+<div class="container body">
+  <div class="row">
+    <div class="col">
+      <h3>Notifications</h3>
+      <% if @notifications.any? %>
+        <ul>
+          <% @notifications.each do |notification| %>
+            <li>
+              <%= image_tag notification.visitor.profile_image %>
+              <%= link_to notification.visitor.username, user_path(notification.visitor) %>
+              さんが
+              <% case notification.action %>
+                <% when 'commented' %>
+                  <%= link_to 'あなたの投稿にコメントしました', post_path(notification.notifiable.post) %>
+                  Comment: <%= notification.notifiable.body %>
+                <% when 'liked' %>
+                  <%= link_to 'あなたの投稿にいいねしました', post_path(notification.notifiable.post) %>
+                <% when 'followed' %>
+                  あなたをフォローしました
+              <% end %>
+              <% if notification.checked %>
+                <span>既読</span>
+              <% else %>
+                <%= link_to '既読にする', mark_as_read_notification_path(notification), method: :patch, class: 'btn btn-primary' %>
+              <% end %>
+              <%= notification.created_at.strftime("%H:%M") %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>新しい通知はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

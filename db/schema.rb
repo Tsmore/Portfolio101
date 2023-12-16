@@ -119,18 +119,13 @@ ActiveRecord::Schema.define(version: 2023_12_12_074453) do
   create_table "notifications", force: :cascade do |t|
     t.bigint "visitor_id", null: false
     t.bigint "visited_id", null: false
-    t.bigint "post_id"
-    t.bigint "comment_id"
-    t.bigint "favorite_id"
-    t.bigint "relationship_id"
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_notifications_on_comment_id"
-    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
-    t.index ["post_id"], name: "index_notifications_on_post_id"
-    t.index ["relationship_id"], name: "index_notifications_on_relationship_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
