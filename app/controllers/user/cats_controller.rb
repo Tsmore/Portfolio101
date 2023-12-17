@@ -1,7 +1,8 @@
 class User::CatsController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
     @cat = Cat.new
-    @cats = current_user.cats
+    @cats = @user.cats
   end
 
   def create

@@ -39,3 +39,18 @@ body {
   padding-left: 120px !important;
   margin-top: 100px !important;
 }
+
+.btn-black {
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #666;
+}
+.btn-black:hover {
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+a {
+  text-decoration: none !important;
+}

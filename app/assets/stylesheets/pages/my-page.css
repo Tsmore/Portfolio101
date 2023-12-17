@@ -3,6 +3,7 @@
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
+  height: 100%;
 }
 
 .user-profile-picture {
@@ -25,11 +26,55 @@
 
 .card {
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .card-title {
+  /*padding-top: 10px;*/
   padding-bottom: 10px;
   border-bottom: 1px solid #999;
+  /*border-top: 1px solid #999;*/
+}
+
+.title-btn-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-header-user {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid #999;
+}
+
+.dm-icon {
+  font-size: 30px;
+}
+
+.follow-chat-section {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.follow-chat-section a{
+  margin-right: 10px;
+}
+
+.follow-counts {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.user-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 /*.style-link-none {*/

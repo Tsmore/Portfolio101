@@ -14,7 +14,7 @@
               <td><%= image_tag post.user.profile_image %></td>
               <td><%= link_to post.user.username, user_path(post.user) %></td>
               <td><%= image_tag post.post_image if post.post_image.present? %></td>
-              <td><%= link_to post.title, post_path(post) %></td>
+              <td><%= link_to post.title, user_post_path(post.user, post) %></td>
               <td><%= post.body %></td>
               <td>
                 <div class="post-tags">

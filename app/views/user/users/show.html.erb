@@ -1,108 +1,100 @@
 <div class="container body">
   <div class="row">
     <div class="col-md-5 user-info-section">
-      <!--名前と写真-->
+      <!--マイインフォメーション-->
       <div class="row">
-        <div class="col-md-10 mx-auto user-profile-section">
-          <h3>My Page</h3>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userinfo-edit">
-            Launch demo modal
-          </button>
-          <div class="modal fade" id="userinfo-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Editing My Page</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <%= form_with model: @user do |f| %>
-                  <div class="modal-body">
-                      <div class="form-group">
-                        <%= f.label :username %>
-                        <%= f.text_field :username, placeholder: "Your Username..." %>
-                      </div>
-                      <div class="form-group">
-                        <%= f.label :profileImage %>
-                        <%= f.file_field :user_image %>
-                      </div>
-                      <div class="form-group">
-                        <%= f.label :introduction %>
-                        <%= f.text_area :introduction, placeholder: "Your Introduction..." %>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <%= f.submit %>
-                  </div>
+        <div class="col">
+          <div class="title-btn-section">
+            <h5>マイページ</h5>
+            <% if current_user != @user %>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#report-user">
+                通報する
+              </button>
+            <% else %>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userinfo-edit">
+                編集
+              </button>
+            <% end %>
+              <%= render 'user/users/report', report: @report, user: @user %>
+              <%= render 'user/users/user_edit', user: @user %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body card-header-user">
+              <div class="user-image-section">
+                <%= image_tag @user.profile_image, class: "user-profile-picture" %>
+                <h4><%= @user.username %></h4>
+              </div>
+              <div class="follow-chat-section">
+                <% if current_user != @user %>
+                  <% if current_user.following?(@user) %>
+                    <%= link_to "Following", user_relationships_path(@user.id), method: :delete, class: "btn-black" %>
+                  <% else %>
+                    <%= link_to "Follow", user_relationships_path(@user.id), method: :post, class: "btn-black" %>
+                  <% end %>
+                  <% if current_user.mutual_follow?(@user) %>
+                    <%= link_to message_path(@user.id) do %>
+                      <i class="fa-solid fa-square-envelope dm-icon"></i>
+                    <% end %>
+                  <% end %>
                 <% end %>
-                <!--<div class="modal-footer">-->
-                <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
-                <!--</div>-->
+              </div>
+              <div class="follow-counts">
+                Following: <%= @user.following.count %><br>
+                Followers: <%= @user.followers.count %>
               </div>
             </div>
+            <div class="card-body">
+              <p class="card-text"><%= simple_format(@user.introduction) %></p>
+            </div>
           </div>
-          <%= image_tag @user.profile_image, class: "user-profile-picture" %>
-          <h4><%= @user.username %>さん</h4>
-          <!--report-->
-          <% if current_user != @user %>
-            <%= form_with model: @report, url: user_reports_path(current_user) do |f| %>
-              <%= f.hidden_field :reportable_id, value: @user.id %>
-              <%= f.hidden_field :reportable_type, value: 'User' %>
-              <%= f.text_area :reason, placeholder: "通報理由" %>
-              <%= f.submit '通報する' %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <!--自己紹介文-->
-      <div class="row">
-        <div class="col-md-10 mx-auto user-introduction-section">
-          <h3>introduction</h3>
-          <%= @user.introduction %>
-        </div>
-      </div>
-      <!--フォロー関係-->
-      <div class="row">
-        <div class="col-md-10 mx-auto user-cats-section">
-          <% if current_user != @user %>
-            <% if current_user.following?(@user) %>
-              <%= link_to "unfollow", user_relationships_path(@user.id), method: :delete %>
-            <% else %>
-              <%= link_to "follow", user_relationships_path(@user.id), method: :post %>
-            <% end %>
-            <% if current_user.mutual_follow?(@user) %>
-              <%= link_to "Chat Room", message_path(@user.id), class: "btn btn-success" %>
-            <% end %>
-          <% end %>
         </div>
       </div>
       <!--マイキャット一覧-->
       <div class="row">
         <div class="col">
-          <h5>マイ猫ちゃん</h5>
-          <%= link_to "my cats", user_cats_path(@user), class: "btn btn-info" %>
+          <div class="title-btn-section mt-3">
+            <h5>マイ猫ちゃん</h5>
+            <%= link_to user_cats_path(@user) do %>
+              <% if current_user == @user %>
+                自分の猫一覧
+              <% else %>
+                <%= @user.username %>さんの猫一覧
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <div class="row">
-            <% @user.cats.each do |cat| %>
-            <div class="col-6">
-              <div class="card border-0">
-                <%= image_tag cat.cat_image if cat.cat_image.present? %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= cat.name %></h5>
-                  <p class="card-text"><%= simple_format(cat.introduction) %></p>
-                  <p class="card-text"><%= cat.breed.name %></p>
-                  <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
-                  <p class="card-text"><%= cat.date_of_birth %></p>
-                  <p class="card-text"></p>
+            <% if @user.cats.present? %>
+              <% @user.cats.take(2).each do |cat| %>
+              <div class="col-6">
+                <div class="card border-0">
+                  <%= image_tag cat.cat_image if cat.cat_image.present? %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= cat.name %></h5>
+                    <p class="card-text"><%= simple_format(cat.introduction) %></p>
+                    <p class="card-text"><%= cat.breed.name %></p>
+                    <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
+                    <p class="card-text"><%= cat.date_of_birth %></p>
+                    <p class="card-text"></p>
+                  </div>
                 </div>
               </div>
-            </div>
+              <% end %>
+            <% else %>
+              <div class="col">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <p class="card-text">まだ登録されていません</p>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>
@@ -110,20 +102,38 @@
       <!--マイ製品一覧-->
       <div class="row">
         <div class="col">
-          <h5>使用製品</h5>
-          <%= link_to "my items", user_items_path(@user), class: "btn btn-info" %>
+          <div class="title-btn-section mt-3">
+            <h5>使用製品</h5>
+            <%= link_to user_items_path(@user) do %>
+              <% if current_user == @user %>
+                自分の製品一覧
+              <% else %>
+                <%= @user.username %>さんの製品一覧
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <div class="row">
-            <% @user.items.each do |item| %>
-              <div class="col-6">
-                <div class="card border-0">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= item.name %></h5>
-                    <p class="card-text"><%= item.description %></p>
-                    <p class="card-text"><%= item.product_link %></p>
+            <% if @user.items.present? %>
+              <% @user.items.take(2).each do |item| %>
+                <div class="col-6">
+                  <div class="card border-0">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= item.name %></h5>
+                      <p class="card-text"><%= item.description %></p>
+                      <p class="card-text"><%= item.product_link %></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="col">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <p class="card-text">まだ登録されていません</p>
                   </div>
                 </div>
               </div>
@@ -136,39 +146,51 @@
       <!--タイトル・リンク-->
       <div class="row">
         <div class="col">
-          <h5>自分の投稿</h5>
-          <%= link_to "投稿一覧に行く", posts_path, class: "btn btn-info" %>
+          <div class="title-btn-section mt-3">
+            <h5><%= @user.username %>の投稿</h5>
+            <%= link_to "投稿一覧に行く", user_posts_path(@user), class: "btn btn-info" %>
+          </div>
         </div>
       </div>
       <!--投稿each文-->
       <div class="row">
         <div class="col">
-          <% @posts.each do |post| %>
-            <%#= link_to post_path(post), class: "no-style-link" do %>
-              <div class="card border-0">
-                <%= image_tag post.post_image if post.post_image.present? %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= post.title %></h5>
-                  <!--simple_formatで改行反映-->
-                  <p class="card-text"><%= simple_format(post.body) %></p>
-                  <p class="card-text">
-                    tag:
-                    <% post.tags.each do |tag| %>
-                      <%= tag.name %>
-                    <% end %>
-                  </p>
-                  <p class="card-text">
-                    <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
-                    <i class="fa-solid fa-comment icon-spacing"></i><%= post.comments.count %>
-                  </p>
-                  <p class="card-text">
-                    <%= link_to '投稿詳細へ', post_path(post) %>
-                    <%= post.created_at.strftime('%Y/%m/%d') %>
-                    <%= post.created_at.strftime('%H:%M') %>
-                  </p>
+          <% if @posts.present? %>
+            <% @posts.each do |post| %>
+              <%#= link_to post_path(post), class: "no-style-link" do %>
+                <div class="card border-0">
+                  <%= image_tag post.post_image if post.post_image.present? %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= post.title %></h5>
+                    <!--simple_formatで改行反映-->
+                    <p class="card-text"><%= simple_format(post.body) %></p>
+                    <p class="card-text">
+                      tag:
+                      <% post.tags.each do |tag| %>
+                        <%= tag.name %>
+                      <% end %>
+                    </p>
+                    <p class="card-text">
+                      <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
+                      <i class="fa-solid fa-comment icon-spacing"></i><%= post.comments.count %>
+                    </p>
+                    <p class="card-text">
+                      <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
+                      <%= post.created_at.strftime('%Y/%m/%d') %>
+                      <%= post.created_at.strftime('%H:%M') %>
+                    </p>
+                  </div>
+                </div>
+              <%# end %>
+            <% end %>
+          <% else %>
+            <div class="col">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p class="card-text">まだ投稿がありません</p>
                 </div>
               </div>
-            <%# end %>
+            </div>
           <% end %>
         </div>
       </div>

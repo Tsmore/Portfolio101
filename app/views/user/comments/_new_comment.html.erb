@@ -1,5 +1,5 @@
 <%# if current_user != post.user %>
-  <%= form_with model: comment, url: post_comments_path(post), method: :post do |f| %>
+  <%= form_with model: comment, url: user_post_comments_path(user_id: current_user.id, post_id: post.id), method: :post do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: 'Comment here...' %>
     <%= f.submit %>
   <% end %>
@@ -8,10 +8,10 @@
     <%= comment.user.username %>
     <%= comment.body %>
     <%= comment.created_at.strftime('%y/%m/%d') %>
-    <%= link_to 'Delete', post_comment_path(post, comment), method: :delete if comment.user == current_user %>
+    <%= link_to 'Delete', user_post_comment_path(user_id: current_user.id, post_id: post.id, id: comment.id), method: :delete if comment.user == current_user %>
     <div class="comment-report-form">
       コメントの通報
-      <%= form_with model: report, url: user_reports_path(current_user) do |f| %>
+      <%= form_with model: report, url: user_reports_path(user_id: current_user.id) do |f| %>
         <%= f.hidden_field :reportable_id, value: comment.id %>
         <%= f.hidden_field :reportable_type, value: 'Comment' %>
         <%= f.text_area :reason, placeholder: "通報理由" %>
@@ -20,4 +20,3 @@
     </div>
   <% end %>
 <%# end %>
-

@@ -28,6 +28,13 @@ Rails.application.routes.draw do
   	    get "followers" => "relationships#followers", as: "followers"
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
+      resources :posts, only: [:index, :show, :create, :update, :destroy] do
+        resource :favorites, only: [:index, :create, :destroy]
+        resources :bookmarks, only: [:index, :create, :destroy]
+        resources :comments, only: [:create, :destroy] do
+          resources :reports, only: [:new, :create]
+        end
+      end
     end
     resources :notifications, only: [:index] do
       member do
@@ -39,13 +46,6 @@ Rails.application.routes.draw do
     resources :all_cats, only: [:index]
     resources :favorites, only: [:index]
     resources :bookmarks, only: [:index]
-    resources :posts, only: [:index, :show, :create, :update, :destroy] do
-      resource :favorites, only: [:index, :create, :destroy]
-      resources :bookmarks, only: [:index, :create, :destroy]
-      resources :comments, only: [:create, :destroy] do
-        resources :reports, only: [:new, :create]
-      end
-    end
     resources :messages, only: [:show, :create, :destroy]
   end
 

@@ -1,7 +1,8 @@
 class User::ItemsController < ApplicationController
   def index
+    @user = User.find(params[:user_id])
     @item = Item.new
-    @items = current_user.items
+    @items = @user.items
   end
 
   def create
