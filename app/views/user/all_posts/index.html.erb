@@ -24,11 +24,13 @@
                   <% end %>
                 </div>
               </td>
+              <% if user_signed_in? %>
               <td><i class="fa-solid fa-comment"></i> <%= post.comments.count %></td>
               <!--favorite-btn-->
               <td class=<%= "favorite-" + post.id.to_s %> ><%= render 'user/favorites/fav_btn', post: post %></td>
               <!--bookmark-btn-->
               <td id="bookmark_btn_<%= post.id %>"><%= render 'user/bookmarks/bookmark_btn', post: post %></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
