@@ -81,24 +81,97 @@
       </div>
       <!--マイキャット一覧-->
       <div class="row">
-        <div class="col-md-10 mx-auto user-cats-section">
+        <div class="col">
+          <h5>マイ猫ちゃん</h5>
           <%= link_to "my cats", user_cats_path(@user), class: "btn btn-info" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <% @user.cats.each do |cat| %>
+            <div class="col-6">
+              <div class="card border-0">
+                <%= image_tag cat.cat_image if cat.cat_image.present? %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= cat.name %></h5>
+                  <p class="card-text"><%= simple_format(cat.introduction) %></p>
+                  <p class="card-text"><%= cat.breed.name %></p>
+                  <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
+                  <p class="card-text"><%= cat.date_of_birth %></p>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
         </div>
       </div>
       <!--マイ製品一覧-->
       <div class="row">
-        <div class="col-md-10 mx-auto user-items-section">
+        <div class="col">
+          <h5>使用製品</h5>
           <%= link_to "my items", user_items_path(@user), class: "btn btn-info" %>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <% @user.items.each do |item| %>
+              <div class="col-6">
+                <div class="card border-0">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= item.name %></h5>
+                    <p class="card-text"><%= item.description %></p>
+                    <p class="card-text"><%= item.product_link %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 offset-md-1">
-      <% @posts.each do |post| %>
-        <%= image_tag post.post_image if post.post_image.present? %>
-        <%= post.title %>
-        <%= post.body %>
-      <% end %>
-      <%= link_to "my posts", posts_path, class: "btn btn-primary" %>
+    <div class="col-md-6 offset-md-1 my-post-section">
+      <!--タイトル・リンク-->
+      <div class="row">
+        <div class="col">
+          <h5>自分の投稿</h5>
+          <%= link_to "投稿一覧に行く", posts_path, class: "btn btn-info" %>
+        </div>
+      </div>
+      <!--投稿each文-->
+      <div class="row">
+        <div class="col">
+          <% @posts.each do |post| %>
+            <%#= link_to post_path(post), class: "no-style-link" do %>
+              <div class="card border-0">
+                <%= image_tag post.post_image if post.post_image.present? %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <!--simple_formatで改行反映-->
+                  <p class="card-text"><%= simple_format(post.body) %></p>
+                  <p class="card-text">
+                    tag:
+                    <% post.tags.each do |tag| %>
+                      <%= tag.name %>
+                    <% end %>
+                  </p>
+                  <p class="card-text">
+                    <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
+                    <i class="fa-solid fa-comment icon-spacing"></i><%= post.comments.count %>
+                  </p>
+                  <p class="card-text">
+                    <%= link_to '投稿詳細へ', post_path(post) %>
+                    <%= post.created_at.strftime('%Y/%m/%d') %>
+                    <%= post.created_at.strftime('%H:%M') %>
+                  </p>
+                </div>
+              </div>
+            <%# end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

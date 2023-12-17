@@ -70,6 +70,13 @@
 .links li {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.sidebar.active .links li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .sidebar li:hover {
