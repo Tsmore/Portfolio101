@@ -52,11 +52,32 @@ end
 
   if post.new_record?
     post.post_image.attach(
-      io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.png")),
-      filename: "sample-post#{n + 1}.png",
-      content_type: 'image/png'
+      io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
+      filename: "sample-post#{n + 1}.jpg",
+      content_type: 'image/jpeg'
     )
     post.save!
+  end
+end
+
+5.times do |n|
+
+  user = User.find_by(username: "sample#{n + 1}")
+
+  5.times do |i|
+    post = user.posts.find_or_initialize_by(
+      title: "サンプルユーザー#{n + 1}のテスト投稿 #{i + 1}",
+      body: "サンプルユーザー#{n + 1}のテスト投稿の本文 #{i + 1}"
+    )
+
+    if post.new_record?
+      post.post_image.attach(
+        io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
+        filename: "user#{n + 1}-post#{i + 1}.jpg",
+        content_type: 'image/jpeg'
+      )
+      post.save!
+    end
   end
 end
 
