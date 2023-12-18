@@ -16,7 +16,7 @@
             <div class="form-group">
               <%= f.label :プロフィール画像, class: "control-label" %>
               <div class="custom-file">
-                <%= f.file_field :user_image, id: "user_image", class: "custom-file-input" %>
+                <%= f.file_field :user_image, class: "custom-file-input image_upload" %>
                 <%= f.label "ファイルを選択", class: "btn-black custom-file-button" %>
               </div>
               <img id="image_preview" src="#" alt="your image" style="display: none; max-width: 200px; max-height: 200px;" />
