@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :reports, as: :reportable
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
 

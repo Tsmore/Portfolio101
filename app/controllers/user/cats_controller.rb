@@ -8,7 +8,7 @@ class User::CatsController < ApplicationController
   def create
     @cat = current_user.cats.build(cat_params)
     if @cat.save
-      flash[:notice] = "added"
+      flash[:notice] = "#{@cat.name}を追加しました"
       redirect_to user_cats_path(current_user)
     else
       @cats = current_user.cats
@@ -19,7 +19,7 @@ class User::CatsController < ApplicationController
   def update
     @cat = current_user.cats.find(params[:id])
     if @cat.update(cat_params)
-      flash[:notice] = "update"
+      flash[:notice] = "#{@cat.name}を編集しました"
       redirect_to user_cats_path(current_user)
     else
       @cats = current_user.cats

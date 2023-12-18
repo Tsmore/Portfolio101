@@ -14,9 +14,7 @@
       <div class="row">
         <div class="col-12">
           <div class="title-btn-section">
-            <% if @user == current_user %>
-              <h5 class="title-blue">マイページ</h5>
-            <% else %>
+            <% if !@user == current_user %>
               <h5 class="title-blue"><%= @user.username %></h5>
             <% end %>
             <% if current_user != @user %>

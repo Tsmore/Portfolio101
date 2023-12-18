@@ -3,7 +3,7 @@ class User::PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @post = Post.new
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def show
@@ -15,29 +15,27 @@ class User::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:notice] = "投稿しました"
-      redirect_to request.referer
+      redirect_to request.referer, notice: "投稿しました"
     else
-      puts @post.errors.full_messages
       @posts = current_user.posts
-      render :index
+      redirect_to request.referer, alert: "投稿に失敗しました"
     end
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "編集が完了しました"
-      redirect_to @post
+      redirect_to request.referer, notice: "編集が完了しました"
     else
-      render :show
+      @posts = current_user.posts
+      redirect_to request.referer, alert: "編集に失敗しました"
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to request.referer
+    redirect_to request.referer, notice: "投稿を削除しました"
   end
 
   private

@@ -1,27 +1,50 @@
-<div class="container body">
+<div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
     <%= render 'layouts/error_messages', obj: @post %>
+    <h5 class="title-black"><%= @user.username %>の投稿一覧</h5>
   </div>
   <div class="row">
-    <div class="col items-index">
-      <button type="button" class="btn btn-primary new-post-btn" data-toggle="modal" data-target="#new-post">Launch demo modal</button>
-      <%= render 'user/posts/new_post', post: @post %>
+    <div class="col-12">
+      <% if @user == current_user %>
+        <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-post">新規投稿</h4>
+      <% end %>
       <div class="row items-index-row">
         <% @posts.each do |post| %>
-          <div class="col-md-5 items-box mx-auto">
-            <%= image_tag post.post_image if post.post_image.present? %>
-            <%= link_to post.title, user_post_path(post.user, post) %>
-            <%= post.body %>
-            <div class="post-tags">
-              tag:
-              <% post.tags.each do |tag| %>
-                <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
-              <% end %>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <%= image_tag post.post_image if post.post_image.present? %>
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to post.title, user_post_path(post.user, post) %></h5>
+                <p class="card-text"><%= simple_format(post.body) %></p>
+                <p class="card-text">
+                  <div class="post-tags">
+                    tag:
+                    <% post.tags.each do |tag| %>
+                      <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
+                    <% end %>
+                  </div>
+                </p>
+                <p class="card-text">
+                  <%= post.created_at.strftime('%Y/%m/%d') %>
+                  <%= post.created_at.strftime('%H:%M') %>
+                </p>
+                <p class="card-text text-right">
+                  <button type="button" class="btn-green edit-post-btn" data-toggle="modal" data-target="#edit-post"
+                  data-post-id="<%= post.id %>"
+                  data-post-title="<%= post.title %>"
+                  data-post-body="<%= post.body %>"
+                  data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
+                    編集
+                   </button>
+                  <%= link_to "delete", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
+                </p>
+              </div>
             </div>
-            <%= link_to "delete", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"} if post.id.present? %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= render 'user/posts/new_post', post: @post %>
+<%= render 'user/posts/edit_post', post: @post %>
