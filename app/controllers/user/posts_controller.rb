@@ -35,7 +35,7 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to request.referer, notice: "投稿を削除しました"
+    redirect_to request.referer, alert: "投稿を削除しました"
   end
 
   private

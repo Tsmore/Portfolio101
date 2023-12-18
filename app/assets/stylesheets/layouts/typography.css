@@ -23,3 +23,24 @@
 .modal-content {
   background-color: #fafafa !important;
 }
+
+/*画像設定*/
+.cat-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+.cat-image:hover{
+  transform: scale(1.5) translateY(10px);
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.user-image:hover{
+  transform: scale(1.5);
+}

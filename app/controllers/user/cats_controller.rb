@@ -8,29 +8,27 @@ class User::CatsController < ApplicationController
   def create
     @cat = current_user.cats.build(cat_params)
     if @cat.save
-      flash[:notice] = "#{@cat.name}を追加しました"
-      redirect_to user_cats_path(current_user)
+      redirect_to request.referer, notice: "#{@cat.name}を登録しました"
     else
       @cats = current_user.cats
-      render :index
+      redirect_to request.referer, alert: "登録に失敗しました"
     end
   end
 
   def update
     @cat = current_user.cats.find(params[:id])
     if @cat.update(cat_params)
-      flash[:notice] = "#{@cat.name}を編集しました"
-      redirect_to user_cats_path(current_user)
+      redirect_to request.referer, notice: "#{@cat.name}を編集しました"
     else
       @cats = current_user.cats
-      render :index
+      redirect_to request.referer, alert: "#{@cat.name}の編集に失敗しました"
     end
   end
 
   def destroy
     @cat = Cat.find(params[:id])
     @cat.destroy
-    redirect_to user_cats_path
+    redirect_to request.referer, alert: "猫の登録を解除しました"
   end
 
   private
