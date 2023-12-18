@@ -13,16 +13,6 @@
  *= require_tree .
  *= require_self
  */
- @import "components/hamburger-menu";
- @import "components/login-register-popup";
- @import "components/header";
- @import "components/sidebar";
- @import "layouts/flash";
- @import "pages/top-page";
- @import "pages/my-page";
- @import "pages/items-index-page";
- @import "pages/cats-index-page";
-
 
 * {
   margin: 0;
@@ -38,19 +28,22 @@ body {
 .body {
   padding-left: 120px !important;
   margin-top: 100px !important;
-}
-
-.btn-black {
-  border: 1px solid #999;
-  border-radius: 20px;
-  padding: 5px 10px;
-  color: #666;
-}
-.btn-black:hover {
-  color: #000;
-  transition: all 0.3s ease;
+  margin-bottom: 100px !important;
 }
 
 a {
   text-decoration: none !important;
+}
+
+.card {
+  border: none !important;
+}
+
+// responsive
+
+@media screen and (max-width: 768px) {
+  .body {
+    padding-left: 75px !important;
+    padding-right: 25px !important;
+  }
 }

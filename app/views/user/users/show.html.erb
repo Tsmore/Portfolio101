@@ -1,11 +1,20 @@
 <div class="container body">
   <div class="row">
-    <div class="col-md-5 user-info-section">
+    <div class="col">
+      <div class="row switch-buttons-row">
+        <div class="switch-buttons">
+          <button id="show-mypage" class="btn-switch active">マイページ</button>
+          <button id="show-posts" class="btn-switch">投稿一覧</button>
+        </div>
+      </div>
+    </div>
+    <div id="mypage-section" class="content-section active">
+      <div class="col-12 contents-bg">
       <!--マイインフォメーション-->
       <div class="row">
         <div class="col">
           <div class="title-btn-section">
-            <h5>マイページ</h5>
+            <h5 class="title-blue">マイページ</h5>
             <% if current_user != @user %>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#report-user">
                 通報する
@@ -53,29 +62,25 @@
           </div>
         </div>
       </div>
-      <!--マイキャット一覧-->
+      <!--猫さん＄アイテム-->
       <div class="row">
-        <div class="col">
-          <div class="title-btn-section mt-3">
-            <h5>マイ猫ちゃん</h5>
-            <%= link_to user_cats_path(@user) do %>
-              <% if current_user == @user %>
-                自分の猫一覧
-              <% else %>
-                <%= @user.username %>さんの猫一覧
-              <% end %>
-            <% end %>
+        <!--猫さんセクション-->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <div class="title-btn-section mt-5">
+                <h5><%= link_to "猫一覧へ", user_cats_path(@user), class: "btn-blue" %></h5>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
           <div class="row">
             <% if @user.cats.present? %>
               <% @user.cats.take(2).each do |cat| %>
               <div class="col-6">
-                <div class="card border-0">
-                  <%= image_tag cat.cat_image if cat.cat_image.present? %>
+                <div class="card">
+                  <div class="card-body cat-image-header">
+                    <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title"><%= cat.name %></h5>
                     <p class="card-text"><%= simple_format(cat.introduction) %></p>
@@ -98,24 +103,15 @@
             <% end %>
           </div>
         </div>
-      </div>
-      <!--マイ製品一覧-->
-      <div class="row">
-        <div class="col">
-          <div class="title-btn-section mt-3">
-            <h5>使用製品</h5>
-            <%= link_to user_items_path(@user) do %>
-              <% if current_user == @user %>
-                自分の製品一覧
-              <% else %>
-                <%= @user.username %>さんの製品一覧
-              <% end %>
-            <% end %>
+          <!--マイ製品セクション-->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <div class="title-btn-section mt-5">
+                <h5><%= link_to "アイテム一覧へ", user_items_path(@user), class: "btn-blue" %></h5>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
           <div class="row">
             <% if @user.items.present? %>
               <% @user.items.take(2).each do |item| %>
@@ -139,61 +135,63 @@
               </div>
             <% end %>
           </div>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
-    <div class="col-md-6 offset-md-1 my-post-section">
+    <div id="posts-section" class="content-section">
+      <div class="col-12 contents-bg">
       <!--タイトル・リンク-->
       <div class="row">
         <div class="col">
           <div class="title-btn-section mt-3">
-            <h5><%= @user.username %>の投稿</h5>
-            <%= link_to "投稿一覧に行く", user_posts_path(@user), class: "btn btn-info" %>
+            <h5><%= link_to "投稿一覧へ", user_posts_path(@user), class: "btn-blue" %></h5>
           </div>
         </div>
       </div>
       <!--投稿each文-->
       <div class="row">
-        <div class="col">
-          <% if @posts.present? %>
-            <% @posts.each do |post| %>
-              <%#= link_to post_path(post), class: "no-style-link" do %>
-                <div class="card border-0">
-                  <%= image_tag post.post_image if post.post_image.present? %>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= post.title %></h5>
-                    <!--simple_formatで改行反映-->
-                    <p class="card-text"><%= simple_format(post.body) %></p>
-                    <p class="card-text">
-                      tag:
-                      <% post.tags.each do |tag| %>
-                        <%= tag.name %>
-                      <% end %>
-                    </p>
-                    <p class="card-text">
-                      <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
-                      <i class="fa-solid fa-comment icon-spacing"></i><%= post.comments.count %>
-                    </p>
-                    <p class="card-text">
-                      <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
-                      <%= post.created_at.strftime('%Y/%m/%d') %>
-                      <%= post.created_at.strftime('%H:%M') %>
-                    </p>
-                  </div>
-                </div>
-              <%# end %>
-            <% end %>
-          <% else %>
-            <div class="col">
+        <% if @posts.present? %>
+          <% @posts.take(4).each do |post| %>
+            <div class="col-md-6">
+            <%#= link_to post_path(post), class: "no-style-link" do %>
               <div class="card">
-                <div class="card-body text-center">
-                  <p class="card-text">まだ投稿がありません</p>
+                <%= image_tag post.post_image if post.post_image.present? %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <!--simple_formatで改行反映-->
+                  <p class="card-text"><%= simple_format(post.body) %></p>
+                  <p class="card-text">
+                    tag:
+                    <% post.tags.each do |tag| %>
+                      <%= tag.name %>
+                    <% end %>
+                  </p>
+                  <p class="card-text">
+                    <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
+                    <i class="fa-solid fa-comment icon-spacing"></i><%= post.comments.count %>
+                  </p>
+                  <p class="card-text">
+                    <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
+                    <%= post.created_at.strftime('%Y/%m/%d') %>
+                    <%= post.created_at.strftime('%H:%M') %>
+                  </p>
                 </div>
               </div>
+            <%# end %>
             </div>
           <% end %>
-        </div>
+        <% else %>
+          <div class="col">
+            <div class="card">
+              <div class="card-body text-center">
+                <p class="card-text">まだ投稿がありません</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
+    </div>
     </div>
   </div>
 </div>

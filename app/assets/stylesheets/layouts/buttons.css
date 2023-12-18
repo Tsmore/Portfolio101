@@ -1,0 +1,46 @@
+.btn-black {
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #666;
+}
+.btn-black:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
+  transition: all 0.5s ease;
+  font-size: 103%;
+}
+
+.btn-blue {
+  border: 1px solid #91ffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #00ffff;
+}
+.title-blue {
+  border: 1px solid #91ffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #00ffff;
+}
+.btn-blue:hover {
+  background-color: rgba(102, 255, 255, 0.1);
+  transition: all 0.5s ease;
+  color: #00ffff;
+  font-size: 103%;
+}
+
+.btn-switch {
+  border: 1px solid #91ffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #00ffff;
+  background-color: transparent;
+  font-size: 1.2rem;
+}
+
+.btn-switch.active {
+  color: #00ffff;
+  border: 1px solid #91ffff;
+  background-color: rgba(61, 153, 153, 0.2);
+}
