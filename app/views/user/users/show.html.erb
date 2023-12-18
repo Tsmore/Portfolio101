@@ -1,6 +1,7 @@
 <div class="container body">
   <div class="row">
-    <div class="col">
+    <!--切り替えボタン-->
+    <div class="col-12">
       <div class="row switch-buttons-row">
         <div class="switch-buttons">
           <button id="show-mypage" class="btn-switch active">マイページ</button>
@@ -8,24 +9,27 @@
         </div>
       </div>
     </div>
-    <div id="mypage-section" class="content-section active">
-      <div class="col-12 contents-bg">
+    <div id="mypage-section" class="col-12 contents-bg content-section active">
       <!--マイインフォメーション-->
       <div class="row">
-        <div class="col">
+        <div class="col-12">
           <div class="title-btn-section">
-            <h5 class="title-blue">マイページ</h5>
+            <% if @user == current_user %>
+              <h5 class="title-blue">マイページ</h5>
+            <% else %>
+              <h5 class="title-blue"><%= @user.username %></h5>
+            <% end %>
             <% if current_user != @user %>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#report-user">
+              <button type="button" class="btn-black" data-toggle="modal" data-target="#report-user">
                 通報する
               </button>
             <% else %>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userinfo-edit">
+              <button type="button" class="btn-black" data-toggle="modal" data-target="#userinfo-edit">
                 編集
               </button>
             <% end %>
-              <%= render 'user/users/report', report: @report, user: @user %>
-              <%= render 'user/users/user_edit', user: @user %>
+            <%= render 'user/users/report', report: @report, user: @user %>
+            <%= render 'user/users/user_edit', user: @user %>
           </div>
         </div>
       </div>
@@ -57,12 +61,18 @@
               </div>
             </div>
             <div class="card-body">
-              <p class="card-text"><%= simple_format(@user.introduction) %></p>
+              <p class="card-text">
+                <% if @user.introduction.present? %>
+                  <%= simple_format(@user.introduction) %>
+                <% else %>
+                  まだ自己紹介が登録されていません
+                <% end %>
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <!--猫さん＄アイテム-->
+    <!--猫さん＄アイテム-->
       <div class="row">
         <!--猫さんセクション-->
         <div class="col-md-6">
@@ -103,7 +113,7 @@
             <% end %>
           </div>
         </div>
-          <!--マイ製品セクション-->
+        <!--マイ製品セクション-->
         <div class="col-md-6">
           <div class="row">
             <div class="col">
@@ -135,15 +145,13 @@
               </div>
             <% end %>
           </div>
-            </div>
-          </div>
         </div>
+      </div>
     </div>
-    <div id="posts-section" class="content-section">
-      <div class="col-12 contents-bg">
+    <div id="posts-section" class="col-12 contents-bg content-section">
       <!--タイトル・リンク-->
       <div class="row">
-        <div class="col">
+        <div class="col-12">
           <div class="title-btn-section mt-3">
             <h5><%= link_to "投稿一覧へ", user_posts_path(@user), class: "btn-blue" %></h5>
           </div>
@@ -191,7 +199,6 @@
           </div>
         <% end %>
       </div>
-    </div>
     </div>
   </div>
 </div>

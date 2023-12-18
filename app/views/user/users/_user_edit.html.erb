@@ -16,7 +16,8 @@
             <div class="form-group">
               <%= f.label :プロフィール画像, class: "control-label" %>
               <div class="custom-file">
-                <%= f.file_field :user_image, id: "user_image" %>
+                <%= f.file_field :user_image, id: "user_image", class: "custom-file-input" %>
+                <%= f.label "ファイルを選択", class: "btn-black custom-file-button" %>
               </div>
               <img id="image_preview" src="#" alt="your image" style="display: none; max-width: 200px; max-height: 200px;" />
             </div>
@@ -26,8 +27,8 @@
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= f.submit %>
+          <button class="btn-black" data-dismiss="modal">Close</button>
+          <%= f.submit '編集', class: "btn-black" %>
         </div>
       <% end %>
     </div>
