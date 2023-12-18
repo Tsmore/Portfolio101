@@ -22,46 +22,46 @@
 
 /*blue*/
 .btn-blue {
-  border: 1px solid #91ffff;
+  border: 1px solid #00d9ff;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #00ffff;
+  color: #00d9ff;
   background-color: transparent;
   backdrop-filter: blur(20px);
 }
 .btn-blue:hover {
   background-color: rgba(102, 255, 255, 0.2);
   transition: all 0.5s ease;
-  color: #00ffff;
+  color: #00d9ff;
 }
 .title-blue {
-  border: 1px solid #91ffff;
+  border: 1px solid #00d9ff;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #00ffff;
+  color: #00d9ff;
   background-color: transparent;
   backdrop-filter: blur(20px);
 }
 
 /*green*/
 .btn-green {
-  border: 1px solid #66ff66;
+  border: 1px solid #00cc1f;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #5ce65c;
+  color: #00cc1f;
   background-color: transparent;
   backdrop-filter: blur(20px);
 }
 .btn-green:hover {
   background-color: rgba(92, 230, 92, 0.2);
   transition: all 0.5s ease;
-  color: #5ce65c;
+  color: #00cc1f;
 }
 .title-green {
-  border: 1px solid #66ff66;
+  border: 1px solid #00cc1f;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #5ce65c;
+  color: #00cc1f;
   background-color: transparent;
   backdrop-filter: blur(20px);
 }
@@ -72,18 +72,20 @@
 
 
 .btn-switch {
-  border: 1px solid #91ffff;
+  border: 1px solid #00d9ff;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #00ffff;
+  color: #00d9ff;
   background-color: transparent;
   font-size: 1.2rem;
 }
 
 .btn-switch.active {
-  color: #00ffff;
-  border: 2px solid #91ffff;
-  background-color: rgba(255, 255, 255, 0.1);
+  color: #00d9ff;
+  border: 2px solid #00d9ff;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 125%;
 }
 
 .custom-file-input {

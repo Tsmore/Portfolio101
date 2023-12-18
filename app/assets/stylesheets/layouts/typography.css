@@ -1,0 +1,25 @@
+/*コンテンツ背景*/
+.contents-bg {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  height: 100%;
+}
+
+/*カード設定*/
+.card {
+  margin-top: 20px;
+  overflow: hidden;
+  border: none !important;
+  background-color: #efefef !important;
+}
+
+.card-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #999;
+}
+
+/*モーダル設定*/
+.modal-content {
+  background-color: #fafafa !important;
+}

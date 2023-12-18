@@ -20,29 +20,42 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  background-color: #cbd0d3 !important; /*sky grey*/
+  // background-color: #cbd0d3 !important; /*sky grey*/
+  // background-color: #fafdff !important; /*snow white*/
+  // background-color: #f8f8ff !important; /*ghost white*/
+  background-color: #eee9e6 !important; /*battleship gray*/
   font-family: 'M PLUS 2', sans-serif !important;
+  height: 100%;
 }
 
 .body {
   padding-left: 120px !important;
-  margin-top: 100px !important;
-  margin-bottom: 100px !important;
+  padding-top: 50px !important;
+  margin-bottom: 50px !important;
+}
+
+footer {
+  position: sticky;
+  top: 100vh;
+  height: 100px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
   text-decoration: none !important;
 }
 
-.card {
-  border: none !important;
-  background-color: #fafafa !important;
-}
 
-.modal-content {
-  background-color: #fafafa !important;
-}
+
 
 
 
