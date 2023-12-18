@@ -1,6 +1,5 @@
 <div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
-    <%= render 'layouts/error_messages', obj: @post %>
     <h5 class="title-black"><%= @user.username %>の投稿一覧</h5>
   </div>
   <div class="row">
@@ -29,14 +28,16 @@
                   <%= post.created_at.strftime('%H:%M') %>
                 </p>
                 <p class="card-text text-right">
-                  <button type="button" class="btn-green edit-post-btn" data-toggle="modal" data-target="#edit-post"
-                  data-post-id="<%= post.id %>"
-                  data-post-title="<%= post.title %>"
-                  data-post-body="<%= post.body %>"
-                  data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
-                    編集
-                   </button>
-                  <%= link_to "delete", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
+                  <% if @user == current_user %>
+                    <button type="button" class="btn-green edit-post-btn" data-toggle="modal" data-target="#edit-post"
+                    data-post-id="<%= post.id %>"
+                    data-post-title="<%= post.title %>"
+                    data-post-body="<%= post.body %>"
+                    data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
+                      編集
+                     </button>
+                    <%= link_to "delete", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
+                  <% end %>
                 </p>
               </div>
             </div>

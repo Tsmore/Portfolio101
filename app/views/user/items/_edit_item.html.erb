@@ -1,13 +1,13 @@
-<div class="modal fade" id="add-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-item" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="add-item">アイテム追加</h5>
+        <h5 class="modal-title" id="edit-item">アイテムの編集</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <%= form_with model: item, url: user_items_path do |f| %>
+      <%= form_with model: item, url: '#', html: { id: 'edit-item-form' }, method: :patch do |f| %>
         <div class="modal-body">
             <div class="form-group">
               <%= f.label :製品名, class: "form-label" %>
@@ -24,7 +24,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn-black" data-dismiss="modal">Close</button>
-          <%= f.submit "追加", class: "btn-blue" %>
+          <%= f.submit "編集", class: "btn-green" %>
         </div>
       <% end %>
     </div>

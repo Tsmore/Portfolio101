@@ -1,7 +1,9 @@
 <div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
-    <div class="col-12 contents-bg">
-      <%= render 'layouts/error_messages', obj: @cat %>
+    <h5 class="title-black"><%= @user.username %>の猫一覧</h5>
+  </div>
+  <div class="row">
+    <div class="col-12">
       <% if @user == current_user %>
         <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-cat">登録する</h4>
       <% end %>

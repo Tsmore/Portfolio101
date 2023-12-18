@@ -1,26 +1,49 @@
-<div class="container body">
+<div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
-    <div class="col items-index">
-      <button type="button" class="btn btn-primary add-new-item-btn" data-toggle="modal" data-target="#add-new-items">Launch demo modal</button>
-      <%= render 'user/items/new_item', item: @item %>
-      <div class="row items-index-row">
+    <h5 class="title-black"><%= @user.username %>のアイテム一覧</h5>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <% if @user == current_user %>
+        <h5 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#add-item">アイテムを追加する</h5>
+      <% end %>
+      <div class="row">
         <% @items.each do |item| %>
-          <div class="col-md-5 items-box mx-auto">
-            <%= item.name %>
-            <%= item.description %>
-            <%= link_to item.product_link, item.product_link, target: '_blank', rel: 'noopener noreferrer' %>
-            <% if item.product_link.present? %>
-              <% preview = fetch_page_info(item.product_link) %>
-              <div class="url-preview">
-                <h4><%= preview[:title] %></h4>
-                <p><%= preview[:description] %></p>
-                <%= image_tag preview[:image] if preview[:image].present? %>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text"><%= item.description %></p>
+                <p class="card-text">
+                  <%= link_to item.product_link, item.product_link, target: '_blank', rel: 'noopener noreferrer' %>
+                  <% if item.product_link.present? %>
+                    <% preview = fetch_page_info(item.product_link) %>
+                    <div class="url-preview">
+                      <h4><%= preview[:title] %></h4>
+                      <p><%= preview[:description] %></p>
+                      <%= image_tag preview[:image] if preview[:image].present? %>
+                    </div>
+                  <% end %>
+                </p>
+                <p class="card-text text-right">
+                  <% if @user == current_user %>
+                    <button type="button" class="btn-green edit-item-btn" data-toggle="modal" data-target="#edit-item"
+                      data-item-id="<%= item.id %>"
+                      data-item-name="<%= item.name %>"
+                      data-item-description="<%= item.description %>"
+                      data-item-product_link="<%= item.product_link %>">
+                      編集
+                    </button>
+                    <%= link_to "delete", user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" %>
+                  <% end %>
+                </p>
               </div>
-            <% end %>
-            <%= link_to "delete", user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "are you sure?"} if item.id.present? %>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= render 'user/items/new_item', item: @item %>
+<%= render 'user/items/edit_item', item: @item %>
