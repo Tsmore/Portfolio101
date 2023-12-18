@@ -4,11 +4,6 @@
   padding: 20px;
 }
 
-.add-new-item-btn {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
-}
 
 .items-box {
   background-color: #FFF;

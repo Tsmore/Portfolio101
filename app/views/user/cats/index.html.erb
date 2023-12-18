@@ -1,23 +1,49 @@
-<div class="container body">
+<div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
-    <div class="col items-index">
+    <div class="col-12 contents-bg">
       <%= render 'layouts/error_messages', obj: @cat %>
-      <button type="button" class="btn btn-primary add-new-item-btn" data-toggle="modal" data-target="#add-new-cats">Launch demo modal</button>
-      <%= render 'user/cats/new_cat', cat: @cat %>
-      <div class="row items-index-row">
+      <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-cat">登録する</h4>
+      <div class="row">
         <% @cats.each do |cat| %>
-          <div class="col-md-5 items-box mx-auto">
-            <%= image_tag cat.profile_image, class: "cats-index-image" %>
-            <%= cat.name %>
-            <%= cat.introduction %>
-            <%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %>
-            <%= cat.date_of_birth %>
-            <% if cat.id.present? %>
-              <%= link_to "delete", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "are you sure?"} %>
-            <% end %>
+          <div class="col-lg-4 col-md-6">
+            <div class="card">
+              <div class="card-body cat-image-header">
+                <%= image_tag cat.profile_image, class: "cat-image" %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center"><%= cat.name %></h5>
+                <p class="card-text">自己紹介: <%= simple_format(cat.introduction) %></p>
+                <p class="card-text">猫種: <%= cat.breed.name %></p>
+                <p class="card-text">性別: <%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
+                <p class="card-text">
+                  誕生日:
+                  <% if cat.date_of_birth.present? %>
+                    <%= cat.date_of_birth %>
+                  <% else %>
+                    不明
+                  <% end %>
+                </p>
+                <% if @user == current_user %>
+                  <p class="card-text">
+                    <button type="button" class="btn-green edit-cat-btn" data-toggle="modal" data-target="#edit-cat"
+                      data-cat-id="<%= cat.id %>"
+                      data-cat-name="<%= cat.name %>"
+                      data-cat-introduction="<%= cat.introduction %>"
+                      data-cat-breed-id="<%= cat.breed_id %>"
+                      data-cat-sex="<%= cat.sex %>"
+                      data-cat-birth="<%= cat.date_of_birth %>">
+                      編集
+                    </button>
+                    <%= link_to "削除", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= render 'user/cats/new_cat', cat: @cat %>
+<%= render 'user/cats/edit_cat', cat: @cat %>

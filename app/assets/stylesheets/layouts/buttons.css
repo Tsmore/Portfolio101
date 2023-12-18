@@ -1,3 +1,4 @@
+/*black*/
 .btn-black {
   border: 1px solid #999;
   border-radius: 20px;
@@ -9,13 +10,28 @@
   background-color: rgba(0, 0, 0, 0.1);
   color: #000;
   transition: all 0.5s ease;
-  font-size: 103%;
+  color: #333;
+}
+.title-black {
+  border: 1px solid #999;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #666;
+  background-color: transparent;
 }
 
+/*blue*/
 .btn-blue {
   border: 1px solid #91ffff;
   border-radius: 20px;
   padding: 5px 10px;
+  color: #00ffff;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+}
+.btn-blue:hover {
+  background-color: rgba(102, 255, 255, 0.2);
+  transition: all 0.5s ease;
   color: #00ffff;
 }
 .title-blue {
@@ -23,13 +39,37 @@
   border-radius: 20px;
   padding: 5px 10px;
   color: #00ffff;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
 }
-.btn-blue:hover {
-  background-color: rgba(102, 255, 255, 0.1);
+
+/*green*/
+.btn-green {
+  border: 1px solid #66ff66;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #5ce65c;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+}
+.btn-green:hover {
+  background-color: rgba(92, 230, 92, 0.2);
   transition: all 0.5s ease;
-  color: #00ffff;
-  font-size: 103%;
+  color: #5ce65c;
 }
+.title-green {
+  border: 1px solid #66ff66;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #5ce65c;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+}
+
+
+
+
+
 
 .btn-switch {
   border: 1px solid #91ffff;
@@ -58,4 +98,11 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.add-btn {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  z-index: 5;
 }
