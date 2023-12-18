@@ -17,7 +17,6 @@
                 <p class="card-text"><%= simple_format(post.body) %></p>
                 <p class="card-text">
                   <div class="post-tags">
-                    tag:
                     <% post.tags.each do |tag| %>
                       <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
                     <% end %>

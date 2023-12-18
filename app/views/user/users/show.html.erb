@@ -168,10 +168,11 @@
                   <!--simple_formatで改行反映-->
                   <p class="card-text"><%= simple_format(post.body) %></p>
                   <p class="card-text">
-                    tag:
-                    <% post.tags.each do |tag| %>
-                      <%= tag.name %>
-                    <% end %>
+                    <div class="post-tags">
+                      <% post.tags.each do |tag| %>
+                        <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
+                      <% end %>
+                    </div>
                   </p>
                   <p class="card-text">
                     <i class="fa-solid fa-heart icon-spacing"></i><%= post.favorites.count %>
