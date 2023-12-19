@@ -1,0 +1,26 @@
+.all-posts-tags {
+  border: 1px solid #67BDCC;
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.all-posts-tags:hover {
+  border-color: #00d9ff;
+}
+
+.all-posts-tags a{
+  text-decoration: none;
+  color: #666;
+  margin: 10px;
+}
+
+.all-posts-tags a:hover{
+  text-decoration: none;
+  color: #000;
+}
+
+.tag-reset-col {
+  display: flex;
+  justify-content: space-between;
+}

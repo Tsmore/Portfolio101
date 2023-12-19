@@ -13,5 +13,6 @@ class User::AllPostsController < ApplicationController
     else
       @posts = Post.all.order(created_at: :desc)
     end
+    @tags = Tag.all
   end
 end
