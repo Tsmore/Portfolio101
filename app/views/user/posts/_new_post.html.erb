@@ -9,26 +9,26 @@
       </div>
       <%= form_with model: post, url: user_posts_path do |f| %>
         <div class="modal-body">
-            <div class="form-group">
-              <%= f.label :タイトル, class: "form-label" %>
-              <%= f.text_field :title, class: "form-control" %>
+          <div class="form-group">
+            <%= f.label :タイトル, class: "form-label" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :内容, class: "form-label" %>
+            <%= f.text_area :body, rows: 5, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'タグ (スペースで区切ってください)', class: "form-label" %>
+            <%= f.text_field :tag_list, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :写真, class: "form-label" %>
+            <div class="custom-file">
+              <%= f.file_field :post_image, multiple: true, accept: 'image/*', class: "custom-file-input images_upload" %>
+              <%= f.label "ファイルを選択", class: "btn-black custom-file-button" %>
             </div>
-            <div class="form-group">
-              <%= f.label :内容, class: "form-label" %>
-              <%= f.text_area :body, rows: 5, class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.label 'タグ (スペースで区切ってください)', class: "form-label" %>
-              <%= f.text_field :tag_list, class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.label :写真, class: "form-label" %>
-              <div class="custom-file">
-                <%= f.file_field :post_image, multiple: true, accept: 'image/*', class: "custom-file-input image_upload" %>
-                <%= f.label "ファイルを選択", class: "btn-black custom-file-button" %>
-              </div>
-              <div id="image_preview_container"></div>
-            </div>
+            <div id="images_preview_container"></div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn-black" data-dismiss="modal">Close</button>

@@ -1,10 +1,15 @@
 document.addEventListener('turbolinks:load', function() {
-  document.querySelectorAll('.image_upload').forEach(function(input) {
+  setupImageUpload('.images_upload', 'images_preview_container');
+  setupImageUpload('.edit_images_upload', 'edit_images_preview_container');
+});
+
+function setupImageUpload(uploadClass, previewContainerID) {
+  document.querySelectorAll(uploadClass).forEach(function(input) {
     input.addEventListener('change', function(event) {
       const files = event.target.files;
-      const container = document.getElementById('image_preview_container');
+      const container = document.getElementById(previewContainerID);
 
-      container.innerHTML = ''; // コンテナをクリア
+      container.innerHTML = '';
 
       Array.from(files).forEach(function(file) {
         const img = document.createElement('img');
@@ -12,10 +17,10 @@ document.addEventListener('turbolinks:load', function() {
         img.style.maxWidth = '200px';
         img.style.maxHeight = '200px';
         img.onload = function() {
-          URL.revokeObjectURL(img.src); // 画像読み込み後にメモリ解放
+          URL.revokeObjectURL(img.src);
         }
         container.appendChild(img);
       });
     });
   });
-});
+}
