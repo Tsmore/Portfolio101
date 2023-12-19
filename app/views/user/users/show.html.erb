@@ -86,7 +86,7 @@
               <% @user.cats.take(2).each do |cat| %>
               <div class="col-6">
                 <div class="card">
-                  <div class="card-body cat-image-header">
+                  <div class="card-body image-header">
                     <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
                   </div>
                   <div class="card-body">

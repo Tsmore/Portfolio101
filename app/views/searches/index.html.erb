@@ -28,7 +28,7 @@
           <tbody>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= image_tag post.post_image if post.post_image.present? %></td>
+                <td><%#= image_tag post.post_image if post.post_image.present? %></td>
                 <td><%= post.title %></td>
                 <td><%= post.body %></td>
                 <td><%= post.created_at.strftime('%y/%m/%d') %></td>

@@ -1,19 +1,30 @@
 <div class="container body">
   <div class="row">
-    <div class="col">
-      <table class="table">
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= image_tag user.profile_image %></td>
-              <td><%= link_to user.username, user_path(user) %></td>
-              <td><%= user.introduction %></td>
-              <td></td>
-              <td></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <h4 class="title-black">ユーザー一覧</h4>
+  </div>
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="card">
+          <div class="card-body image-header">
+            <%= image_tag user.profile_image, class: "user-image" %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to user.username, user_path(user) %></h5>
+            <div class="card-text-contents">
+              <% if user.introduction.present? %>
+                <p class="card-text"><%= simple_format(user.introduction) %></p>
+              <% else %>
+                <p class="card-text">自己紹介文が登録されていません</p>
+              <% end %>
+            </div>
+            <p class="card-text">登録猫数: <%= user.cats.count %></p>
+            <p class="card-text">登録アイテム数: <%= user.items.count %></p>
+            <p class="card-text"></p>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
