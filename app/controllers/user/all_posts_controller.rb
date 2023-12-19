@@ -11,7 +11,7 @@ class User::AllPostsController < ApplicationController
         @posts =  Post.none
       end
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
     end
   end
 end

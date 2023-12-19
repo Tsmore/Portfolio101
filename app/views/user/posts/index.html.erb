@@ -11,14 +11,50 @@
         <% @posts.each do |post| %>
           <div class="col-md-6 col-lg-4">
             <div class="card">
-              <% post.post_image.each do |image| %>
-                <%= image_tag image if image.present? %>
+              <div class="card-header">
+                <%= image_tag post.user.profile_image, class: "user-image-sm" %>
+                <%= link_to post.user.username, user_path(post.user) %>
+              </div>
+              <% if post.post_image.count > 1 %>
+                <div id="carousel<%= post.id %>" class="carousel slide" data-ride="false">
+                  <div class="carousel-inner">
+                    <% post.post_image.each_with_index do |image, index| %>
+                      <div class="carousel-item <%= 'active' if index == 0 %>">
+                        <a href="#" data-toggle="modal" data-target="#imageModal<%= post.id %><%= index %>">
+                          <%= image_tag(image, class: "d-block w-100") if image.present? %>
+                        </a>
+                        <div class="carousel-thumbnails">
+                          <% post.post_image.each_with_index do |image, index| %>
+                            <img src="<%= url_for(image) %>" class="img-thumbnail" data-target="#carousel<%= post.id %>" data-slide-to="<%= index %>">
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-target="#carousel<%= post.id %>" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-target="#carousel<%= post.id %>" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </button>
+                </div>
+              <% else %>
+                <% post.post_image.each do |image| %>
+                  <a href="#" data-toggle="modal" data-target="#singleImageModal<%= post.id %>">
+                    <%= image_tag image if image.present? %>
+                  </a>
+                <% end %>
               <% end %>
               <div class="card-body">
-                <h5 class="card-title"><%= link_to post.title, user_post_path(post.user, post) %></h5>
-                <p class="card-text"><%= simple_format(post.body) %></p>
+                <h6 class="card-title"><%= link_to post.title, user_post_path(post.user, post) %></h6>
+                <div class="card-text-contents">
+                  <p class="card-text"><%= simple_format(post.body) %></p>
+                </div>
                 <p class="card-text">
                   <div class="post-tags">
+                    tag:
                     <% post.tags.each do |tag| %>
                       <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
                     <% end %>
@@ -43,6 +79,8 @@
               </div>
             </div>
           </div>
+          <%= render 'user/all_posts/image_modal', post: post %>
+          <%= render 'user/all_posts/images_modal', post: post %>
         <% end %>
       </div>
     </div>

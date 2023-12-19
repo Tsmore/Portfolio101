@@ -1,0 +1,11 @@
+<% post.post_image.each_with_index do |image, index| %>
+  <div class="modal fade" id="imageModal<%= post.id %><%= index %>" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg post-image-modal modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= image_tag(image, class: "img-fluid") if image.present? %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
