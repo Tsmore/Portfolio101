@@ -10,3 +10,30 @@ document.addEventListener('turbolinks:load', function() {
     });
   });
 });
+
+document.addEventListener('turbolinks:load', function() {
+  setupImageUpload('.image_upload', 'image_preview_container');
+  setupImageUpload('.edit_image_upload', 'edit_image_preview_container');
+});
+
+function setupImageUpload(uploadClass, previewContainerID) {
+  document.querySelectorAll(uploadClass).forEach(function(input) {
+    input.addEventListener('change', function(event) {
+      const files = event.target.files;
+      const container = document.getElementById(previewContainerID);
+
+      container.innerHTML = '';
+
+      Array.from(files).forEach(function(file) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.style.maxWidth = '200px';
+        img.style.maxHeight = '200px';
+        img.onload = function() {
+          URL.revokeObjectURL(img.src);
+        }
+        container.appendChild(img);
+      });
+    });
+  });
+}
