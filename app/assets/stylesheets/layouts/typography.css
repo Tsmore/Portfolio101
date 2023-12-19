@@ -6,6 +6,13 @@
   background-color: #efefef !important;
 }
 
+.card a{
+  color: #333;
+}
+.card a:hover {
+  color: #000;
+}
+
 .card-title {
   padding-bottom: 20px;
   padding-top: 20px;
