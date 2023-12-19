@@ -86,7 +86,7 @@
   transition: transform 0.3s ease;
 }
 .user-image:hover{
-  transform: scale(1.5);
+  transform: scale(1.5) translateY(10px);
 }
 .user-image-sm {
   width: 50px;
