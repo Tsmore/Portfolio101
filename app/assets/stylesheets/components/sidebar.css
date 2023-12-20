@@ -126,3 +126,7 @@
     width: 50px;
   }
 }
+
+.yellow-notification {
+  color: #00afcc !important;
+}

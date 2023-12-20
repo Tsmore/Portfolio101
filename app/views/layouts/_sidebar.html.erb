@@ -69,7 +69,11 @@
       </li>
       <% if user_signed_in? %>
         <li>
-          <span><i class="fa-sharp fa-solid fa-bell"></i></span>
+          <% if Notification.where(visited_id: current_user.id, checked: false).exists? %>
+            <span><i class="fa-sharp fa-solid fa-bell yellow-notification"></i></span>
+          <% else %>
+            <span><i class="fa-sharp fa-solid fa-bell"></i></span>
+          <% end %>
           <%= link_to "Notifications", notifications_path %>
         </li>
         <li>

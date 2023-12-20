@@ -1,30 +1,42 @@
 <div class="container body">
   <div class="row">
-    <div class="col">
-      <h3>Notifications</h3>
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <h3 class="title-black">Notifications</h3>
       <% if @notifications.any? %>
         <ul>
           <% @notifications.each do |notification| %>
-            <li>
-              <%= image_tag notification.visitor.profile_image %>
-              <%= link_to notification.visitor.username, user_path(notification.visitor) %>
-              さんが
-              <% case notification.action %>
-                <% when 'commented' %>
-                  <%= link_to 'あなたの投稿にコメントしました', post_path(notification.notifiable.post) %>
-                  Comment: <%= notification.notifiable.body %>
-                <% when 'liked' %>
-                  <%= link_to 'あなたの投稿にいいねしました', post_path(notification.notifiable.post) %>
-                <% when 'followed' %>
-                  あなたをフォローしました
-              <% end %>
-              <% if notification.checked %>
-                <span>既読</span>
-              <% else %>
-                <%= link_to '既読にする', mark_as_read_notification_path(notification), method: :patch, class: 'btn btn-primary' %>
-              <% end %>
-              <%= notification.created_at.strftime("%H:%M") %>
-            </li>
+            <div class="card">
+              <div class="card-header">
+                <%= image_tag notification.visitor.profile_image, class: "user-image-sm" %>
+                <%= link_to notification.visitor.username, user_path(notification.visitor) %>
+                さんが
+              </div>
+              <div class="card-body">
+                <% case notification.action %>
+                  <% when 'commented' %>
+                  <p class="card-text">
+                    <%= link_to '投稿にコメントしました', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id) %>
+                    <%= simple_format(notification.notifiable.body) %>
+                  </p>
+                  <% when 'liked' %>
+                  <p class="card-text">
+                    <%= link_to '投稿にいいねしました', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id) %>
+                  </p>
+                  <% when 'followed' %>
+                  <p class="card-text">
+                    あなたをフォローしました
+                  </p>
+                <% end %>
+                <p class="card-text text-right">
+                  <%= notification.created_at.strftime("%H:%M") %>
+                  <% if notification.checked %>
+                    <span>既読</span>
+                  <% else %>
+                    <%= link_to '既読にする', mark_as_read_notification_path(notification), method: :patch, class: 'btn-green' %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
           <% end %>
         </ul>
       <% else %>
