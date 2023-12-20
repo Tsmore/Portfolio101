@@ -159,7 +159,7 @@
       <div class="row">
         <% if @posts.present? %>
           <% @posts.take(6).each do |post| %>
-            <div class="col-md-6 col-lg-4">
+            <div class="col-12">
               <div class="card">
                 <div class="card-header">
                   <%= image_tag post.user.profile_image, class: "user-image-sm" %>
