@@ -1,0 +1,10 @@
+.results-section {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  display: none;
+}
+
+.results-section.active {
+  opacity: 1;
+  display: block;
+}

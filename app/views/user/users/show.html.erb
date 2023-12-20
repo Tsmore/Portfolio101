@@ -9,7 +9,7 @@
         </div>
       </div>
     </div>
-    <div id="mypage-section" class="col-12 contents-bg content-section active">
+    <div id="mypage-section" class="col-12 content-section active">
       <!--マイインフォメーション-->
       <div class="row">
         <div class="col-12">
@@ -146,7 +146,7 @@
         </div>
       </div>
     </div>
-    <div id="posts-section" class="col-12 contents-bg content-section">
+    <div id="posts-section" class="col-12 content-section">
       <!--タイトル・リンク-->
       <div class="row">
         <div class="col-12">
@@ -193,7 +193,7 @@
                 <% else %>
                   <% post.post_image.each do |image| %>
                     <a href="#" data-toggle="modal" data-target="#singleImageModal<%= post.id %>">
-                      <%= image_tag image if image.present? %>
+                      <%= image_tag image, class: "w-100" if image.present? %>
                     </a>
                   <% end %>
                 <% end %>

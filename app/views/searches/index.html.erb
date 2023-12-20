@@ -1,45 +1,131 @@
 <div class="container body">
   <div class="row">
-    <div class="col">
+    <div class="col-lg-6 col-md-8">
+      <h4><%= link_to "検索結果", searches_path, class: "btn-black" %></h4>
+    </div>
+    <div class="col-lg-4 col-md-4 offset-lg-2">
       <%= form_with url: searches_path, method: :get do |f| %>
         <div class="form-group">
-          <%= f.submit "キーワード検索", class: "btn-blue" %>
+          <%= f.submit "検索", class: "btn-blue" %>
         </div>
         <div class="form-group">
-          <%= f.text_field :keyword, class: "form-control", placeholder: "ユーザー名、投稿内容など..." %>
+          <%= f.text_field :keyword, class: "form-control", placeholder: "ユーザー、投稿..." %>
         </div>
       <% end %>
-      <% if @users.present? %>
-        <h4 class="title-black"></h4>
-        <table class="table">
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td><%= image_tag user.profile_image %></td>
-                <td><%= user.username %></td>
-                <td><%= user.introduction %></td>
-                <td></td>
-                <td></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    </div>
+  </div>
+  <div class="row">
+    <% if @users.present? && @posts.present? %>
+      <button id="show-users-results" class="btn-switch active">ユーザー検索結果(<%= @users.count %>件)</button>
+      <button id="show-posts-results" class="btn-switch">投稿検索結果(<%= @posts.count %>件)</button>
+    <% elsif @users.present? %>
+      <button id="show-users-results" class="btn-switch active">ユーザー検索結果(<%= @users.count %>件)</button>
+    <% elsif @posts.present? %>
+      <button id="show-posts-results" class="btn-switch active">投稿検索結果(<%= @posts.count %>件)</button>
+    <% end %>
+  </div>
+
+
+
+  <div id="users-results-section" class="results-section active mt-3">
+    <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card">
+            <div class="card-body image-header">
+              <%= image_tag user.profile_image, class: "user-image" %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to user.username, user_path(user) %></h5>
+              <div class="card-text-contents">
+                <% if user.introduction.present? %>
+                  <p class="card-text"><%= simple_format(user.introduction) %></p>
+                <% else %>
+                  <p class="card-text">自己紹介文が登録されていません</p>
+                <% end %>
+              </div>
+              <p class="card-text">登録猫数: <%= user.cats.count %></p>
+              <p class="card-text">登録アイテム数: <%= user.items.count %></p>
+              <p class="card-text">投稿数: <%= user.posts.count %></p>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
       <% end %>
-      <% if @posts.present? %>
-        <h3>Posts</h3>
-        <table class="table">
-          <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%#= image_tag post.post_image if post.post_image.present? %></td>
-                <td><%= post.title %></td>
-                <td><%= post.body %></td>
-                <td><%= post.created_at.strftime('%y/%m/%d') %></td>
-                <td></td>
-              </tr>
+    </div>
+  </div>
+  <div id="posts-results-section" class="results-section mt-3">
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-header">
+              <%= image_tag post.user.profile_image, class: "user-image-sm" %>
+              <%= link_to post.user.username, user_path(post.user) %>
+            </div>
+            <% if post.post_image.count > 1 %>
+              <div id="carousel<%= post.id %>" class="carousel slide" data-ride="false">
+                <div class="carousel-inner">
+                  <% post.post_image.each_with_index do |image, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <a href="#" data-toggle="modal" data-target="#imageModal<%= post.id %><%= index %>">
+                        <%= image_tag(image, class: "d-block w-100") if image.present? %>
+                      </a>
+                      <div class="carousel-thumbnails">
+                        <% post.post_image.each_with_index do |image, index| %>
+                          <img src="<%= url_for(image) %>" class="img-thumbnail" data-target="#carousel<%= post.id %>" data-slide-to="<%= index %>">
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carousel<%= post.id %>" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carousel<%= post.id %>" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </button>
+              </div>
+            <% else %>
+              <% post.post_image.each do |image| %>
+                <a href="#" data-toggle="modal" data-target="#singleImageModal<%= post.id %>">
+                  <%= image_tag image, class: "w-100" if image.present? %>
+                </a>
+              <% end %>
             <% end %>
-          </tbody>
-        </table>
+            <div class="card-body">
+              <h6 class="card-title"><%= link_to post.title, user_post_path(post.user, post) %></h6>
+              <div class="card-text-contents">
+                <p class="card-text"><%= simple_format(post.body) %></p>
+              </div>
+              <p class="card-text">
+                <div class="post-tags">
+                  tag:
+                  <% post.tags.each do |tag| %>
+                    <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
+                  <% end %>
+                </div>
+              </p>
+              <% if user_signed_in? %>
+                <p class="card-text">
+                  <i class="fa-solid fa-comment"></i> <%= post.comments.count %>
+                  <span class=<%= "favorite-" + post.id.to_s %> ><%= render 'user/favorites/fav_btn', post: post %></span>
+                  <span id="bookmark_btn_<%= post.id %>"><%= render 'user/bookmarks/bookmark_btn', post: post %></span>
+                </p>
+              <% end %>
+              <p class="card-text">
+                <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
+                <%= post.created_at.strftime('%Y/%m/%d') %>
+                <%= post.created_at.strftime('%H:%M') %>
+              </p>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
+        <%= render 'user/all_posts/image_modal', post: post %>
+        <%= render 'user/all_posts/images_modal', post: post %>
       <% end %>
     </div>
   </div>
