@@ -1,6 +1,6 @@
 <div class="container body">
   <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="col-lg-8 col-md- mx-auto">
       <h3 class="title-black">Notifications</h3>
       <% if @notifications.any? %>
         <ul>
@@ -25,6 +25,11 @@
                   <% when 'followed' %>
                   <p class="card-text">
                     あなたをフォローしました
+                  </p>
+                  <% when 'messaged' %>
+                  <p class="card-text">
+                    <%= link_to 'メッセージを送信しました', message_path(notification.visitor_id) %>
+                    <%= simple_format(notification.notifiable.message) %>
                   </p>
                 <% end %>
                 <p class="card-text text-right">

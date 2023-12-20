@@ -23,9 +23,14 @@ class User::MessagesController < ApplicationController
     if @message.save
       redirect_to request.referer
     else
-      flash[:alert] = "failed"
-      render :show
+      redirect_to request.referer, alert: "送信に失敗しました"
     end
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    redirect_to request.referer
   end
 
   private

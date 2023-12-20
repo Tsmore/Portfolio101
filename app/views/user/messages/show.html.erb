@@ -1,9 +1,12 @@
 <div class="container body">
+  <div class="row mt-5">
+    <h4 class="title-black">メッセージ</h4>
+  </div>
   <div class="row">
     <div class="col">
-      <div class="messages-list shadow p-3 mb-5 bg-white rounded">
-        <h2>Message with:</h2>
-        <h4><%= image_tag @user.profile_image %><%= @user.username %></h4>
+      <div class="messages-list shadow p-3 bg-white rounded">
+        <%= image_tag @user.profile_image, class: "user-image-md" %>
+        <%= link_to @user.username, user_path(@user), class: "btn-black" %>
         <div class="actual-messages">
           <% @messages.each do |message| %>
             <%= render 'user/messages/messages', message: message %>

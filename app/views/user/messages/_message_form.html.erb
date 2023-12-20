@@ -1,5 +1,7 @@
 <%= form_with model: message, url: messages_path do |f| %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.text_area :message, id: "message_text_area", placeholder: 'Enter your message...' %>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.text_area :message, id: "message_text_area", rows: 3, placeholder: 'Enter your message...', class: "form-control" %>
+  </div>
+  <%= f.submit "送信", class: "btn-blue" %>
 <% end %>

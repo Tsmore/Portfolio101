@@ -1,0 +1,23 @@
+.message-card-body {
+  background-color: #00afcc;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+.message-delete {
+  text-decoration: none;
+  color: white;
+}
+
+.message p{
+  margin-bottom: 0;
+}
+
+.message-col-right {
+  padding-right: 0 !important;
+}
+
+.message-col-left {
+  padding-left: 0 !important;
+}
