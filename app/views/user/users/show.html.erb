@@ -4,8 +4,13 @@
     <div class="col-12">
       <div class="row switch-buttons-row">
         <div class="switch-buttons">
-          <button id="show-mypage" class="btn-switch active">My Info</button>
-          <button id="show-posts" class="btn-switch">My Posts</button>
+          <% if @user == current_user %>
+            <button id="show-mypage" class="btn-switch active">My Info</button>
+            <button id="show-posts" class="btn-switch">My Posts</button>
+          <% else %>
+            <button id="show-mypage" class="btn-switch active"><%= @user.username %>'s Info</button>
+            <button id="show-posts" class="btn-switch"><%= @user.username %>'s Posts</button>
+          <% end %>
         </div>
       </div>
     </div>
