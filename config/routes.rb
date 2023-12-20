@@ -23,9 +23,7 @@ Rails.application.routes.draw do
         get :follows, :followers
       end
       resources :reports, only: [:new, :create]
-      resource :relationships, only: [:create, :destroy]
-        get "following" => "relationships#following", as: "following"
-  	    get "followers" => "relationships#followers", as: "followers"
+      resources :relationships, only: [:create, :destroy, :index]
       resources :cats, only: [:index, :create, :update, :destroy]
       resources :items, only: [:index, :create, :update, :destroy]
       resources :posts, only: [:index, :show, :create, :update, :destroy] do
