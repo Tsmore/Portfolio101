@@ -1,7 +1,10 @@
 <div class="container body">
+  <div class="row notifications-row">
+    <h3 class="title-black">Notifications</h3>
+    <h5><%= link_to '全て既読にする', mark_as_read_notifications_path, method: :patch, class: "btn-green" %></h5>
+  </div>
   <div class="row">
     <div class="col-lg-8 col-md- mx-auto">
-      <h3 class="title-black">Notifications</h3>
       <% if @notifications.any? %>
         <ul>
           <% @notifications.each do |notification| %>
@@ -37,7 +40,7 @@
                   <% if notification.checked %>
                     <span>既読</span>
                   <% else %>
-                    <%= link_to '既読にする', mark_as_read_notification_path(notification), method: :patch, class: 'btn-green' %>
+                    <%= link_to '既読にする', notification_path(notification), method: :patch, class: 'btn-green' %>
                   <% end %>
                 </p>
               </div>
