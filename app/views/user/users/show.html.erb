@@ -4,8 +4,8 @@
     <div class="col-12">
       <div class="row switch-buttons-row">
         <div class="switch-buttons">
-          <button id="show-mypage" class="btn-switch active">マイページ</button>
-          <button id="show-posts" class="btn-switch">投稿一覧</button>
+          <button id="show-mypage" class="btn-switch active">My Info</button>
+          <button id="show-posts" class="btn-switch">My Posts</button>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
             <% end %>
             <% if current_user != @user %>
               <button type="button" class="btn-black" data-toggle="modal" data-target="#report-user">
-                通報する
+                通報
               </button>
             <% else %>
               <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
@@ -151,7 +151,7 @@
       <div class="row">
         <div class="col-12">
           <div class="title-btn-section mt-3">
-            <h5><%= link_to "投稿一覧へ", user_posts_path(@user), class: "btn-blue" %></h5>
+            <h5><%= link_to "All Posts", user_posts_path(@user), class: "btn-blue" %></h5>
           </div>
         </div>
       </div>

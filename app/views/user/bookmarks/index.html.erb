@@ -1,29 +1,83 @@
 <div class="container body">
   <div class="row">
-    <div class="col">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>image</th>
-            <th>username</th>
-            <th>title</th>
-            <th>body</th>
-            <th>date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bookmarks.each do |bookmark| %>
-            <% post = bookmark.post %>
-            <tr>
-              <td><%= image_tag post.user.profile_image %></td>
-              <td><%= link_to post.user.username %></td>
-              <td><%= link_to post.title, user_post_path(post.user, post) %></td>
-              <td><%= post.body %></td>
-              <td><%= post.created_at.strftime('%y/%m/%d') %></td>
-            </tr>
+    <h4><%= link_to "Bookmarks", all_posts_path, class: "btn-black" %></h4>
+  </div>
+  <div class="row mt-5">
+    <% @bookmarks.each do |post| %>
+    <% post = post.post %>
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header card-header-time">
+            <span>
+              <%= image_tag post.user.profile_image, class: "user-image-sm" %>
+              <%= link_to post.user.username, user_path(post.user) %>
+            </span>
+            <span><%= time_ago_with_suffix(post.created_at) %></span>
+          </div>
+          <% if post.post_image.count > 1 %>
+            <div id="carousel<%= post.id %>" class="carousel slide" data-ride="false">
+              <div class="carousel-inner">
+                <% post.post_image.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <a href="#" data-toggle="modal" data-target="#imageModal<%= post.id %><%= index %>">
+                      <%= image_tag(image, class: "d-block w-100") if image.present? %>
+                    </a>
+                    <div class="carousel-thumbnails">
+                      <% post.post_image.each_with_index do |image, index| %>
+                        <img src="<%= url_for(image) %>" class="img-thumbnail" data-target="#carousel<%= post.id %>" data-slide-to="<%= index %>">
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <button class="carousel-control-prev" type="button" data-target="#carousel<%= post.id %>" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-target="#carousel<%= post.id %>" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
+            </div>
+          <% else %>
+            <% post.post_image.each do |image| %>
+              <a href="#" data-toggle="modal" data-target="#singleImageModal<%= post.id %>">
+                <%= image_tag image, class: "w-100" if image.present? %>
+              </a>
+            <% end %>
           <% end %>
-        </tbody>
-      </table>
-    </div>
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to post.title, user_post_path(post.user, post) %></h6>
+            <div class="card-text-contents">
+              <p class="card-text"><%= simple_format(post.body) %></p>
+            </div>
+            <p class="card-text">
+              <div class="post-tags">
+                tag:
+                <% post.tags.each do |tag| %>
+                  <%= link_to "#{tag.name}", all_posts_path(tag: tag.name) %>
+                <% end %>
+              </div>
+            </p>
+            <% if user_signed_in? %>
+              <p class="card-text">
+                <i class="fa-solid fa-comment"></i> <%= post.comments.count %>
+                <span class=<%= "favorite-" + post.id.to_s %> ><%= render 'user/favorites/fav_btn', post: post %></span>
+                <span id="bookmark_btn_<%= post.id %>"><%= render 'user/bookmarks/bookmark_btn', post: post %></span>
+              </p>
+            <% end %>
+            <p class="card-text">
+              <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
+              <%= post.created_at.strftime('%Y/%m/%d') %>
+              <%= post.created_at.strftime('%H:%M') %>
+            </p>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+      <%= render 'user/all_posts/image_modal', post: post %>
+      <%= render 'user/all_posts/images_modal', post: post %>
+    <% end %>
   </div>
 </div>
+

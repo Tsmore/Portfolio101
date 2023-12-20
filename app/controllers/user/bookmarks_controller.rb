@@ -1,7 +1,7 @@
 class User::BookmarksController < ApplicationController
 
   def index
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.includes(:post)
   end
 
   def create
