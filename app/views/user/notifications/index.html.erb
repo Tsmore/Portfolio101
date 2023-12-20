@@ -1,10 +1,10 @@
 <div class="container body">
   <div class="row notifications-row">
-    <h3 class="title-black">Notifications</h3>
-    <h5><%= link_to '全て既読にする', mark_as_read_notifications_path, method: :patch, class: "btn-green" %></h5>
+    <h4 class="title-black">Notifications</h4>
+    <h6><%= link_to '全て既読にする', mark_as_read_notifications_path, method: :patch, class: "btn-green" %></h6>
   </div>
   <div class="row">
-    <div class="col-lg-8 col-md- mx-auto">
+    <div class="col-lg-8 col-md-10 mx-auto">
       <% if @notifications.any? %>
         <ul>
           <% @notifications.each do |notification| %>
