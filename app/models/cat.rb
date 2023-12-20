@@ -4,8 +4,8 @@ class Cat < ApplicationRecord
 
   def profile_image
     unless cat_image.attached?
-      file_path = Rails.root.join('app/assets/images/no-image.jpg')
-      cat_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/no-image.png')
+      cat_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     cat_image
   end

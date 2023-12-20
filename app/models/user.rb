@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   def profile_image
     unless user_image.attached?
-      file_path = Rails.root.join('app/assets/images/no-image.jpg')
-      user_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join('app/assets/images/no-image.png')
+      user_image.attach(io: File.open(file_path), filename: 'default-image.png', content_type: 'image/png')
     end
     user_image
   end
