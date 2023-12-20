@@ -11,9 +11,12 @@
         <% @posts.each do |post| %>
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
-                <%= image_tag post.user.profile_image, class: "user-image-sm" %>
-                <%= link_to post.user.username, user_path(post.user) %>
+              <div class="card-header card-header-time">
+                <span>
+                  <%= image_tag post.user.profile_image, class: "user-image-sm" %>
+                  <%= link_to post.user.username, user_path(post.user) %>
+                </span>
+                <span><%= time_ago_with_suffix(post.created_at) %></span>
               </div>
               <% if post.post_image.count > 1 %>
                 <div id="carousel<%= post.id %>" class="carousel slide" data-ride="false">

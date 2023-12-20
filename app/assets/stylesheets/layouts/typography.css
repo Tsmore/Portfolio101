@@ -50,6 +50,11 @@
   opacity: 1;
 }
 
+.card-header-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /*モーダル設定*/
 .modal-content {

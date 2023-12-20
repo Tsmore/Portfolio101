@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   # def fetch_url_preview(url)
   #   page = MetaInspector.new(url)
   #   {
@@ -25,6 +25,10 @@ module ApplicationHelper
   rescue => e
     Rails.logger.error "Mechanize error: #{e.message}"
     { title: nil, description: nil, image: nil }
+  end
+
+  def time_ago_with_suffix(time)
+    "#{time_ago_in_words(time)}前"
   end
 
 end
