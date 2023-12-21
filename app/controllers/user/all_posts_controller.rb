@@ -5,13 +5,13 @@ class User::AllPostsController < ApplicationController
       @tag = Tag.find_by(name: params[:tag])
       # @tagがnilじゃないなら@tag.postsで表示,@tagがnilなら空のクエリセット(Post.none)でアラート
       if @tag
-        @posts = @tag.posts
+        @posts = @tag.posts.page(params[:page]).per(5)
       else
         flash.now[:alert] = "指定されたタグは存在しません"
-        @posts =  Post.none
+        @posts = Post.none
       end
     else
-      @posts = Post.all.order(created_at: :desc)
+      @posts = Post.all.page(params[:page]).per(5)
     end
     @tags = Tag.all
     @post = Post.new
