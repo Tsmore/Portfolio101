@@ -1,24 +1,37 @@
 <div class="container-fluid">
   <div class="row main-visual-row">
-    <!--%= image_tag 'main-visual2.jpg', alt: "main-visual", class: "main-visual" %>-->
-    <div class="main-visual-contents">
-      <h1>Dear Cat Lovers</h1>
-      <p>あなたとあなたの愛する猫のためのコミュニティ</p>
-      <p>にゃんころパラダイスは猫愛好家が猫の写真を共有し</p>
-      <p>地元の保護猫カフェを探索し保護猫の支援に貢献できる場を提供します</p>
-      <% if user_signed_in? %>
-      <% else %>
-        <button class="start-btn login-popup-btn">始める</button>
-      <% end %>
-    </div>
-    <div class="wrapper">
-    <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
-      <%= render 'user/homes/login_form', user: @user %>
-      <%= render 'user/homes/registration_form', user: @user %>
+    <div class="swiper swiper-mv">
+      <div class="swiper-wrapper swiper-wrapper-mv">
+        <div class="swiper-slide swiper-slide-mv">
+          <%= image_tag 'mv-cat1.png', alt: "main-visual", class: "main-visual" %>
+        </div>
+        <div class="swiper-slide swiper-slide-mv">
+          <%= image_tag 'mv-cat2.png', alt: "main-visual", class: "main-visual" %>
+        </div>
+        <div class="swiper-slide swiper-slide-mv">
+          <%= image_tag 'mv-cat3.png', alt: "main-visual", class: "main-visual" %>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="main-visual-contents">
+    <h1>Dear Cat Lovers</h1>
+    <h2>あなたとあなたの愛する猫のためのコミュニティ</h2>
+    <p>このサイトで猫愛好家が猫の写真や出来事を共有し</p>
+    <p>地元の保護猫カフェを訪れたり情報共有を行うことで</p>
+    <p>保護猫活動や支援に少しでも貢献できる場を提供します</p>
+    <% if user_signed_in? %>
+    <% else %>
+      <button class="start-btn login-popup-btn">始める</button>
+    <% end %>
+  </div>
+  <div class="wrapper">
+  <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+    <%= render 'user/homes/login_form', user: @user %>
+    <%= render 'user/homes/registration_form', user: @user %>
+  </div>
 </div>
-<div class="container">
+<div class="container body">
   <div class="row about-section">
     <div class="col-md-4 offset-md-1 about-content">
       <h2>私たちのミッション</h2>
