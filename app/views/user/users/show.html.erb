@@ -17,26 +17,6 @@
     <div id="mypage-section" class="col-12 content-section active">
       <!--マイインフォメーション-->
       <div class="row">
-        <div class="col-12">
-          <div class="title-btn-section">
-            <% if !@user == current_user %>
-              <h5 class="title-blue"><%= @user.username %></h5>
-            <% end %>
-            <% if current_user != @user %>
-              <button type="button" class="btn-black" data-toggle="modal" data-target="#report-user">
-                通報
-              </button>
-            <% else %>
-              <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
-                編集
-              </button>
-            <% end %>
-            <%= render 'user/users/report', report: @report, user: @user %>
-            <%= render 'user/users/user_edit', user: @user %>
-          </div>
-        </div>
-      </div>
-      <div class="row">
         <div class="col">
           <div class="card">
             <div class="card-body card-header-user">
@@ -56,6 +36,15 @@
                       <i class="fa-solid fa-square-envelope dm-icon"></i>
                     <% end %>
                   <% end %>
+                  <button type="button" class="btn-black" data-toggle="modal" data-target="#report-user">
+                    通報
+                  </button>
+                  <%= render 'user/users/report', report: @report, user: @user %>
+                <% else %>
+                  <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
+                    編集
+                  </button>
+                  <%= render 'user/users/user_edit', user: @user %>
                 <% end %>
               </div>
               <div class="follow-counts">
@@ -156,14 +145,16 @@
       <div class="row">
         <div class="col-12">
           <div class="title-btn-section mt-3">
-            <h5><%= link_to "All Posts", user_posts_path(@user), class: "btn-blue" %></h5>
+            <h4><%#= link_to "All Posts", user_posts_path(@user), class: "btn-black" %></h4>
+            <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-post">新規投稿</h4>
+            <%= render 'user/posts/new_post', post: @post %>
           </div>
         </div>
       </div>
       <!--投稿each文-->
       <div class="row">
         <% if @posts.present? %>
-          <% @posts.take(6).each do |post| %>
+          <% @posts.each do |post| %>
             <div class="col-12">
               <div class="card">
                 <div class="card-header card-header-time">
@@ -222,9 +213,22 @@
                     <%= post.created_at.strftime('%Y/%m/%d') %>
                     <%= post.created_at.strftime('%H:%M') %>
                   </p>
+                  <p class="card-text text-right">
+                    <% if @user == current_user %>
+                      <button type="button" class="btn-green edit-post-btn" data-toggle="modal" data-target="#edit-post"
+                      data-post-id="<%= post.id %>"
+                      data-post-title="<%= post.title %>"
+                      data-post-body="<%= post.body %>"
+                      data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
+                        編集
+                      </button>
+                      <%= link_to "削除", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
+                    <% end %>
+                  </p>
                 </div>
               </div>
             </div>
+            <%= render 'user/posts/edit_post', post: post %>
             <%= render 'user/all_posts/image_modal', post: post %>
             <%= render 'user/all_posts/images_modal', post: post %>
           <% end %>

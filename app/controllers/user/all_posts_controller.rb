@@ -14,5 +14,6 @@ class User::AllPostsController < ApplicationController
       @posts = Post.all.order(created_at: :desc)
     end
     @tags = Tag.all
+    @post = Post.new
   end
 end

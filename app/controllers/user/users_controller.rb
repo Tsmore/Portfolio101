@@ -7,6 +7,7 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
     @report = Report.new
+    @post = Post.new
 
     # DM用
     @currentUserEntry=Entry.where(user_id: current_user.id)

@@ -75,8 +75,8 @@
                     data-post-body="<%= post.body %>"
                     data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
                       編集
-                     </button>
-                    <%= link_to "delete", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
+                    </button>
+                    <%= link_to "削除", user_post_path(post.user, post), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" if @user == current_user %>
                   <% end %>
                 </p>
               </div>

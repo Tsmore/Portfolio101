@@ -11,15 +11,15 @@
         <div class="modal-body">
             <div class="form-group">
               <%= f.label :製品名, class: "form-label" %>
-              <%= f.text_field :name, class: "form-control" %>
+              <%= f.text_field :name, class: "form-control", placeholder: "ごはん、おもちゃ、ブラシなど..." %>
             </div>
             <div class="form-group">
               <%= f.label :説明文, class: "form-label" %>
-              <%= f.text_area :description, rows: 5, class: "form-control" %>
+              <%= f.text_area :description, rows: 5, class: "form-control", placeholder: "よく食べてくれる！大好きなおもちゃ！など..." %>
             </div>
             <div class="form-group">
               <%= f.label :製品のリンク, class: "form-label" %>
-              <%= f.text_field :product_link, class: "form-control" %>
+              <%= f.text_field :product_link, class: "form-control", placeholder: "https://~(空白でも大丈夫です。)" %>
             </div>
         </div>
         <div class="modal-footer">

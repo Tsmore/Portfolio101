@@ -23,6 +23,7 @@
 .card-text-contents {
   height: 130px !important;
   overflow: auto !important;
+  margin-bottom: 1rem;
 }
 
 .carousel-item {

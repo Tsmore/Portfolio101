@@ -165,11 +165,12 @@
 }
 
 .btn-switch.active {
-  color: #00d9ff;
-  border: 2px solid #00d9ff;
+  color: #fff;
+  border: 2px solid #fff;
   font-weight: 500;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(4, 217, 255, 0.5);
   font-size: 125%;
+  text-shadow: 0 0 2px #fff;
 }
 
 .custom-file-input {
