@@ -128,6 +128,18 @@
   }
 }
 
-.yellow-notification {
-  color: #00afcc !important;
+.mother-bell {
+  position: relative;
+}
+
+.notification-circle {
+  position: absolute;
+  top: -15px;
+  left: 9px;
+  display: inline-block;
+  color: #04D9FF !important;
+  text-shadow: 0 0 2px #fff;
+  font-size: 20px !important;
+  text-align: center;
+  padding-right: 1px;
 }

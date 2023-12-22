@@ -60,10 +60,16 @@
       <hr>
       <h4>System</h4>
       <li>
-        <% if Notification.where(visited_id: current_user.id, checked: false).exists? %>
-          <span><i class="fa-sharp fa-solid fa-bell yellow-notification"></i></span>
+        <% notifications_count = Notification.where(visited_id: current_user.id, checked: false).count %>
+        <% if notifications_count > 0 %>
+          <span class="mother-bell">
+            <i class="fa-sharp fa-solid fa-bell"></i>
+            <span class="notification-circle">
+              <%= notifications_count > 9 ? '9+' : notifications_count %>
+            </span>
+          </span>
         <% else %>
-          <span><i class="fa-sharp fa-solid fa-bell"></i></span>
+          <i class="fa-sharp fa-solid fa-bell"></i>
         <% end %>
         <%= link_to "Notifications", notifications_path %>
       </li>
