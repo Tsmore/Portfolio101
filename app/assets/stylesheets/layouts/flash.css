@@ -2,7 +2,7 @@
   position: fixed;
   left: 50%;
   top: 0;
-  width: 100%;
+  width: auto;
   transform: translateX(-50%);
   padding: 20px;
   text-align: center;
@@ -11,34 +11,33 @@
   z-index: 1;
   opacity: 1;
   transition: opacity 1s ease-out;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  backdrop-filter: blur(20px);
+
 }
 
 .flash-hide {
   opacity: 0;
 }
 
-.flash-close-icon {
-  position: fixed;
-  right: 30px;
-  font-size: 1.2em;
-}
-
 .flash.notice {
-  background-color: rgba(102, 255, 255, 0.4); /* 透明度20%の青色系 */
+  background-color: rgba(102, 255, 255, 0.5);
   color: #fff;
+  border-radius: 20px;
 }
 
 .flash.alert {
-  background-color: rgba(255, 0, 128, 0.2); /* 透明度20%の赤色系 */
+  background-color: rgba(255, 0, 128, 0.5);
   color: #fff;
   padding: 20px;
   position: fixed;
   margin-bottom: 0;
   border: none;
-  border-radius: none;
+  border-radius: 20px;
 }
 
 .flash.now {
-  background-color: rgba(255, 0, 128, 0.2); /* 透明度20%の赤色系 */
+  background-color: rgba(255, 0, 128, 0.5); /* 透明度20%の赤色系 */
   color: #fff;
 }
