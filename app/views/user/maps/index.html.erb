@@ -4,8 +4,8 @@
   </div>
   <div class="row mt-3 d-flex justify-content-between">
     <div class="col-lg-6 col-md-6">
-      <button id="recenter-map" class="btn-blue">現在位置を再表示</button>
       <button id="search-cafes" class="btn-green">保護猫カフェを検索</button>
+      <button id="recenter-map" class="btn-blue">現在位置を再表示</button>
       <%= link_to "検索をリセット", maps_path, class: "btn-black" %>
     </div>
     <div class="col-lg-6 col-md-6">
@@ -94,11 +94,40 @@
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         cafeMarkers.forEach((marker) => marker.setMap(null));
         cafeMarkers = [];
+
         results.forEach((place) => {
-          cafeMarkers.push(new google.maps.Marker({
+          const marker = new google.maps.Marker({
             map: map,
             position: place.geometry.location
-          }));
+          });
+
+          let imageUrl = '';
+          if (place.photos && place.photos.length > 0) {
+            imageUrl = place.photos[0].getUrl({maxWidth: 200, maxHeight: 200});
+          }
+
+          let mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name + ' ' + place.vicinity)}`;
+
+          const contentString =
+          '<div>' +
+            `<strong>${place.name}</strong><br>` +
+            `Address: ${place.vicinity}` +
+            (imageUrl ? `<br><img src="${imageUrl}" alt="${place.name}">` : '') +
+            `<br><a href="${mapUrl}" target="_blank">Google Mapで開く</a>` +
+          '</div>';
+
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker.addListener('click', () => {
+            infowindow.open({
+              anchor: marker,
+              map,
+              shouldFocus: false,
+            });
+          });
+          cafeMarkers.push(marker);
         });
       }
     });
