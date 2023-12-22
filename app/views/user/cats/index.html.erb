@@ -44,7 +44,7 @@
                       data-cat-birth="<%= cat.date_of_birth %>">
                       編集
                     </button>
-                    <%= link_to "削除", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "are you sure?"}, class: "btn-black" %>
+                    <%= link_to "削除", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "登録から削除しますか?"}, class: "btn-black" %>
                   </p>
                 <% end %>
               </div>

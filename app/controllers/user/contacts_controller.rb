@@ -4,9 +4,9 @@ class User::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id if user_signed_in?
     if @contact.save
-      redirect_to request.referer, notice: "お問い合わせありがとうございます。"
+      redirect_to request.referer, notice: "お問い合わせありがとうございます"
     else
-      redirect_to request.referer, alert: "送信に失敗しました。お手数ですが、再度お願いします。"
+      redirect_to request.referer, alert: "送信に失敗しました 再度お願いします"
     end
   end
 

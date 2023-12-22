@@ -52,13 +52,13 @@
     $(window).scroll(function() {
       console.log("スクロール発生"); // デバッグ用
       var bottom_distance = $(document).height() - $(window).height() - $(window).scrollTop();
-      var more_posts_url = $('a[rel="next"]').attr('href'); // 次のページへのリンクを修正
+      var more_posts_url = $('a[rel="next"]').attr('href');
 
       if (more_posts_url && bottom_distance < 50) {
         console.log("次のページを読み込み中..."); // デバッグ用
         $('#next-page').html('Loading more posts...');
         $.getScript(more_posts_url).then(function() {
-          $('a[rel="next"]').remove(); // 次のページのリンクを削除
+          $('a[rel="next"]').remove();
         });
       }
     });

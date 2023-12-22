@@ -3,7 +3,7 @@ class User::PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @post = Post.new
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts
   end
 
   def show

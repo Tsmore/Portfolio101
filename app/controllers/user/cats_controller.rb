@@ -27,8 +27,9 @@ class User::CatsController < ApplicationController
 
   def destroy
     @cat = Cat.find(params[:id])
+    cat_name = @cat.name
     @cat.destroy
-    redirect_to request.referer, alert: "猫の登録を解除しました"
+    redirect_to request.referer, alert: "#{cat_name}の登録を解除しました"
   end
 
   private
