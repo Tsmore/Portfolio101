@@ -2,36 +2,113 @@
   <div class="row">
     <h4 class="title-black">Cat Cafe Map</h4>
   </div>
-  <div class="row">
+  <div class="row mt-3 d-flex justify-content-between">
+    <div class="col-lg-6 col-md-6">
+      <button id="recenter-map" class="btn-blue">現在位置を再表示</button>
+      <button id="search-cafes" class="btn-green">保護猫カフェを検索</button>
+      <%= link_to "検索をリセット", maps_path, class: "btn-black" %>
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <input id="map-search" class="form-control" type="text" placeholder="Search Box">
+    </div>
+  </div>
+  <div class="row mt-3">
     <div class="col">
-      <div id='map'></div>
-
-      <style>
-      #map {
-        height: 600px;
-        width: 600px;
-      }
-      </style>
-
-      <script>
-      let map
-
-      function initMap(){
-        geocoder = new google.maps.Geocoder()
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 40.7828, lng:-73.9653},
-          zoom: 12,
-        });
-
-        marker = new google.maps.Marker({
-          position:  {lat: 40.7828, lng:-73.9653},
-          map: map
-        });
-      }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap" async defer></script>
-
+      <div id='map' style="height: 80vh; width: 100%;"></div>
     </div>
   </div>
 </div>
+
+<script>
+  let map;
+  let marker;
+  let cafeMarkers = [];
+
+  function initMap() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: LatLng,
+        zoom: 15
+      });
+
+      marker = new google.maps.Marker({
+        map: map,
+        position: LatLng
+      });
+
+      const input = document.getElementById("map-search");
+      const searchBox = new google.maps.places.SearchBox(input);
+
+      searchBox.addListener("places_changed", () => {
+        const places = searchBox.getPlaces();
+        if (places.length == 0) {
+          return;
+        }
+
+        cafeMarkers.forEach((m) => m.setMap(null));
+        cafeMarkers = [];
+
+        const bounds = new google.maps.LatLngBounds();
+        places.forEach((place) => {
+          if (!place.geometry) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+
+          cafeMarkers.push(new google.maps.Marker({
+            map: map,
+            title: place.name,
+            position: place.geometry.location
+          }));
+
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      });
+    });
+  }
+
+  function recenterMap() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      map.setCenter(LatLng);
+      marker.setPosition(LatLng);
+    });
+  }
+
+  function searchCatCafes() {
+    const request = {
+      location: map.getCenter(),
+      radius: '5000',
+      type: ['cafe'],
+      keyword: '保護猫'
+    };
+
+    const service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        cafeMarkers.forEach((marker) => marker.setMap(null));
+        cafeMarkers = [];
+        results.forEach((place) => {
+          cafeMarkers.push(new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          }));
+        });
+      }
+    });
+  }
+
+  document.addEventListener('turbolinks:load', () => {
+    document.getElementById('recenter-map').addEventListener('click', recenterMap);
+    document.getElementById('search-cafes').addEventListener('click', searchCatCafes);
+  });
+
+  initMap();
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&libraries=places&callback=initMap" async defer></script>
