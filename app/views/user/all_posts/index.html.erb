@@ -40,22 +40,24 @@
       </div>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-5  all_posts_contents">
     <%= render partial: 'user/all_posts/post', collection: @posts %>
-    <%= link_to 'Next Page', all_posts_path(page: @posts.next_page), id: 'next-page', class: 'd-none' if @posts.next_page %>
+    <%= paginate @posts %>
   </div>
 </div>
 <script>
   $(document).ready(function() {
     $(window).scroll(function() {
       console.log("スクロール発生"); // デバッグ用
-      var more_posts_url = $('#next-page').attr('href');
       var bottom_distance = $(document).height() - $(window).height() - $(window).scrollTop();
+      var more_posts_url = $('a[rel="next"]').attr('href'); // 次のページへのリンクを修正
 
       if (more_posts_url && bottom_distance < 50) {
         console.log("次のページを読み込み中..."); // デバッグ用
         $('#next-page').html('Loading more posts...');
-        $.getScript(more_posts_url);
+        $.getScript(more_posts_url).then(function() {
+          $('a[rel="next"]').remove(); // 次のページのリンクを削除
+        });
       }
     });
   });
