@@ -1,14 +1,14 @@
 document.addEventListener('turbolinks:load', () => {
   const swiper = new Swiper('.swiper-mv', {
     loop: true,
-    effect: "fade", //切り替え方法をfadeに変更
+    effect: "fade", //fadeで切り替え
     fadeEffect: {
       crossFade: true
     },
     autoplay: {
-      delay: 5000, // 3秒間表示
+      delay: 5000, // 表示秒数
       disableOnInteraction: false,
     },
-    speed: 3000, //3秒間で切り替え
+    speed: 2500, //2.5sでフェードアウト
   });
 });
