@@ -60,16 +60,16 @@
       <hr>
       <h4>System</h4>
       <li>
-        <span><i class="fa-solid fa-envelope-open-text"></i></span>
-        <%= link_to "Contact us", root_path %>
-      </li>
-      <li>
         <% if Notification.where(visited_id: current_user.id, checked: false).exists? %>
           <span><i class="fa-sharp fa-solid fa-bell yellow-notification"></i></span>
         <% else %>
           <span><i class="fa-sharp fa-solid fa-bell"></i></span>
         <% end %>
         <%= link_to "Notifications", notifications_path %>
+      </li>
+      <li>
+        <span><i class="fa-solid fa-envelope-open-text"></i></span>
+        <%= link_to "Contact us", "#", class: "modal-link", data: { toggle: "modal", target: "#contact-us" } %>
       </li>
       <li>
         <span><i class="fa-solid fa-right-from-bracket"></i></span>
@@ -100,7 +100,7 @@
       <h4>System</h4>
       <li>
         <span><i class="fa-solid fa-envelope-open-text"></i></span>
-        <%= link_to "Contact us", root_path %>
+        <%= link_to "Contact us", "#", class: "modal-link", data: { toggle: "modal", target: "#contact-us" } %>
       </li>
     </ul>
   <% end %>

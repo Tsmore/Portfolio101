@@ -1,0 +1,55 @@
+<div class="modal fade" id="contact-us" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">問い合わせ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% if user_signed_in? %>
+        <%= form_with model: contact, url: contacts_path do |f| %>
+          <div class="modal-body">
+            <div class="form-group">
+              <%= f.label "件名", class: "form-label" %>
+              <%= f.text_field :title, placeholder: "件名", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "問い合わせ内容", class: "form-label" %>
+              <%= f.text_area :body, rows: 4, placeholder: "お問い合わせ内容", class: "form-control" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-black" data-dismiss="modal">閉じる</button>
+            <%= f.submit '送信する', class: "btn-black" %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= form_with model: contact, url: contacts_path do |f| %>
+          <div class="modal-body">
+            <div class="form-group">
+              <%= f.label "件名", class: "form-label" %>
+              <%= f.text_field :title, placeholder: "件名", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "問い合わせ内容", class: "form-label" %>
+              <%= f.text_area :body, rows: 4, placeholder: "お問い合わせ内容", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "お名前", class: "form-label" %>
+              <%= f.text_field :name, placeholder: "未記入でも大丈夫です", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "メールアドレス", class: "form-label" %>
+              <%= f.email_field :email, placeholder: "sample@sample.com", class: "form-control" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-black" data-dismiss="modal">閉じる</button>
+            <%= f.submit '送信する', class: "btn-black" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

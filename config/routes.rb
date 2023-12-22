@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:index]
     resources :bookmarks, only: [:index]
     resources :messages, only: [:show, :create, :destroy]
+    resources :contacts, only: [:create]
   end
 
 

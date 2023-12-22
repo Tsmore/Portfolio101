@@ -35,6 +35,7 @@
       </div>
     <% end %>
     <%= yield %>
+    <%= render 'user/contacts/contact_form', contact: @contact %>
     <%= render 'layouts/footer' %>
   </body>
 </html>
