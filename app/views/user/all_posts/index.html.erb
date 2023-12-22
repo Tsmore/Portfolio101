@@ -1,8 +1,10 @@
 <div class="container body">
   <div class="row">
     <h4><%= link_to "All Posts", all_posts_path, class: "btn-black" %></h4>
-    <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-post">新規投稿</h4>
-    <%= render 'user/posts/new_post', post: @post %>
+    <% if user_signed_in? %>
+      <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-post">新規投稿</h4>
+      <%= render 'user/posts/new_post', post: @post %>
+    <% end %>
   </div>
   <div class="row mt-2">
     <div class="col-lg-5 col-md-5">
