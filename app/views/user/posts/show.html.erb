@@ -64,15 +64,16 @@
             <%= @post.created_at.strftime('%H:%M') %>
           </p>
           <p class="card-text text-right">
-            <% if @user == current_user %>
+            <% if @post.user == current_user %>
               <button type="button" class="btn-green edit-post-btn" data-toggle="modal" data-target="#edit-post"
               data-post-id="<%= @post.id %>"
               data-post-title="<%= @post.title %>"
               data-post-body="<%= @post.body %>"
               data-post-tags="<%= @post.tags.map(&:name).join(' ') %>">
                 編集
-               </button>
-              <%= link_to "delete", user_post_path(@post.user, @post), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" if @user == current_user %>
+              </button>
+              <%= link_to "delete", user_post_path(@post.user, @post), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" %>
+              <%= render 'user/posts/edit_post', post: @post %>
             <% end %>
           </p>
           <p class="card-text">
@@ -80,6 +81,8 @@
           </p>
         </div>
       </div>
+      <%= render 'user/all_posts/image_modal', post: @post %>
+      <%= render 'user/all_posts/images_modal', post: @post %>
     </div>
   </div>
 </div>

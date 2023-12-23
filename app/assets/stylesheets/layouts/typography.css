@@ -3,7 +3,13 @@
   margin-top: 20px;
   overflow: hidden;
   border: none !important;
-  background-color: #efefef !important;
+  background-color: rgba(239, 239, 239, 0.5) !important;
+  border-radius: 20px !important;
+}
+
+.card-header {
+  background-color: rgba(190, 190, 190, 0.1) !important;
+  border-bottom: none !important;
 }
 
 .card a{
@@ -15,9 +21,7 @@
 
 .card-title {
   padding-bottom: 20px;
-  padding-top: 20px;
-  border-bottom: 1px solid #66bdcc;
-  border-top: 1px solid #66bdcc;
+  border-bottom: 1px solid #999;
 }
 
 .card-text-contents {
