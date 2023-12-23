@@ -1,42 +1,40 @@
-<div class="container-fluid body">
-  <div class="row main-visual-row">
-    <div class="swiper swiper-mv">
-      <div class="swiper-wrapper swiper-wrapper-mv">
-        <div class="swiper-slide swiper-slide-mv">
-          <%= image_tag 'mv-cat1.png', alt: "main-visual", class: "main-visual" %>
-        </div>
-        <div class="swiper-slide swiper-slide-mv">
-          <%= image_tag 'mv-cat2.png', alt: "main-visual", class: "main-visual" %>
-        </div>
-        <div class="swiper-slide swiper-slide-mv">
-          <%= image_tag 'mv-cat3.png', alt: "main-visual", class: "main-visual" %>
-        </div>
+<div class="container-fluid top-body">
+  <div class="swiper swiper-mv">
+    <div class="swiper-wrapper swiper-wrapper-mv">
+      <div class="swiper-slide swiper-slide-mv">
+        <%= image_tag 'mv-cat1.png', alt: "main-visual", class: "main-visual" %>
+      </div>
+      <div class="swiper-slide swiper-slide-mv">
+        <%= image_tag 'mv-cat2.png', alt: "main-visual", class: "main-visual" %>
+      </div>
+      <div class="swiper-slide swiper-slide-mv">
+        <%= image_tag 'mv-cat3.png', alt: "main-visual", class: "main-visual" %>
       </div>
     </div>
-    <div class="main-visual-contents">
-      <h1>Dear Cat Lovers</h1>
-      <h2>あなたとあなたの愛する猫のためのコミュニティ</h2>
-      <p>このサイトで猫愛好家が猫の写真や出来事を共有し</p>
-      <p>地元の保護猫カフェを訪れたり情報共有を行うことで</p>
-      <p>保護猫活動や支援に少しでも貢献できる場を提供します</p>
-      <% if user_signed_in? %>
-      <% else %>
-        <button class="start-btn login-popup-btn">始める</button>
-      <% end %>
-    </div>
-    <div class="wrapper">
-    <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
-      <%= render 'user/homes/login_form', user: @user %>
-      <%= render 'user/homes/registration_form', user: @user %>
-    </div>
+  </div>
+  <div class="main-visual-contents">
+    <h1>Dear Cat Lovers</h1>
+    <h2>あなたとあなたの愛する猫のためのコミュニティ</h2>
+    <p>このサイトで猫愛好家が猫の写真や出来事を共有し</p>
+    <p>地元の保護猫カフェを訪れたり情報共有を行うことで</p>
+    <p>保護猫活動や支援に少しでも貢献できる場を提供します</p>
+    <% if user_signed_in? %>
+    <% else %>
+      <button class="start-btn login-popup-btn">始める</button>
+    <% end %>
+  </div>
+  <div class="wrapper">
+  <span class="icon-close"><i class="fa-solid fa-xmark"></i></span>
+    <%= render 'user/homes/login_form', user: @user %>
+    <%= render 'user/homes/registration_form', user: @user %>
   </div>
   <div class="row about-section-row">
   <div class="col-md-5 offset-md-1 about-content">
     <div class="card top-card">
-      <div class="card-body">
-        <h3 class="card-title">Our Missions & Services</h3>
+      <div class="card-header">
+        <h3>Our Missions & Services</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body about-card-body">
         <p class="card-text">にゃんころパラダイスは猫愛好家のコミュニティサイトです</p>
         <p class="card-text">写真や商法の共有で猫さんの保護活動と愛情を深めることを目的としています</p>
         <p class="card-text">現在も多くの活動のお陰で殺処分数は年々減少していますがいまだに愛する家族に出会うことの出来ない子たちは多くいます</p>
@@ -49,10 +47,10 @@
   </div>
   <div class="col-md-5 about-content">
     <div class="card top-card">
-      <div class="card-body">
-        <h3 class="card-title">Messages</h3>
+      <div class="card-header">
+        <h3>Messages</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body about-card-body">
         <p class="card-text">創設者は猫さんとその子たちの幸福に深い情熱を持っています</p>
         <p class="card-text">このサイトは猫さんを愛するすべての人達が集まり</p>
         <p class="card-text">共有し合える場所を作るために立ち上げました</p>
@@ -63,10 +61,10 @@
   </div>
   <div class="col-md-5 offset-md-1 about-content">
     <div class="card top-card">
-      <div class="card-body">
-        <h3 class="card-title">Visions</h3>
+      <div class="card-header">
+        <h3>Visions</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body about-card-body">
         <p class="card-text">将来的にはより多くの猫さんたちが愛する家族のいる幸せなお家を見つけ</p>
         <p class="card-text">幸せな生活が続きこのお家に来れてよかったと思ってほしいです</p>
         <p class="card-text">そのため猫愛好家の大きなコミュニティを築くことを目指しています</p>
@@ -77,10 +75,10 @@
   </div>
   <div class="col-md-5 about-content">
     <div class="card top-card">
-      <div class="card-body">
-        <h3 class="card-title">Commitments</h3>
+      <div class="card-header">
+        <h3>Commitments</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body about-card-body">
         <p class="card-text">保護猫に安全で居心地のいい愛情に満ち溢れた家を見つけてもらうために</p>
         <p class="card-text">地域社会と連携していきます</p>
         <p class="card-text">また保護猫カフェや地域団体との協力を経て</p>

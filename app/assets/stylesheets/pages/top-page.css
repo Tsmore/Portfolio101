@@ -8,7 +8,7 @@
 }
 
 .about-visual {
-  width: 100%;
+  width: 100% !important;
   height: 100vh;
   position: relative;
   object-fit: cover;
@@ -54,15 +54,13 @@
 }
 
 .about-section-row {
-  background-image: url('about-v2.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  padding-left: 135px;
 }
 
 .top-card {
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(5px);
+  border: 2px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .top-card h3 {
@@ -72,6 +70,11 @@
 
 .top-card p {
   text-shadow: 1px 1px 1px #fff;
+}
+
+.top-card:hover {
+  box-shadow: 0 0 30px #A0E3F4;
+  border: 2px solid #A0E3F4 !important;
 }
 
 @media screen and (max-width: 1200px) {
@@ -96,6 +99,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .about-section-row {
+    padding-left: 75px;
+  }
   .about-section-row h3 {
     font-size: 1.5rem !important;
   }

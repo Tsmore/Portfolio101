@@ -35,9 +35,14 @@ body {
 }
 
 .body {
-  padding-left: 120px !important;
+  padding-left: 135px !important;
   padding-top: 50px !important;
   margin-bottom: 50px !important;
+}
+
+.top-body {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 footer {
@@ -45,7 +50,7 @@ footer {
   top: 100vh;
   height: 100px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.4);
+  // background-color: rgba(255, 255, 255, 0.4);
   display: flex !important;
   align-items: center;
   justify-content: center;
@@ -57,8 +62,6 @@ a {
 }
 
 .row {
-  margin-right: 0 !important;
-  margin-left: 0 !important;
   width: 100%;
 }
 
@@ -76,7 +79,6 @@ a {
 
 @media screen and (max-width: 768px) {
   .body {
-    padding-left: 75px !important;
-    padding-right: 25px !important;
+    padding-left: 85px !important;
   }
 }

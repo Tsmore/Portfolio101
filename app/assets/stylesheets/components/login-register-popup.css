@@ -13,7 +13,7 @@
   border-radius: 20px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgb(160,227,244);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,7 @@
   right: 0;
   width: 45px;
   height: 45px;
-  background: #666;
+  background-color: rgba(102, 102,102,0.5);
   font-size: 1.5em;
   display: flex;
   justify-content: center;
@@ -77,6 +77,12 @@
   border-bottom-left-radius: 20px;
   cursor: pointer;
   z-index: 1;
+  transition: 0.3s;
+}
+.icon-close:hover {
+  background-color: rgba(4, 217, 255, 0.5);
+  text-shadow: 0 0 5px #fff;
+
 }
 
 .form-box h2 {
