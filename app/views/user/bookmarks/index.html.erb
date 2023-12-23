@@ -2,7 +2,7 @@
   <div class="row">
     <h4><%= link_to "Bookmarks", all_posts_path, class: "btn-black" %></h4>
   </div>
-  <div class="row">
+  <div class="row infinite-page">
     <% @bookmarks.each do |post| %>
     <% post = post.post %>
       <div class="col-12">
@@ -78,6 +78,19 @@
       <%= render 'user/all_posts/image_modal', post: post %>
       <%= render 'user/all_posts/images_modal', post: post %>
     <% end %>
+    <%= paginate @bookmarks %>
   </div>
 </div>
-
+<script>
+  $(document).on('turbolinks:load', function () {
+    if ($(".pagination a[rel=next]").length) {
+      $('.infinite-page').infiniteScroll({
+        path: ".pagination a[rel=next]",
+        append: ".infinite-page",
+        hideNav: "nav ul.pagination",
+        history: false,
+        scrollThreshold: true,
+      });
+    };
+  });
+</script>

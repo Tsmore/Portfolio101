@@ -1,7 +1,7 @@
 class User::BookmarksController < ApplicationController
 
   def index
-    @bookmarks = current_user.bookmarks.includes(:post)
+    @bookmarks = current_user.bookmarks.page(params[:page]).per(8)
   end
 
   def create

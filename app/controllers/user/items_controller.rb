@@ -2,7 +2,7 @@ class User::ItemsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @item = Item.new
-    @items = @user.items
+    @items = @user.items.page(params[:page]).per(10)
   end
 
   def create

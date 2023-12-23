@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
       <% if @notifications.any? %>
-        <ul>
+        <ul class="infinite-page">
           <% @notifications.each do |notification| %>
             <div class="card">
               <div class="card-header">
@@ -46,6 +46,7 @@
               </div>
             </div>
           <% end %>
+          <%= paginate @notifications %>
         </ul>
       <% else %>
         <p>新しい通知はありません</p>
@@ -53,3 +54,16 @@
     </div>
   </div>
 </div>
+<script>
+  $(document).on('turbolinks:load', function () {
+    if ($(".pagination a[rel=next]").length) {
+      $('.infinite-page').infiniteScroll({
+        path: ".pagination a[rel=next]",
+        append: ".infinite-page",
+        hideNav: "nav ul.pagination",
+        history: false,
+        scrollThreshold: true,
+      });
+    };
+  });
+</script>

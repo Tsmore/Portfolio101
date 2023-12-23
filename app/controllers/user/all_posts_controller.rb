@@ -7,7 +7,7 @@ class User::AllPostsController < ApplicationController
         @posts = @tag.posts.page(params[:page]).per(5)
       else
         flash.now[:alert] = "指定されたタグは存在しません"
-        @posts = Post.none
+        @posts = Post.page(params[:page]).per(5)
       end
     else
       @posts = Post.page(params[:page]).per(5)

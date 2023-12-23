@@ -2,7 +2,7 @@
   <div class="row">
     <h4 class="title-black"><%= @user.username %>'s Posts</h4>
   </div>
-  <div class="row items-index-row">
+  <div class="row items-index-row infinite-page">
     <% @posts.each do |post| %>
       <div class="col-12">
         <div class="card">
@@ -89,6 +89,7 @@
       <%= render 'user/all_posts/image_modal', post: post %>
       <%= render 'user/all_posts/images_modal', post: post %>
     <% end %>
+    <%= paginate @posts %>
   </div>
 </div>
 <% if @user == current_user %>
@@ -97,5 +98,15 @@
 <%= render 'user/posts/new_post', post: @post %>
 <%= render 'user/posts/edit_post', post: @post %>
 <script>
-  
+  $(document).on('turbolinks:load', function () {
+    if ($(".pagination a[rel=next]").length) {
+      $('.infinite-page').infiniteScroll({
+        path: ".pagination a[rel=next]",
+        append: ".infinite-page",
+        hideNav: "nav ul.pagination",
+        history: false,
+        scrollThreshold: true,
+      });
+    };
+  });
 </script>

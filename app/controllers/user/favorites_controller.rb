@@ -2,7 +2,7 @@ class User::FavoritesController < ApplicationController
   before_action :set_post, only: [:create, :destroy]
 
   def index
-    @favorites = current_user.favorites.includes(:post)
+    @favorites = current_user.favorites.page(params[:page]).per(8)
   end
 
   def create

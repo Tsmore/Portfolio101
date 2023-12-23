@@ -2,7 +2,7 @@ class User::CatsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @cat = Cat.new
-    @cats = @user.cats
+    @cats = @user.cats.page(params[:page]).per(12)
   end
 
   def create

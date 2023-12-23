@@ -1,5 +1,5 @@
 class User::AllCatsController < ApplicationController
   def index
-    @cats = Cat.all
+    @cats = Cat.page(params[:page]).per(12)
   end
 end

@@ -30,14 +30,15 @@ end
 
 test_user = User.find_by(username: "testuser")
 
-10.times do |n|
+30.times do |n|
   username = "sample#{ n + 1 }"
   email = "sample#{ n + 1 }@sample.com"
   password = "sample1234"
 
-  user = User.find_or_initialize_by(username: username, email: email)
+  user = User.find_or_initialize_by(username: username)
 
   if user.new_record?
+    user.email = email
     user.password = password
     user.save!
   end
@@ -81,7 +82,7 @@ end
   end
 end
 
-5.times do |n|
+30.times do |n|
   test_user.items.find_or_create_by(
     name: "サンプルアイテム#{n + 1}",
     description: "サンプルアイテムの説明欄です#{n + 1}",

@@ -7,7 +7,7 @@
       <% if @user == current_user %>
         <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-cat">登録する</h4>
       <% end %>
-      <div class="row">
+      <div class="row infinite-page">
         <% @cats.each do |cat| %>
           <div class="col-lg-4 col-md-6">
             <div class="card">
@@ -51,9 +51,23 @@
             </div>
           </div>
         <% end %>
+        <%= paginate @cats %>
       </div>
     </div>
   </div>
 </div>
 <%= render 'user/cats/new_cat', cat: @cat %>
 <%= render 'user/cats/edit_cat', cat: @cat %>
+<script>
+  $(document).on('turbolinks:load', function () {
+    if ($(".pagination a[rel=next]").length) {
+      $('.infinite-page').infiniteScroll({
+        path: ".pagination a[rel=next]",
+        append: ".infinite-page",
+        hideNav: "nav ul.pagination",
+        history: false,
+        scrollThreshold: true,
+      });
+    };
+  });
+</script>
