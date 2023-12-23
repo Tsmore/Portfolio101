@@ -8,7 +8,7 @@
   text-align: center;
   font-size: 1.2em;
   cursor: pointer;
-  z-index: 1;
+  z-index: 5;
   opacity: 1;
   transition: opacity 1s ease-out;
   margin-top: 10px;
