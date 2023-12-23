@@ -1,4 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
+  if (location.pathname != '/') {
+    return;
+  }
 
   // ハンバーガーメニュー
   // let nav = document.querySelector("#nav-section");

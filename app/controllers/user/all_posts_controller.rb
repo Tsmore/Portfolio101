@@ -1,7 +1,6 @@
 class User::AllPostsController < ApplicationController
   def index
     if params[:tag]
-      # @tagに検索ワードを代入
       @tag = Tag.find_by(name: params[:tag])
       # @tagがnilじゃないなら@tag.postsで表示,@tagがnilなら空のクエリセット(Post.none)でアラート
       if @tag
@@ -11,7 +10,7 @@ class User::AllPostsController < ApplicationController
         @posts = Post.none
       end
     else
-      @posts = Post.all.page(params[:page]).per(5)
+      @posts = Post.page(params[:page]).per(5)
     end
     @tags = Tag.all
     @post = Post.new
