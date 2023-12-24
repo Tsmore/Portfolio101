@@ -42,9 +42,11 @@
                       data-cat-breed-id="<%= cat.breed_id %>"
                       data-cat-sex="<%= cat.sex %>"
                       data-cat-birth="<%= cat.date_of_birth %>">
-                      編集
+                      <i class="fa-solid fa-pen-to-square"></i>
                     </button>
-                    <%= link_to "削除", user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "登録から削除しますか?"}, class: "btn-black" %>
+                    <%= link_to user_cat_path(user_id: current_user.id, id: cat.id), method: :delete, data: {confirm: "登録から削除しますか?"}, class: "btn-black" do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
                   </p>
                 <% end %>
               </div>

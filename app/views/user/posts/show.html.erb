@@ -10,7 +10,9 @@
           <span>
             <%= time_ago_with_suffix(@post.created_at) %>
             <% if @post.user != current_user %>
-              <button type="button" class="btn-black" data-toggle="modal" data-target="#report-post">通報</button>
+              <button type="button" class="btn-black" data-toggle="modal" data-target="#report-post">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </button>
             <% end %>
           </span>
         </div>
@@ -70,9 +72,11 @@
               data-post-title="<%= @post.title %>"
               data-post-body="<%= @post.body %>"
               data-post-tags="<%= @post.tags.map(&:name).join(' ') %>">
-                編集
+                <i class="fa-solid fa-pen-to-square"></i>
               </button>
-              <%= link_to "delete", user_post_path(@post.user, @post), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" %>
+              <%= link_to user_post_path(@post.user, @post), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
               <%= render 'user/posts/edit_post', post: @post %>
             <% end %>
           </p>

@@ -16,9 +16,14 @@
       <%= simple_format(comment.body) %>
       <%= comment.created_at.strftime('%y/%m/%d') %>
       <%= comment.created_at.strftime('%H:%M') %>
-      <%= link_to 'Delete', user_post_comment_path(user_id: current_user.id, post_id: post.id, id: comment.id), method: :delete, class: "btn-black" if comment.user == current_user %>
-      <% if comment.user != current_user %>
-        <button type="button" class="btn-black" data-toggle="modal" data-target="#report-comment">通報</button>
+      <% if comment.user == current_user %>
+        <%= link_to user_post_comment_path(user_id: current_user.id, post_id: post.id, id: comment.id), method: :delete, data: {confirm: "コメントを削除しますか？"}, class: "btn-black" do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+      <% else %>
+        <button type="button" class="btn-black" data-toggle="modal" data-target="#report-comment">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </button>
       <% end %>
     </div>
   </div>
@@ -43,7 +48,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn-black" data-dismiss="modal">閉じる</button>
-          <%= f.submit '通報する', class: "btn-black" %>
+          <%= f.submit '通報', class: "btn-black" %>
         </div>
       <% end %>
     </div>

@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
-  if (!location.pathname.match('/\/users\/\d+/')) {
-    return;
-  }
+  // if (!location.pathname.match('/\/users\/\d+/')) {
+  //   return;
+  // }
   const mypageSection = document.getElementById('mypage-section');
   const postsSection = document.getElementById('posts-section');
   const mypageButton = document.getElementById('show-mypage');

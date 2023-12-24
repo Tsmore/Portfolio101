@@ -37,12 +37,12 @@
                     <% end %>
                   <% end %>
                   <button type="button" class="btn-black" data-toggle="modal" data-target="#report-user">
-                    通報
+                    <i class="fa-solid fa-triangle-exclamation"></i>
                   </button>
                   <%= render 'user/users/report', report: @report, user: @user %>
                 <% else %>
                   <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
-                    編集
+                    <i class="fa-solid fa-user-pen"></i>
                   </button>
                   <%= render 'user/users/user_edit', user: @user %>
                 <% end %>
@@ -229,9 +229,13 @@
                       data-post-title="<%= post.title %>"
                       data-post-body="<%= post.body %>"
                       data-post-tags="<%= post.tags.map(&:name).join(' ') %>">
-                        編集
+                        <i class="fa-solid fa-pen-to-square"></i>
                       </button>
-                      <%= link_to "削除", user_post_path(post.user, post), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" if @user == current_user %>
+                      <% if @user == current_user %>
+                        <%= link_to user_post_path(post.user, post.id), method: :delete, data: {confirm: "投稿を削除しますか?"}, class: "btn-black" do %>
+                          <i class="fa-solid fa-trash-can"></i>
+                        <% end %>
+                      <% end %>
                     <% end %>
                   </p>
                 </div>
@@ -250,6 +254,13 @@
             </div>
           </div>
         <% end %>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <h5>
+          <%= link_to user_posts_path(@user), class: "btn-black" do %>
+            すべての投稿を見る
+          <% end %>
+        </h5>
       </div>
     </div>
   </div>

@@ -32,9 +32,11 @@
                       data-item-name="<%= item.name %>"
                       data-item-description="<%= item.description %>"
                       data-item-product_link="<%= item.product_link %>">
-                      編集
+                      <i class="fa-solid fa-pen-to-square"></i>
                     </button>
-                    <%= link_to "削除", user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "アイテムを削除しますか?"}, class: "btn-black" %>
+                    <%= link_to user_item_path(user_id: current_user.id, id: item.id), method: :delete, data: {confirm: "アイテムを削除しますか?"}, class: "btn-black" do %>
+                      <i class="fa-solid fa-trash-can"></i>
+                    <% end %>
                   <% end %>
                 </p>
               </div>
