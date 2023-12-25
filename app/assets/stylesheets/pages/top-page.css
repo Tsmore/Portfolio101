@@ -54,7 +54,7 @@
 }
 
 .about-section-row {
-  padding-left: 135px;
+  padding-left: 110px;
 }
 
 .top-card {
@@ -100,7 +100,7 @@
 
 @media screen and (max-width: 768px) {
   .about-section-row {
-    padding-left: 75px;
+    padding-left: 50px;
   }
   .about-section-row h3 {
     font-size: 1.5rem !important;

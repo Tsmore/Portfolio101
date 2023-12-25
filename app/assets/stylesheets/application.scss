@@ -63,6 +63,8 @@ a {
 
 .row {
   width: 100%;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 // 表示用
@@ -79,6 +81,6 @@ a {
 
 @media screen and (max-width: 768px) {
   .body {
-    padding-left: 85px !important;
+    padding-left: 60px !important;
   }
 }
