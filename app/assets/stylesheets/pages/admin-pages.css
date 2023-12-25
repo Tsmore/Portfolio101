@@ -6,3 +6,17 @@
   text-decoration: none !important;
   color: #000;
 }
+
+.admin-user-show{
+  position: relative;
+}
+.admin-user-btn1 {
+  position: absolute;
+  top: 5%;
+  right: 1%;
+}
+.admin-user-btn2 {
+  position: absolute;
+  top: 30%;
+  right: 1%;
+}

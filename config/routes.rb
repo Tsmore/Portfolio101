@@ -54,9 +54,9 @@ Rails.application.routes.draw do
     resources :reports, only: [:show, :index, :update]
     resources :contacts, only: [:show, :index, :update]
     resources :breeds, only: [:index, :create, :update, :destroy]
-    resources :users, only: [:index, :show, :update] do
-      collection do
-        patch :cancellation
+    resources :users, only: [:index, :show, :update, :destroy] do
+      member do
+        patch :inactive
       end
       resources :posts, only: [:index, :show, :destroy] do
         resources :comments, only: [:destroy]

@@ -101,7 +101,7 @@
   border: 1px solid #cccc00;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #cccc00;
+  color: #cccc00 !important;
   display: inline-block;
   backdrop-filter: blur(10px);
   background-color: transparent;

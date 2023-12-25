@@ -10,7 +10,16 @@
             <%= image_tag user.profile_image, class: "user-image" %>
           </div>
           <div class="card-body">
-            <h5 class="card-title text-center"><%= link_to user.username, admin_user_path(user) %></h5>
+            <h5 class="card-title text-center">
+              <%= link_to user.username, admin_user_path(user) %>
+            </h5>
+            <div class="card-body text-center">
+              <% if user.is_active == false %>
+                <p class="title-red">停止中</p>
+              <% else %>
+                <p class="title-blue">利用中</p>
+              <% end %>
+            </div>
             <div class="card-text card-text-contents">
               <% if user.introduction.present? %>
                 <p class="card-text"><%= simple_format(user.introduction) %></p>

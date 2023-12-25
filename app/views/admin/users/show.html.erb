@@ -5,10 +5,25 @@
   <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-body card-header-user">
+        <div class="card-header">
+          <% if @user.is_active == false %>
+            <h4 class="title-red">アカウント停止中</h4>
+          <% else %>
+            <h4 class="title-blue">アカウント利用中</h4>
+          <% end %>
+        </div>
+        <div class="card-body card-header-user admin-user-show">
           <div class="user-image-section">
             <%= image_tag @user.profile_image, class: "user-image" %>
             <h4><%= @user.username %></h4>
+            <span class="admin-user-btn1"><%= link_to "ユーザーの完全削除", admin_user_path(@user), method: :delete, data: {confirm: "このユーザーを完全に削除しますか？"}, class: "btn-red" %></span>
+            <span class="admin-user-btn2">
+              <% if @user.is_active == true %>
+                <%= link_to "ユーザーの利用停止", inactive_admin_user_path(@user), method: :patch, data: {confirm: "このユーザーの利用を停止しますか？"}, class: "btn-yellow" %>
+              <% else %>
+                <%= link_to "ユーザーの利用開始", inactive_admin_user_path(@user), method: :patch, data: {confirm: "このユーザーの利用を再開しますか？"}, class: "btn-yellow" %>
+              <% end %>
+            </span>
           </div>
         </div>
         <div class="card-body">
