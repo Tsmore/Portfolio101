@@ -1,5 +1,12 @@
 <div class="container body">
   <div class="row">
+    <div class="col-12 text-center">
+      <% if @user.is_active == false %>
+        <h4 class="title-red">ユーザーの利用を制限しております<br>お手数ですがメニューより連絡をお願いします</h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <!--切り替えボタン-->
     <div class="col-12">
       <div class="row switch-buttons-row">
