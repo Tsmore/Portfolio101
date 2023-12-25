@@ -18,12 +18,18 @@
                 <% case notification.action %>
                   <% when 'commented' %>
                   <p class="card-text">
-                    <%= link_to '投稿にコメントしました', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id) %>
+                    <p>あなたの投稿にコメントしました</p>
                     <%= simple_format(notification.notifiable.body) %>
+                  </p>
+                  <p class="card-text text-right">
+                    <%= link_to 'コメントを確認', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id), class: "btn-blue" %>
                   </p>
                   <% when 'liked' %>
                   <p class="card-text">
-                    <%= link_to '投稿にいいねしました', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id) %>
+                    <p>あなたの投稿にいいねしました</p>
+                  </p>
+                  <p class="card-text text-right">
+                    <%= link_to '投稿を確認', user_post_path(user_id: notification.notifiable.post.user_id, id: notification.notifiable.post.id), class: "btn-blue" %>
                   </p>
                   <% when 'followed' %>
                   <p class="card-text">
@@ -31,8 +37,11 @@
                   </p>
                   <% when 'messaged' %>
                   <p class="card-text">
-                    <%= link_to 'メッセージを送信しました', message_path(notification.visitor_id) %>
+                    <p>あなたにメッセージを送信しました</p>
                     <%= simple_format(notification.notifiable.message) %>
+                  </p>
+                  <p class="card-text text-right">
+                    <%= link_to 'メッセージを確認', message_path(notification.visitor_id), class: "btn-blue" %>
                   </p>
                 <% end %>
                 <p class="card-text text-right">
