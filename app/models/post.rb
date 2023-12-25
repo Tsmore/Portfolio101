@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
+  scope :from_active_users, -> { joins(:user).where(users: { is_active: true }) }
 
   has_many_attached :post_image
 

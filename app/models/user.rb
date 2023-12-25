@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  scope :active, -> { where(is_active: true) }
+
   has_one_attached :user_image
 
   def profile_image

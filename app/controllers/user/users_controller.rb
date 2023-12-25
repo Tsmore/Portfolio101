@@ -40,6 +40,15 @@ class User::UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    if @user.destroy
+      redirect_to root_path, notice: "いままでご利用ありがとうございました"
+    else
+      redirect_to request.referer, alert: "アカウントの削除に失敗しました　もう一度お願いします"
+    end
+  end
+
   private
 
   def user_params
