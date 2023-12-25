@@ -1,2 +1,44 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <h3 class="title-black">ユーザー一覧</h3>
+  </div>
+  <div class="row infinite-page">
+    <% @users.each do |user| %>
+      <div class="col-lg-3 col-md-6">
+        <div class="card">
+          <div class="card-body image-header">
+            <%= image_tag user.profile_image, class: "user-image" %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center"><%= link_to user.username, admin_user_path(user) %></h5>
+            <div class="card-text card-text-contents">
+              <% if user.introduction.present? %>
+                <p class="card-text"><%= simple_format(user.introduction) %></p>
+              <% else %>
+                <p class="card-text">自己紹介文が登録されていません</p>
+              <% end %>
+            </div>
+            <p class="card-text">登録猫数: <%= user.cats.count %></p>
+            <p class="card-text">登録アイテム数: <%= user.items.count %></p>
+            <p class="card-text">投稿数: <%= user.posts.count %></p>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @users %>
+  </div>
+</div>
+<script>
+  $(document).on('turbolinks:load', function () {
+    if ($(".pagination a[rel=next]").length) {
+      $('.infinite-page').infiniteScroll({
+        path: ".pagination a[rel=next]",
+        append: ".infinite-page",
+        hideNav: "nav ul.pagination",
+        history: false,
+        scrollThreshold: true,
+      });
+    };
+  });
+</script>

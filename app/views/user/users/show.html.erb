@@ -78,21 +78,21 @@
           <div class="row">
             <% if @user.cats.present? %>
               <% @user.cats.take(2).each do |cat| %>
-              <div class="col-6">
-                <div class="card">
-                  <div class="card-body image-header">
-                    <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= cat.name %></h5>
-                    <p class="card-text"><%= simple_format(cat.introduction) %></p>
-                    <p class="card-text"><%= cat.breed.name %></p>
-                    <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
-                    <p class="card-text"><%= cat.date_of_birth %></p>
-                    <p class="card-text"></p>
+                <div class="col-6">
+                  <div class="card">
+                    <div class="card-body image-header">
+                      <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= cat.name %></h5>
+                      <p class="card-text"><%= simple_format(cat.introduction) %></p>
+                      <p class="card-text"><%= cat.breed.name %></p>
+                      <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
+                      <p class="card-text"><%= cat.date_of_birth %></p>
+                      <p class="card-text"></p>
+                    </div>
                   </div>
                 </div>
-              </div>
               <% end %>
             <% else %>
               <div class="col">

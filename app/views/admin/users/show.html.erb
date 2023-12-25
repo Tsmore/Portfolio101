@@ -1,2 +1,82 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <h3 class="title-black"><%= @user.username %>の詳細画面</h3>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body card-header-user">
+          <div class="user-image-section">
+            <%= image_tag @user.profile_image, class: "user-image" %>
+            <h4><%= @user.username %></h4>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <% if @user.introduction.present? %>
+              <%= simple_format(@user.introduction) %>
+            <% else %>
+              まだ自己紹介が登録されていません
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <h4 class="title-black"><%= @user.username %>の猫一覧</h4>
+  </div>
+  <div class="row">
+    <% if @user.cats.present? %>
+      <% @user.cats.each do |cat| %>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body image-header">
+              <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= cat.name %></h5>
+              <p class="card-text"><%= simple_format(cat.introduction) %></p>
+              <p class="card-text"><%= cat.breed.name %></p>
+              <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
+              <p class="card-text"><%= cat.date_of_birth %></p>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col">
+        <div class="card">
+          <div class="card-body text-center">
+            <p class="card-text">まだ登録されていません</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row mt-4"><h4 class="title-black"><%= @user.username %>のアイテム一覧</h4></div>
+  <div class="row">
+    <% if @user.items.present? %>
+      <% @user.items.each do |item| %>
+        <div class="col-6">
+          <div class="card border-0">
+            <div class="card-body">
+              <h5 class="card-title"><%= item.name %></h5>
+              <p class="card-text"><%= item.description %></p>
+              <p class="card-text"><%= item.product_link %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col">
+        <div class="card">
+          <div class="card-body text-center">
+            <p class="card-text">まだ登録されていません</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
