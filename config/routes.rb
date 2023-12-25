@@ -49,6 +49,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
+    resources :all_posts, only: [:index]
+    resources :all_comments, only: [:index]
+    resources :reports, only: [:index, :update]
+    resources :contacts, only: [:index, :update]
     resources :breeds, only: [:index, :create, :update, :destroy]
     resources :users, only: [:index, :show, :update] do
       collection do

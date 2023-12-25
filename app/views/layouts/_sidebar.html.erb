@@ -3,7 +3,48 @@
     <%= image_tag "cplogo.png" %>
     <h2>CatParadise</h2>
   </div>
-  <% if user_signed_in? %>
+  <% if admin_signed_in? %>
+    <ul class="links">
+      <hr>
+      <h4>Main Menu</h4>
+      <li>
+        <span><i class="las la-home"></i></span>
+        <%= link_to "ホーム", admin_root_path %>
+      </li>
+      <li>
+        <span><i class="las la-users"></i></span>
+        <%= link_to "ユーザー一覧", admin_users_path %>
+      </li>
+      <li>
+        <span><i class="las la-images"></i></span>
+        <%= link_to "全投稿", admin_all_posts_path %>
+      </li>
+      <li>
+        <span><i class="las la-comment"></i></span>
+        <%= link_to "全コメント", admin_all_comments_path %>
+      </li>
+      <li>
+        <span><i class="las la-cat"></i></span>
+        <%= link_to "猫種一覧", admin_breeds_path %>
+      </li>
+      <hr>
+      <h4>Management</h4>
+      <li>
+        <span><i class="las la-envelope-open-text"></i></span>
+        <%= link_to "問い合わせ一覧", admin_contacts_path %>
+      </li>
+      <li>
+        <span><i class="las la-exclamation-triangle"></i></span>
+        <%= link_to "通報一覧", admin_reports_path %>
+      </li>
+      <hr>
+      <h4>System</h4>
+      <li>
+        <span><i class="las la-sign-out-alt"></i></span>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+    </ul>
+  <% elsif user_signed_in? %>
     <ul class="links">
       <hr>
       <h4>Main Menu</h4>
