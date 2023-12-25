@@ -1,0 +1,45 @@
+<div class="container body">
+  <div class="row">
+    <h3 class="title-black">通報一覧</h3>
+  </div>
+  <div class="row mt-3">
+    <% @reports.each do |report| %>
+      <div class="col-12 no-links-decoration">
+        <%= link_to admin_report_path(report) do %>
+          <div class="card">
+            <div class="card-header">
+                <% if report.reportable %>
+                  <% case report.reportable_type %>
+                    <% when 'User' %>
+                      通報されたユーザー名: <%= report.reportable.username %>
+                    <% when 'Post' %>
+                      通報された投稿タイトル: <%= report.reportable.title %>
+                    <% when 'Comment' %>
+                      通報されたコメント: <%= report.reportable.body %>
+                  <% end %>
+                <% else %>
+                  通報されたオブジェクトが見つかりません
+                <% end %>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+                通報内容: <%= simple_format(report.reason) %>
+              </p>
+              <p class="card-text">
+                <%= report.created_at.strftime('%Y/%m/%d') %>
+                <%= report.created_at.strftime('%H:%M') %>
+              </p>
+              <p class="card-text">
+                <% if report.processed == false %>
+                  <span class="title-red">未対応</span>
+                <% else %>
+                  <span class="title-green">対応済み</span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -3,7 +3,7 @@
   border: 1px solid #333;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #333;
+  color: #333 !important;
   display: inline-block;
   backdrop-filter: blur(10px);
   background-color: transparent;
@@ -35,7 +35,7 @@
   border: 1px solid #00d9ff;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #00d9ff;
+  color: #00d9ff !important;
   display: inline-block;
   backdrop-filter: blur(10px);
   background-color: transparent;
@@ -68,7 +68,7 @@
   border: 1px solid #04cc1f;
   border-radius: 20px;
   padding: 5px 10px;
-  color: #04cc1f;
+  color: #04cc1f !important;
   display: inline-block;
   backdrop-filter: blur(10px);
   background-color: transparent;
@@ -120,14 +120,35 @@
   display: inline-block;
   backdrop-filter: blur(10px);
   background-color: transparent;
-  /*background-image: linear-gradient(90deg, #fff 0%, #cccc00 100%);*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: 80% 10%;*/
-  /*background-position: bottom;*/
-  /*padding-bottom: 10px;*/
-  /*color: #cccc00;*/
-  /*display: inline-block;*/
 }
+
+/*red*/
+.btn-red {
+  border: 1px solid #cc1f00;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #cc1f00 !important;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  background-color: transparent;
+}
+.btn-red:hover {
+  border: 1px solid #fff;
+  background-color: rgba(204, 31, 0, 0.5);
+  transition: 0.5s;
+  color: #fff !important;
+}
+.title-red {
+  border: 1px solid #cc1f00;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #cc1f00;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  background-color: transparent;
+}
+
+
 
 .start-btn {
   color: #43BFF3;

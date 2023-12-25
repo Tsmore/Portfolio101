@@ -1,0 +1,8 @@
+.no-links-decoration a{
+  text-decoration: none !important;
+  color: #333;
+}
+.no-links-decoration a:hover{
+  text-decoration: none !important;
+  color: #000;
+}

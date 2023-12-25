@@ -1,2 +1,47 @@
-<h1>Admin::Contacts#index</h1>
-<p>Find me in app/views/admin/contacts/index.html.erb</p>
+<div class="container body">
+  <div class="row">
+    <h3 class="title-black">問い合わせ一覧</h3>
+  </div>
+  <div class="row mt-3">
+    <% @contacts.each do |contact| %>
+      <div class="col-12 no-links-decoration">
+        <%= link_to admin_contact_path(contact) do %>
+          <div class="card">
+            <div class="card-header">
+              <% if contact.user_id.present? %>
+                ユーザー名: <%= contact.user.username %>
+              <% else %>
+                <% if contact.name.present? %>
+                  <p>名前: <%= contact.name %></p>
+                  <p>メールアドレス: <%= contact.email %></p>
+                <% else %>
+                  <p>名前: 匿名</p>
+                  <p>メールアドレス: <%= contact.email %></p>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">
+                件名: <%= contact.title %>
+              </h6>
+              <p class="card-text">
+                内容: <%= simple_format(contact.body) %>
+              </p>
+              <p class="card-text">
+                <%= contact.created_at.strftime('%Y/%m/%d') %>
+                <%= contact.created_at.strftime('%H:%M') %>
+              </p>
+              <p class="card-text">
+                <% if contact.is_checked == false %>
+                  <span class="title-red">未対応</span>
+                <% else %>
+                  <span class="title-green">対応済み</span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

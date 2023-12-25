@@ -1,21 +1,22 @@
 <div class="container body">
   <div class="row">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h2>Log in</h2>
-
+      <h4 class="title-black">Admin Log in</h4>
       <%= form_with model: resource, url: admin_session_path do |f| %>
-        <div class="form-group">
-          <%= f.label :username, class: "form-label" %>
-          <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :password, class: "form-label" %>
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.submit "ログイン", class: "btn-black" %>
+        <div class="card admin-login-card">
+          <div class="card-body">
+              <div class="form-group">
+                <%= f.label :username, class: "form-label" %>
+                <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, class: "form-label" %>
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.submit "ログイン", class: "btn-black" %>
+              </div>
+          </div>
         </div>
       <% end %>
     </div>
