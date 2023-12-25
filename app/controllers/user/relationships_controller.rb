@@ -13,8 +13,8 @@ class User::RelationshipsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @following = @user.following.page(params[:page]).per(12)
-    @followers = @user.followers.page(params[:page]).per(12)
+    @following = @user.following.active.page(params[:page]).per(12)
+    @followers = @user.followers.active.page(params[:page]).per(12)
   end
 
   private

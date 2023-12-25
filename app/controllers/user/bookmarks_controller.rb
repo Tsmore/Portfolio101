@@ -1,7 +1,7 @@
 class User::BookmarksController < ApplicationController
 
   def index
-    @bookmarks = current_user.bookmarks.page(params[:page]).per(8)
+    @bookmarks = current_user.bookmarks.joins(:post).merge(Post.from_active_users).page(params[:page]).per(8)
   end
 
   def create

@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
   def index
-    @users = User.page(params[:page]).per(12)
+    @users = User.active.page(params[:page]).per(12)
   end
 
   def show

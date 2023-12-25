@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
-  if (location.path != '/relationships') {
-    return;
-  }
+  // if (location.path != '/relationships') {
+  //   return;
+  // }
   const followingSection = document.getElementById('following-results-section');
   const followersSection = document.getElementById('followers-results-section');
   const followingButton = document.getElementById('following-results');
