@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_relationships, source: :follower
 
   # バリデーション
-  validates :username, presence: true, uniqueness: true, length: { minimum: 6 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 4 }
   validates :email, presence: true
   # validates :password, presence: true, length: { minimum: 8 } これ死ぬぞ
   validate :password_must_contain_letter

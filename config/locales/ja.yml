@@ -44,7 +44,7 @@ ja:
           attributes:
             username:
               taken: "はすでに存在します"
-              too_short: "は6文字以上で入力してください"
+              too_short: "は4文字以上で入力してください"
             email:
               taken: "はすでに使用されています"
             password:
