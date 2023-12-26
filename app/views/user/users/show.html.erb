@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 text-center">
       <% if @user.is_active == false %>
-        <h4 class="title-red">ユーザーの利用を制限しております<br>お手数ですがメニューより連絡をお願いします</h4>
+        <h4 class="title-red">ユーザーの利用を制限しております<br>お手数ですがサイドバー(Contact Us)より連絡をお願いします</h4>
       <% end %>
     </div>
   </div>
@@ -74,7 +74,7 @@
     <!--猫さん＄アイテム-->
       <div class="row">
         <!--猫さんセクション-->
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="row">
             <div class="col">
               <div class="title-btn-section mt-5">
@@ -85,7 +85,7 @@
           <div class="row">
             <% if @user.cats.present? %>
               <% @user.cats.take(2).each do |cat| %>
-                <div class="col-6">
+                <div class="col-lg-6">
                   <div class="card">
                     <div class="card-body image-header">
                       <%= image_tag cat.cat_image, class: "cat-image" if cat.cat_image.present? %>
@@ -113,7 +113,7 @@
           </div>
         </div>
         <!--マイ製品セクション-->
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="row">
             <div class="col">
               <div class="title-btn-section mt-5">
@@ -124,7 +124,7 @@
           <div class="row">
             <% if @user.items.present? %>
               <% @user.items.take(2).each do |item| %>
-                <div class="col-6">
+                <div class="col-lg-6">
                   <div class="card border-0">
                     <div class="card-body">
                       <h5 class="card-title"><%= item.name %></h5>
