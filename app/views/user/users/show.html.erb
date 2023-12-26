@@ -226,6 +226,7 @@
                     <% end %>
                   </p>
                   <p class="card-text">
+                    <%= link_to '投稿詳細へ', user_post_path(user_id: post.user.id, id: post.id) %>
                     <%= post.created_at.strftime('%Y/%m/%d') %>
                     <%= post.created_at.strftime('%H:%M') %>
                   </p>
