@@ -4,6 +4,6 @@ document.addEventListener('turbolinks:load', function() {
   flashMessages.forEach(function(flashMessage) {
     setTimeout(function() {
       flashMessage.classList.add('flash-hide');
-    }, 3000);
+    }, 3500);
   });
 });
