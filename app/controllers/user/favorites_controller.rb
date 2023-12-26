@@ -20,6 +20,7 @@ class User::FavoritesController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
+    redirect_to root_path, alert: "投稿が見つかりません" if @post.nil?
   end
 end

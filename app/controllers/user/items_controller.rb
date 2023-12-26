@@ -1,4 +1,6 @@
 class User::ItemsController < ApplicationController
+
+
   def index
     @user = User.find(params[:user_id])
     @item = Item.new
@@ -26,10 +28,14 @@ class User::ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
-    item_name = @item.name
-    @item.destroy
-    redirect_to request.referer, alert: "#{item_name} を削除しました"
+    @item = current_user.items.find_by(id: params[:id])
+    if @item
+      item_name = @item.name
+      @item.destroy
+      redirect_to request.referer, alert: "#{item_name} を削除しました"
+    else
+      redirect_to request.referer, alert: "不正なアクセスです"
+    end
   end
 
   private

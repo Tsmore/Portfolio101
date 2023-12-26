@@ -31,9 +31,9 @@ class User::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
-      flash[:notice] = "updated"
+      flash[:notice] = "ユーザー情報を更新しました"
       redirect_to user_path(@user)
     else
       render :show

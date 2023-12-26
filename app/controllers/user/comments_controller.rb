@@ -1,6 +1,7 @@
 class User::CommentsController < ApplicationController
   before_action :set_post
   before_action :set_comment, only: [:destroy]
+  before_action :authorize_user!, only: [:destroy]
 
   def create
     @comment = @post.comments.build(comment_params)
@@ -28,6 +29,10 @@ class User::CommentsController < ApplicationController
 
   def set_comment
     @comment = @post.comments.find(params[:id])
+  end
+
+  def authorize_user!
+    redirect_to root_path, alert: '不正なアクセスです' unless @comment.user == current_user
   end
 
   def comment_params

@@ -23,7 +23,7 @@ class User::PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       redirect_to request.referer, notice: "編集が完了しました"
     else
@@ -33,9 +33,13 @@ class User::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to request.referer, alert: "投稿を削除しました"
+    @post = current_user.posts.find_by(id: params[:id])
+    if @post
+      @post.destroy
+      redirect_to request.referer, alert: "投稿を削除しました"
+    else
+      redirect_to request.referer, alert: "不正なアクセスです"
+    end
   end
 
   private

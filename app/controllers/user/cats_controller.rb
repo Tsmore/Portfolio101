@@ -1,4 +1,7 @@
 class User::CatsController < ApplicationController
+  before_action :set_cat, only: [:update, :destroy]
+  before_action :authorize_user!, only: [:update, :destroy]
+
   def index
     @user = User.find(params[:user_id])
     @cat = Cat.new
@@ -33,6 +36,14 @@ class User::CatsController < ApplicationController
   end
 
   private
+
+  def set_cat
+    @cat = current_user.cats.find_by(id: params[:id])
+  end
+
+  def authorize_user!
+    redirect_to root_path, alert: "不正なアクセスです" if @cat.nil?
+  end
 
   def cat_params
     params.require(:cat).permit(:name, :breed_id, :cat_image, :introduction, :date_of_birth, :sex)
