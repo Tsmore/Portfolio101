@@ -11,10 +11,21 @@ document.addEventListener('turbolinks:load', () => {
 
       const form = document.querySelector('#edit-item-form');
       form.action = `/users/${userId}/items/${itemId}`;
+      form.method = 'post'; // フォームのメソッドをPOSTに設定
+
+      // RailsがPATCHリクエストとして扱うための隠しフィールドを追加
+      const hiddenMethodInput = document.createElement('input');
+      hiddenMethodInput.type = 'hidden';
+      hiddenMethodInput.name = '_method';
+      hiddenMethodInput.value = 'patch';
+      form.appendChild(hiddenMethodInput);
+
+      // 既存のフィールドに値を設定
       form.querySelector('[name="item[name]"]').value = itemName;
       form.querySelector('[name="item[description]"]').value = itemDescription;
       form.querySelector('[name="item[product_link]"]').value = itemProductLink;
 
+      // CSRFトークンを追加
       if (!form.querySelector('[name="authenticity_token"]')) {
         const hiddenInput = document.createElement('input');
         hiddenInput.type = 'hidden';

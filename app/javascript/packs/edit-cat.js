@@ -13,12 +13,23 @@ document.addEventListener('turbolinks:load', () => {
 
       const form = document.querySelector('#edit-cat-form');
       form.action = `/users/${userId}/cats/${catId}`;
+      form.method = 'post'; // フォームのメソッドをPOSTに設定
+
+      // RailsがPATCHリクエストとして扱うための隠しフィールドを追加
+      const hiddenMethodInput = document.createElement('input');
+      hiddenMethodInput.type = 'hidden';
+      hiddenMethodInput.name = '_method';
+      hiddenMethodInput.value = 'patch';
+      form.appendChild(hiddenMethodInput);
+
+      // 既存のフィールドに値を設定
       form.querySelector('[name="cat[name]"]').value = catName;
       form.querySelector('[name="cat[introduction]"]').value = catIntroduction;
       form.querySelector('[name="cat[breed_id]"]').value = catBreedId;
       form.querySelector('[name="cat[sex]"]').value = catSex;
       form.querySelector('[name="cat[date_of_birth]"]').value = catBirth;
 
+      // CSRFトークンを追加
       if (!form.querySelector('[name="authenticity_token"]')) {
         const hiddenInput = document.createElement('input');
         hiddenInput.type = 'hidden';
