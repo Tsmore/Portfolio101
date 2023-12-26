@@ -48,10 +48,12 @@
                   </button>
                   <%= render 'user/users/report', report: @report, user: @user %>
                 <% else %>
-                  <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
-                    <i class="fa-solid fa-user-pen"></i>
-                  </button>
-                  <%= render 'user/users/user_edit', user: @user %>
+                  <% unless current_user.username == "GuestUser" %>
+                    <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
+                      <i class="fa-solid fa-user-pen"></i>
+                    </button>
+                    <%= render 'user/users/user_edit', user: @user %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="follow-counts">

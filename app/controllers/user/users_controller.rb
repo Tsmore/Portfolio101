@@ -32,20 +32,31 @@ class User::UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を更新しました"
-      redirect_to user_path(@user)
+    if @user.username != "GuestUser"
+      if @user.update(user_params)
+        flash[:notice] = "ユーザー情報を更新しました"
+        redirect_to user_path(@user)
+      else
+        flash[:alert] = "ユーザー情報の更新に失敗しました"
+        render :show
+      end
     else
+      flash[:alert] = "GuestUserのため、編集は許可されていません"
       render :show
     end
   end
 
   def destroy
     @user = current_user
-    if @user.destroy
-      redirect_to root_path, notice: "いままでご利用ありがとうございました"
+    if @user.username != "GuestUser"
+      if @user.destroy
+        redirect_to root_path, notice: "いままでご利用ありがとうございました"
+      else
+        redirect_to request.referer, alert: "アカウントの削除に失敗しました　もう一度お願いします"
+      end
     else
-      redirect_to request.referer, alert: "アカウントの削除に失敗しました　もう一度お願いします"
+      flash[:alert] = "GuestUserのため、削除は許可されていません"
+      render :show
     end
   end
 

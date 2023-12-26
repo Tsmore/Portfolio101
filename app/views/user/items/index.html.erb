@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <% if @user == current_user %>
+      <% if @user == current_user && @user.username != "GuestUser" %>
         <h5 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#add-item">アイテムを追加する</h5>
       <% end %>
       <div class="row infinite-page">
@@ -18,8 +18,8 @@
                   <p class="card-text"><%= simple_format(item.description) %></p>
                 </div>
                 <p class="card-text">
-                  <%= link_to "製品ページへ移動", item.product_link, target: '_blank', rel: 'noopener noreferrer', data: {confirm: "実際の製品ページに移動します。よろしいですか？"}, class: "item-link-text" %>
                   <% if item.product_link.present? %>
+                    <%= link_to "製品ページへ移動", item.product_link, target: '_blank', rel: 'noopener noreferrer', data: {confirm: "実際の製品ページに移動します。よろしいですか？"}, class: "item-link-text" %>
                     <% preview = fetch_page_info(item.product_link) %>
                     <div class="url-preview">
                       <h4><%= preview[:title] %></h4>
@@ -31,7 +31,7 @@
                   <% end %>
                 </p>
                 <p class="card-text text-right">
-                  <% if @user == current_user %>
+                  <% if @user == current_user && @user.username != "GuestUser" %>
                     <button type="button" class="btn-green edit-item-btn" data-toggle="modal" data-target="#edit-item"
                       data-item-id="<%= item.id %>"
                       data-item-name="<%= item.name %>"

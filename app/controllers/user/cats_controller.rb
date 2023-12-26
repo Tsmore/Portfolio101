@@ -9,30 +9,42 @@ class User::CatsController < ApplicationController
   end
 
   def create
-    @cat = current_user.cats.build(cat_params)
-    if @cat.save
-      redirect_to request.referer, notice: "#{@cat.name}を登録しました"
+    if current_user.username == "GuestUser"
+      redirect_to request.referer, alert: "GuestUserのため、登録は許可されていません"
     else
-      @cats = current_user.cats
-      redirect_to request.referer, alert: "登録に失敗しました"
+      @cat = current_user.cats.build(cat_params)
+      if @cat.save
+        redirect_to request.referer, notice: "#{@cat.name}を登録しました"
+      else
+        @cats = current_user.cats
+        redirect_to request.referer, alert: "登録に失敗しました"
+      end
     end
   end
 
   def update
-    @cat = current_user.cats.find(params[:id])
-    if @cat.update(cat_params)
-      redirect_to request.referer, notice: "#{@cat.name}を編集しました"
+    if current_user.username == "GuestUser"
+      redirect_to request.referer, alert: "GuestUserのため、編集は許可されていません"
     else
-      @cats = current_user.cats
-      redirect_to request.referer, alert: "#{@cat.name}の編集に失敗しました"
+      @cat = current_user.cats.find(params[:id])
+      if @cat.update(cat_params)
+        redirect_to request.referer, notice: "#{@cat.name}を編集しました"
+      else
+        @cats = current_user.cats
+        redirect_to request.referer, alert: "#{@cat.name}の編集に失敗しました"
+      end
     end
   end
 
   def destroy
-    @cat = Cat.find(params[:id])
-    cat_name = @cat.name
-    @cat.destroy
-    redirect_to request.referer, alert: "#{cat_name}の登録を解除しました"
+    if current_user.username == "GuestUser"
+      redirect_to request.referer, alert: "GuestUserのため、削除は許可されていません"
+    else
+      @cat = Cat.find(params[:id])
+      cat_name = @cat.name
+      @cat.destroy
+      redirect_to request.referer, alert: "#{cat_name}の登録を解除しました"
+    end
   end
 
   private

@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <% if @user == current_user %>
+      <% if @user == current_user && @user.username != "GuestUser" %>
         <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-cat">登録する</h4>
       <% end %>
       <div class="row infinite-page">
@@ -34,7 +34,7 @@
                     不明
                   <% end %>
                 </p>
-                <% if @user == current_user %>
+                <% if @user == current_user && @user.username != "GuestUser" %>
                   <p class="card-text text-right">
                     <button type="button" class="btn-green edit-cat-btn" data-toggle="modal" data-target="#edit-cat"
                       data-cat-id="<%= cat.id %>"
