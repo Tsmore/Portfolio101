@@ -6,9 +6,15 @@ ja:
         female: "女の子"
         unknown: "不明"
   devise:
+    failure:
+      already_authenticated: "すでにログインしています"
+      admin:
+        already_authenticated: "すでにログインしています"
     sessions:
       signed_out: "ログアウトしました"
       already_signed_out: "すでにログアウトしています"
+      admin:
+        signed_in: "Adminでサインインしました"
   activerecord:
     attributes:
       user:
