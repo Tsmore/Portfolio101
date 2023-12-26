@@ -21,7 +21,7 @@ end
 
 test = User.find_or_initialize_by(
   username: "testuser",
-  email: "test@test",
+  email: "test@test.com",
 )
 if test.new_record?
   test.password = "test1234"
@@ -31,9 +31,9 @@ end
 test_user = User.find_by(username: "testuser")
 
 30.times do |n|
-  username = "sample#{ n + 1 }"
-  email = "sample#{ n + 1 }@sample.com"
-  password = "sample1234"
+  username = "user#{ n + 1 }"
+  email = "user#{ n + 1 }@sample.com"
+  password = "user1234"
 
   user = User.find_or_initialize_by(username: username)
 
@@ -44,51 +44,13 @@ test_user = User.find_by(username: "testuser")
   end
 end
 
-
-5.times do |n|
-  post = test_user.posts.find_or_initialize_by(
-    title: "テスト投稿 #{n + 1}",
-    body: "テスト投稿の本文 #{n + 1}"
-  )
-
-  if post.new_record?
-    post.post_image.attach(
-      io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
-      filename: "sample-post#{n + 1}.jpg",
-      content_type: 'image/jpeg'
-    )
-    post.save!
-  end
-end
-
-5.times do |n|
-
-  user = User.find_by(username: "sample#{n + 1}")
-
-  5.times do |i|
-    post = user.posts.find_or_initialize_by(
-      title: "サンプルユーザー#{n + 1}のテスト投稿 #{i + 1}",
-      body: "サンプルユーザー#{n + 1}のテスト投稿の本文 #{i + 1}"
-    )
-
-    if post.new_record?
-      post.post_image.attach(
-        io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
-        filename: "user#{n + 1}-post#{i + 1}.jpg",
-        content_type: 'image/jpeg'
-      )
-      post.save!
-    end
-  end
-end
-
-30.times do |n|
-  test_user.items.find_or_create_by(
-    name: "サンプルアイテム#{n + 1}",
-    description: "サンプルアイテムの説明欄です#{n + 1}",
-    product_link: "http://sample.com/sample_item_link#{n + 1}"
-  )
-end
+# 20.times do |n|
+#   test_user.items.find_or_create_by(
+#     name: "サンプルアイテム#{n + 1}",
+#     description: "サンプルアイテムの説明欄です。",
+#     product_link: "http://sampleitem.com/sample_item_link#{n + 1}"
+#   )
+# end
 
 # 猫の品種のシードデータ
 breeds = [
@@ -104,68 +66,48 @@ breeds = [
   "ブリティッシュロングヘア", "ベンガル", "ペルシャ", "ボンベイ",
   "マンクス", "マンチカン", "メインクーン", "ヨーロピアンショートヘア",
   "ラガマフィン", "ラグドール", "ラパーマ", "ロシアンブルー",
-  "リンクスポイント", "雑種"
+  "リンクスポイント", "雑種", "ミックス"
 ]
 
 breeds.each do |breed_name|
   Breed.find_or_create_by(name: breed_name)
 end
 
+# 5.times do |n|
+#   post = test_user.posts.find_or_initialize_by(
+#     title: "テスト投稿 #{n + 1}",
+#     body: "テスト投稿の本文 #{n + 1}"
+#   )
 
-cat1 = test_user.cats.find_or_create_by(
-  name: "こた",
-  introduction: "いつも甘えん坊のあれくれ者",
-  sex: "male",
-  date_of_birth: Date.new(2023, 4, 16),
-  breed: Breed.find_by(name: "ロシアンブルー"),
-)
-if cat1.new_record?
-  cat1.cat_image.attach(
-    io: File.open(Rails.root.join("app/assets/images/seeds/kota.jpg")),
-    filename: 'kota.jpg',
-    content_type: 'image/jpeg'
-  )
-end
+#   if post.new_record?
+#     post.post_image.attach(
+#       io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
+#       filename: "sample-post#{n + 1}.jpg",
+#       content_type: 'image/jpeg'
+#     )
+#     post.save!
+#   end
+# end
 
-cat2 = test_user.cats.find_or_create_by(
-  name: "だん",
-  introduction: "人見知りのだんきちさん",
-  sex: "male",
-  date_of_birth: Date.new(2016, 5, 25),
-  breed: Breed.find_by(name: "雑種"),
-)
-if cat2.new_record?
-  cat2.cat_image.attach(
-    io: File.open(Rails.root.join("app/assets/images/seeds/dan.jpg")),
-    filename: 'dan.jpg',
-    content_type: 'image/jpeg'
-  )
-end
+# 5.times do |n|
 
-cat3 = test_user.cats.find_or_create_by(
-  name: "れお",
-  introduction: "保護猫さん",
-  sex: "male",
-  breed: Breed.find_by(name: "雑種"),
-)
-if cat3.new_record?
-  cat3.cat_image.attach(
-    io: File.open(Rails.root.join("app/assets/images/seeds/leo.jpg")),
-    filename: 'leo.jpg',
-    content_type: 'image/jpeg'
-  )
-end
+#   user = User.find_by(username: "sample#{n + 1}")
 
-cat4 = test_user.cats.find_or_create_by(
-  name: "そう",
-  introduction: "保護猫さん",
-  sex: "male",
-  breed: Breed.find_by(name: "雑種"),
-)
-if cat4.new_record?
-  cat4.cat_image.attach(
-    io: File.open(Rails.root.join("app/assets/images/seeds/sou.jpg")),
-    filename: 'sou.jpg',
-    content_type: 'image/jpeg'
-  )
-end
+#   5.times do |i|
+#     post = user.posts.find_or_initialize_by(
+#       title: "サンプルユーザー#{n + 1}のテスト投稿 #{i + 1}",
+#       body: "サンプルユーザー#{n + 1}のテスト投稿の本文 #{i + 1}"
+#     )
+
+#     if post.new_record?
+#       post.post_image.attach(
+#         io: File.open(Rails.root.join("app/assets/images/seeds/sample-post.jpg")),
+#         filename: "user#{n + 1}-post#{i + 1}.jpg",
+#         content_type: 'image/jpeg'
+#       )
+#       post.save!
+#     end
+#   end
+# end
+
+
