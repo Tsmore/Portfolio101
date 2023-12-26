@@ -1,4 +1,4 @@
-<div class="container body">
+<div class="container body" data-user-id="<%= current_user.id %>">
   <div class="row">
     <h4><%= link_to "All Posts", all_posts_path, class: "btn-black" %></h4>
     <% if user_signed_in? %>
