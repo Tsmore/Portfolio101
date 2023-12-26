@@ -15,12 +15,15 @@ document.addEventListener('turbolinks:load', () => {
       form.action = `/users/${userId}/cats/${catId}`;
       form.method = 'post'; // フォームのメソッドをPOSTに設定
 
-      // RailsがPATCHリクエストとして扱うための隠しフィールドを追加
-      const hiddenMethodInput = document.createElement('input');
-      hiddenMethodInput.type = 'hidden';
-      hiddenMethodInput.name = '_method';
+      // _method 隠しフィールドの確認と追加
+      let hiddenMethodInput = form.querySelector('input[name="_method"]');
+      if (!hiddenMethodInput) {
+        hiddenMethodInput = document.createElement('input');
+        hiddenMethodInput.type = 'hidden';
+        hiddenMethodInput.name = '_method';
+        form.appendChild(hiddenMethodInput);
+      }
       hiddenMethodInput.value = 'patch';
-      form.appendChild(hiddenMethodInput);
 
       // 既存のフィールドに値を設定
       form.querySelector('[name="cat[name]"]').value = catName;
@@ -29,14 +32,15 @@ document.addEventListener('turbolinks:load', () => {
       form.querySelector('[name="cat[sex]"]').value = catSex;
       form.querySelector('[name="cat[date_of_birth]"]').value = catBirth;
 
-      // CSRFトークンを追加
-      if (!form.querySelector('[name="authenticity_token"]')) {
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'authenticity_token';
-        hiddenInput.value = csrfToken;
-        form.appendChild(hiddenInput);
+      // CSRFトークンの確認と追加
+      let csrfInput = form.querySelector('input[name="authenticity_token"]');
+      if (!csrfInput) {
+        csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'authenticity_token';
+        form.appendChild(csrfInput);
       }
+      csrfInput.value = csrfToken;
     });
   });
 });
