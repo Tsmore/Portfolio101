@@ -31,8 +31,8 @@ end
 test_user = User.find_by(username: "testuser")
 
 30.times do |n|
-  username = "user#{ n + 1 }"
-  email = "user#{ n + 1 }@sample.com"
+  username = "sampleuser#{ n + 1 }"
+  email = "sampleuser#{ n + 1 }@sample.com"
   password = "user1234"
 
   user = User.find_or_initialize_by(username: username)
