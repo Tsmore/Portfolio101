@@ -1,5 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const userId = document.querySelector('.container.body').getAttribute('data-user-id');
+
   document.querySelectorAll('.edit-cat-btn').forEach(button => {
     button.addEventListener('click', () => {
       const catId = button.getAttribute('data-cat-id');
@@ -16,6 +18,14 @@ document.addEventListener('turbolinks:load', () => {
       form.querySelector('[name="cat[breed_id]"]').value = catBreedId;
       form.querySelector('[name="cat[sex]"]').value = catSex;
       form.querySelector('[name="cat[date_of_birth]"]').value = catBirth;
+
+      if (!form.querySelector('[name="authenticity_token"]')) {
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'authenticity_token';
+        hiddenInput.value = csrfToken;
+        form.appendChild(hiddenInput);
+      }
     });
   });
 });
