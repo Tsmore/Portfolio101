@@ -15,7 +15,7 @@
                 <h5 class="card-title"><%= item.name %></h5>
                 <p class="card-text"><%= simple_format(item.description) %></p>
                 <p class="card-text">
-                  <%= link_to item.product_link, item.product_link, target: '_blank', rel: 'noopener noreferrer' %>
+                  <%= link_to "製品ページへ移動", item.product_link, target: '_blank', rel: 'noopener noreferrer', data: {confirm: "実際の製品ページに移動します。よろしいですか？"}, class: "item-link-text" %>
                   <% if item.product_link.present? %>
                     <% preview = fetch_page_info(item.product_link) %>
                     <div class="url-preview">
