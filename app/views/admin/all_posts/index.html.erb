@@ -58,6 +58,10 @@
                 <% end %>
               </div>
             </p>
+            <p class="card-text">
+              コメント数: <%= post.comments.count %>
+              いいね数: <%= post.favorites.count %>
+            </p>
             <% if user_signed_in? %>
               <p class="card-text">
                 <i class="fa-solid fa-comment"></i> <%= post.comments.count %>
