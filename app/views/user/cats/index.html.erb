@@ -16,6 +16,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center"><%= cat.name %></h5>
+                <p class="card-text">自己紹介:</p>
                 <div class="card-text-contents">
                   <% if cat.introduction.present? %>
                     <p class="card-text"><%= simple_format(cat.introduction) %></p>

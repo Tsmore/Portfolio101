@@ -13,7 +13,10 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title"><%= item.name %></h5>
-                <p class="card-text"><%= simple_format(item.description) %></p>
+                <p class="card-text">商品説明:</p>
+                <div class="card-text-contents">
+                  <p class="card-text"><%= simple_format(item.description) %></p>
+                </div>
                 <p class="card-text">
                   <%= link_to "製品ページへ移動", item.product_link, target: '_blank', rel: 'noopener noreferrer', data: {confirm: "実際の製品ページに移動します。よろしいですか？"}, class: "item-link-text" %>
                   <% if item.product_link.present? %>
