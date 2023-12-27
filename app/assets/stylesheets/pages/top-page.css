@@ -77,6 +77,12 @@
   border: 2px solid #A0E3F4 !important;
 }
 
+.about-title {
+  color: #fff;
+  text-shadow: 3px 3px 5px #000;
+  font-weight: 600;
+}
+
 @media screen and (max-width: 1200px) {
   .main-visual-contents {
     top: 50%;
@@ -127,6 +133,9 @@
   .start-btn {
     font-size: 15px;
     padding: 5px 20px;
+  }
+  .about-title {
+    font-size: 2rem;
   }
 }
 
