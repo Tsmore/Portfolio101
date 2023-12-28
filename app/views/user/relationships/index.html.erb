@@ -1,12 +1,12 @@
 <div class="container body">
   <div class="row">
     <div class="col-12">
-      <h4 class="title-black">Following(<%= @following.count %>) and Followers(<%= @followers.count %>)</h4>
+      <h4 class="title-black">Connections</h4>
     </div>
   </div>
   <div class="row mt-2">
-    <button id="following-results" class="btn-switch active">Following</button>
-    <button id="followers-results" class="btn-switch">Followers</button>
+    <button id="following-results" class="btn-switch active">Following(<%= @following.count %>)</button>
+    <button id="followers-results" class="btn-switch">Followers(<%= @followers.count %>)</button>
   </div>
   <div id="following-results-section" class="follow-results-section active">
     <div class="row mt-3">
