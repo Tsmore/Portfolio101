@@ -8,7 +8,7 @@
         <%= link_to admin_contact_path(contact) do %>
           <div class="card">
             <div class="card-header">
-              <% if contact.user_id.present? %>
+              <% if contact.user.present? %>
                 ユーザー名: <%= contact.user.username %>
               <% else %>
                 <% if contact.name.present? %>
