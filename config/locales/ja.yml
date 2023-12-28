@@ -20,7 +20,7 @@ ja:
       user:
         username: "ユーザーネーム"
         email: "メールアドレス"
-        password: "パスワード"
+        password: "パスワード(英数字)"
       cat:
         sexes:
           male: "男の子"
