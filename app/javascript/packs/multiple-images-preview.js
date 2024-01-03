@@ -14,8 +14,10 @@ function setupImageUpload(uploadClass, previewContainerID) {
       Array.from(files).forEach(function(file) {
         const img = document.createElement('img');
         img.src = URL.createObjectURL(file);
-        img.style.maxWidth = '200px';
+        img.style.width = '50%';
         img.style.maxHeight = '200px';
+        img.style.display = 'inline-block';
+        img.style.objectFit = 'cover';
         img.onload = function() {
           URL.revokeObjectURL(img.src);
         }
