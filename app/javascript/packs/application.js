@@ -15,7 +15,6 @@ ActiveStorage.start()
 import "./top-page"
 import "./flash"
 import "./sidebar"
-import "./image-preview"
 import "./mypage"
 import "./edit-cat"
 import "./edit-post"
