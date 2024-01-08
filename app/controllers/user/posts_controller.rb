@@ -14,6 +14,7 @@ class User::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    @post.score = Language.get_data(post_params[:body])
     if @post.save
       redirect_to request.referer, notice: "投稿しました"
     else
@@ -24,6 +25,7 @@ class User::PostsController < ApplicationController
 
   def update
     @post = current_user.posts.find(params[:id])
+    @post.score = Language.get_data(post_params[:body])
     if @post.update(post_params)
       redirect_to request.referer, notice: "編集が完了しました"
     else

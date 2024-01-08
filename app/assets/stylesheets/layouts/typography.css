@@ -24,6 +24,7 @@
   border-bottom: 1px solid #999;
 }
 
+/*現在不使用*/
 .card-text-contents {
   height: 130px !important;
   overflow: auto !important;

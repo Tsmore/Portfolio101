@@ -13,6 +13,12 @@
       <%= comment.user.username %>
     </div>
     <div class="card-body">
+      <p class="card-text warning-texts">
+        <% if comment.score.present? && comment.score <= 0 && comment.user == current_user %>
+          他人に不快な思いをさせる可能性があります。コメントを削除することを考慮してください。<br>
+          また、ご不明な点があれば運営までご連絡をお願いします。
+        <% end %>
+      </p>
       <%= simple_format(comment.body) %>
       <%= comment.created_at.strftime('%y/%m/%d') %>
       <%= comment.created_at.strftime('%H:%M') %>

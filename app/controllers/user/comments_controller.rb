@@ -5,6 +5,7 @@ class User::CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.build(comment_params)
+    @comment.score = Language.get_data(comment_params[:body])
     @comment.user = current_user
     if @comment.save
       redirect_to request.referer, notice: 'コメントをしました'
