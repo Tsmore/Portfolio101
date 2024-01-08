@@ -26,3 +26,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.warning-texts {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff8080;
+  border-radius: 10px;
+}
