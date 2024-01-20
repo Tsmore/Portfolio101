@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @users = User.page(params[:page]).per(12)
   end
@@ -26,4 +28,13 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_users_path, alert: "#{user_name}の削除に失敗しました"
     end
   end
+
+  private
+
+  def authenticate_admin!
+    unless current_admin
+      redirect_to root_path, alert: '不正な操作が行われました。'
+    end
+  end
+
 end

@@ -98,7 +98,7 @@
                       <div class="card-text-contents">
                         <p class="card-text"><%= simple_format(cat.introduction) %></p>
                       </div>
-                      <p class="card-text"><%= cat.breed.name %></p>
+                      <p class="card-text"><%= cat.breed.name if cat.breed.present? %></p>
                       <p class="card-text"><%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
                       <p class="card-text"><%= cat.date_of_birth %></p>
                       <p class="card-text"></p>

@@ -1,4 +1,6 @@
 class Admin::BreedsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @breed = Breed.new
     @breeds = Breed.all
@@ -14,13 +16,16 @@ class Admin::BreedsController < ApplicationController
     end
   end
 
+  def edit
+    @breed = Breed.find(params[:id])
+  end
+
   def update
     @breed = Breed.find(params[:id])
     if @breed.update(breed_params)
-      redirect_to admin_breeds_path
+      redirect_to admin_breeds_path, notice: "猫種を変更しました"
     else
-      @breeds = Breed.all
-      render :index
+      redirect_to request.referer, alert: "エラーが発生しました。"
     end
   end
 
@@ -34,6 +39,12 @@ class Admin::BreedsController < ApplicationController
 
   def breed_params
     params.require(:breed).permit(:name)
+  end
+
+  def authenticate_admin!
+    unless current_admin
+      redirect_to root_path, alert: '不正な操作が行われました。'
+    end
   end
 
 end
