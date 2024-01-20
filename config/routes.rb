@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     resources :all_comments, only: [:index]
     resources :reports, only: [:show, :index, :update]
     resources :contacts, only: [:show, :index, :update]
-    resources :breeds, only: [:index, :create, :update, :destroy]
+    resources :breeds, only: [:index, :edit, :create, :update, :destroy]
     resources :users, only: [:index, :show, :update, :destroy] do
       member do
         patch :inactive
