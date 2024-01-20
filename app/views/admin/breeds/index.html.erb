@@ -12,12 +12,14 @@
         <thead>
           <tr>
             <th>猫種</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @breeds.each do |breed| %>
             <tr>
               <td><%= breed.name %></td>
+              <td><%= link_to '削除', admin_breed_path(breed), method: :delete, data: {confirm: '削除しますか？'} %></td>
             </tr>
           <% end %>
         </tbody>
