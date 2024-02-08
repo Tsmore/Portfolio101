@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
-
+  before_action :authenticate_custom_user!
+  
   def index
     @user = User.find(params[:user_id])
     @post = Post.new

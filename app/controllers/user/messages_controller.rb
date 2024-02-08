@@ -1,5 +1,6 @@
 class User::MessagesController < ApplicationController
   before_action :reject_non_related, only: [:show]
+  before_action :authenticate_custom_user!
 
   def show
     @user = User.find(params[:id])
@@ -42,7 +43,7 @@ class User::MessagesController < ApplicationController
   def reject_non_related
     user = User.find(params[:id])
     unless current_user.following?(user) && user.following?(current_user)
-      redirect_to books_path
+      redirect_to user_path(current_user), notice: "相互フォロー限定の機能です"
     end
   end
 

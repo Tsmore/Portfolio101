@@ -1,4 +1,6 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_custom_user!, except: [:index]
+
   def index
     @users = User.active.page(params[:page]).per(12)
   end
