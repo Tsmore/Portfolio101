@@ -1,6 +1,6 @@
 class User::RelationshipsController < ApplicationController
   before_action :set_user, only: [:create, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_custom_user!
 
   def create
     current_user.follow(@user)

@@ -1,5 +1,5 @@
 class User::BookmarksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_custom_user!
 
   def index
     @bookmarks = current_user.bookmarks.joins(:post).merge(Post.from_active_users).page(params[:page]).per(8)

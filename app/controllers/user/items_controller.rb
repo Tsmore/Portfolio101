@@ -1,5 +1,5 @@
 class User::ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_custom_user!
 
   def index
     @user = User.find(params[:user_id])

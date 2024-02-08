@@ -1,6 +1,6 @@
 class User::MessagesController < ApplicationController
   before_action :reject_non_related, only: [:show]
-  before_action :authenticate_user!
+  before_action :authenticate_custom_user!
 
   def show
     @user = User.find(params[:id])

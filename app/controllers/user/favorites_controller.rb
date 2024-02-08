@@ -1,6 +1,6 @@
 class User::FavoritesController < ApplicationController
   before_action :set_post, only: [:create, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_custom_user!
 
   def index
     @favorites = current_user.favorites.joins(:post).merge(Post.from_active_users).page(params[:page]).per(8)
