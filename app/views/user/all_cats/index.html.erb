@@ -19,7 +19,7 @@
             <div class="card-text-contents">
               <p class="card-text"><%= simple_format(cat.introduction) %></p>
             </div>
-            <p class="card-text">猫種: <%= cat.breed.name %></p>
+            <p class="card-text">猫種: <%= cat.breed.name if cat.breed&.name.present? %></p>
             <p class="card-text">性別: <%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
             <p class="card-text">
               誕生日:

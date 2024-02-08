@@ -15,7 +15,7 @@
                 <%= image_tag cat.profile_image, class: "cat-image" %>
               </div>
               <div class="card-body">
-                <h5 class="card-title text-center"><%= cat.name %></h5>
+                <h5 class="card-title text-center"><%= cat.name if cat.name.present? %></h5>
                 <p class="card-text">自己紹介:</p>
                 <div class="card-text-contents">
                   <% if cat.introduction.present? %>
@@ -24,7 +24,7 @@
                     <p class="card-text">自己紹介文が登録されていません</p>
                   <% end %>
                 </div>
-                <p class="card-text">猫種: <%= cat.breed.name %></p>
+                <p class="card-text">猫種: <%= cat.breed.name if cat.breed.name.present? %></p>
                 <p class="card-text">性別: <%= I18n.t("activerecord.attributes.cat.sexes.#{cat.sex}") %></p>
                 <p class="card-text">
                   誕生日:
