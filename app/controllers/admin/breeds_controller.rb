@@ -12,7 +12,7 @@ class Admin::BreedsController < ApplicationController
       redirect_to admin_breeds_path
     else
       @breeds = Breed.all
-      redirect_to request.referer, alert: "同一の品種がすでに存在しています。"
+      redirect_to request.referer, alert: "同一の品種がすでに存在しています。確認後に再度登録してください"
     end
   end
 
