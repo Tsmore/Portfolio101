@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_custom_user!
-    unless user_signed_in? && current_user.username == "GuestUser"
+    unless user_signed_in?
       redirect_to root_path, alert: "ログインもしくはアカウントを登録してください。"
     end
   end
