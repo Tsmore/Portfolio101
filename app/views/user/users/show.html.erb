@@ -48,7 +48,7 @@
                   </button>
                   <%= render 'user/users/report', report: @report, user: @user %>
                 <% else %>
-                  <% unless current_user&.username == "GuestUser" %>
+                  <% if current_user && @user == current_user && current_user.username != "GuestUser" %>
                     <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
                       <i class="fa-solid fa-user-pen"></i>
                     </button>
