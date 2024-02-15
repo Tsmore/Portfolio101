@@ -1,4 +1,4 @@
-<div class="container body" data-user-id="<%= current_user.id %>">
+<div class="container body" data-user-id="<%= current_user&.id  %>">
   <div class="row">
     <div class="col-12 text-center">
       <% if @user.is_active == false %>
@@ -32,7 +32,7 @@
                 <h4><%= @user.username %></h4>
               </div>
               <div class="follow-chat-section">
-                <% if current_user != @user %>
+                <% if current_user && current_user != @user %>
                   <% if current_user.following?(@user) %>
                     <%= link_to "Following", user_relationships_path(@user.id), method: :delete, class: "btn-black" %>
                   <% else %>
@@ -48,7 +48,7 @@
                   </button>
                   <%= render 'user/users/report', report: @report, user: @user %>
                 <% else %>
-                  <% unless current_user.username == "GuestUser" %>
+                  <% unless current_user&.username == "GuestUser" %>
                     <button type="button" class="btn-green" data-toggle="modal" data-target="#userinfo-edit">
                       <i class="fa-solid fa-user-pen"></i>
                     </button>
@@ -168,7 +168,7 @@
           <div class="title-btn-section mt-3">
             <h4><%#= link_to "All Posts", user_posts_path(@user), class: "btn-black" %></h4>
             <h4 type="button" class="btn-blue add-btn" data-toggle="modal" data-target="#new-post">新規投稿</h4>
-            <%= render 'user/posts/new_post', post: @post %>
+            <%= render 'user/posts/new_post', post: @post if user_signed_in? %>
           </div>
         </div>
       </div>

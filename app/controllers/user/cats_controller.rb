@@ -1,6 +1,7 @@
 class User::CatsController < ApplicationController
   before_action :set_cat, only: [:update, :destroy]
   before_action :authorize_user!, only: [:update, :destroy]
+  before_action :authenticate_custom_user!
 
   def index
     @user = User.find(params[:user_id])
