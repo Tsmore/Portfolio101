@@ -1,5 +1,5 @@
 class User::UsersController < ApplicationController
-  before_action :authenticate_custom_user!, except: [:index]
+  before_action :authenticate_custom_user!, except: [:index, :show]
 
   def index
     @users = User.active.page(params[:page]).per(12)
